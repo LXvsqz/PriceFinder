@@ -1,10 +1,6 @@
 //package pricewatcher.base;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Rectangle;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.ImageObserver;
@@ -93,5 +89,12 @@ public class ItemView extends JPanel {
             e.printStackTrace();
         }
         return null;
+    }
+    public void openURL(String url) {
+        try {
+            Desktop.getDesktop().browse(new URL(url).toURI());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
