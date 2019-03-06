@@ -18,4 +18,5 @@ public class PriceFinder{
     static double getRandomNumber(double min, double max){
         return (Math.random() * ((max - min) + 1)) + min;
     }
+
 }

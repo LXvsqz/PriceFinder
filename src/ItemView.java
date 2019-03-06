@@ -57,7 +57,8 @@ public class ItemView extends JPanel {
 	public void paintComponent(Graphics g) {
 
         super.paintComponent(g);
-        Item iphone= new Item("Iphone x","https://www.apple.com/iphone/");
+        Item item= new Item("Iphone x","https://www.apple.com/iphone/");
+
         //Dimension dim = getSize();
 
         //--
@@ -70,14 +71,14 @@ public class ItemView extends JPanel {
         //g.drawOval(x,y,20,50);
         Main.class.getResource("IphoneX.png");
         //y += 22;
-        String itemName= iphone.getName();
+        String itemName= item.getName();
         //g.setFont(new Font(itemName,Font.BOLD,16));
-        g.drawString("Name: \t" + itemName,x,y);
+        g.drawString("Name: \t" + item.getName(),x,y);
         y+=22;
-        g.drawString("URL: \t" + iphone.getURL(),x,y);
+        g.drawString("URL: \t" + item.getURL(),x,y);
         y+=22;
-        String origPrice= Double.toString(iphone.getOriginalPrice());
-        String currPrice= Double.toString(iphone.getCurrentPrice());
+        String origPrice= Double.toString(PriceFinder.getOriginalPrice(item.getURL()));
+        String currPrice= Double.toString(PriceFinder.getCurrentPrice(item.getURL()));
 
         g.drawString("Price: \t",x,y);
         g.setColor(Color.BLUE);
@@ -86,8 +87,8 @@ public class ItemView extends JPanel {
         x -=40;
         y+=22;
         g.setColor(Color.BLACK);
-        String change= Double.toString(iphone.getChange());
-        if(iphone.getChange() < 0) {
+        String change= Double.toString(item.getChange());
+        if(item.getChange() < 0) {
             g.drawString("Change: \t", x, y);
             g.setColor(Color.red);
             x += 50;
@@ -104,7 +105,7 @@ public class ItemView extends JPanel {
         g.setColor(Color.BLACK);
 
         y+=22;
-        g.drawString("Added: \t" +iphone.getDateAdded() + "\t($" + origPrice + ")",x,y );
+        g.drawString("Added: \t" +item.getDateAdded() + "\t($" + origPrice + ")",x,y );
 
     }
     /** Return true if the given screen coordinate is inside the viewPage icon. */
