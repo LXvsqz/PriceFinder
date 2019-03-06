@@ -4,6 +4,7 @@ public class Item{
     private String description;
     private double originalPrice= getRandomNumber(100,500.00);
     private String URL;
+    private String dateAdded;
 
 
     //never use float or double when dealing with currency
@@ -12,12 +13,13 @@ public class Item{
 
 
 
-    public Item(String name, double price, String description, String url) {
+    public Item(String name, double price, String description, String url, String date) {
         Name = name;
         price=getRandomNumber(100,500);
         this.currentPrice = price;
         this.description = description;
         this.URL= url;
+        this.dateAdded= date;
         }
 
     public String getName() {
@@ -28,12 +30,17 @@ public class Item{
         return URL;
     }
 
+    public String getDateAdded() {
+        return dateAdded;
+    }
+
     public double setChange(){
         double original= this.originalPrice;
         double current= this.currentPrice;
         double percentChange= ((original - current) / original) * 100;
         return percentChange;
     }
+
     public double getChange(){
         double original= this.originalPrice;
         double current= this.currentPrice;

@@ -52,7 +52,7 @@ public class ItemView extends JPanel {
     @Override
 	public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Item iphone= new Item("Iphone x", 350.00,"Newest Iphone on the market", "https://www.apple.com/iphone/");
+        Item iphone= new Item("Iphone x", 350.00,"Newest Iphone on the market", "https://www.apple.com/iphone/", "03/05/2019");
         //Dimension dim = getSize();
         
         //--
@@ -74,6 +74,9 @@ public class ItemView extends JPanel {
         g.drawString("Price: \t" + iphone.getCurrentPrice(),x,y);
         y+=20;
         g.drawString("Change: \t" + iphone.getChange(),x,y);
+        y+=20;
+        g.drawString("Added: \t" +iphone.getDateAdded(), x,y);
+
     }
     
     /** Return true if the given screen coordinate is inside the viewPage icon. */
