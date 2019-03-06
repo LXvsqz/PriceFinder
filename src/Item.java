@@ -12,7 +12,6 @@ public class Item {
     //never use float or double when dealing with currency
     //use int or long//
 
-    //TODO: Need to fix currency
     //TODO: Need to seperate methods for generating this currency and make originalPrice a final variable
 
 
@@ -49,6 +48,10 @@ public class Item {
     }
     public double getOriginalPrice(){
         return originalPrice;
+    }
+    public double checkCurrentPrice(String url){
+        return PriceFinder.getCurrentPrice(url);
+
     }
 
 

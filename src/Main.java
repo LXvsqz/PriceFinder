@@ -7,6 +7,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 
+import javax.security.auth.Refreshable;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -53,13 +54,13 @@ public class Main extends JFrame{
     /** Callback to be invoked when the refresh button is clicked. 
      * Find the current price of the watched item and display it 
      * along with a percentage price change. */
-    private void refreshButtonClicked(ActionEvent event) {
-    	//--
+    private void refreshButtonClicked(ActionEvent event){
     	//-- WRITE YOUR CODE HERE!
-    	//--
+
+
     	showMessage("Refresh clicked!");
     }
-    
+
     /** Callback to be invoked when the view-page icon is clicked.
      * Launch a (default) web browser by supplying the URL of
      * the item. */
@@ -67,6 +68,7 @@ public class Main extends JFrame{
     	//--
     	//-- WRITE YOUR CODE HERE!
     	//--
+
     	showMessage("View clicked!");
     }
         
@@ -115,6 +117,7 @@ public class Main extends JFrame{
     
     public static void main(String[] args) {
         new Main();
+
     }
 
 }

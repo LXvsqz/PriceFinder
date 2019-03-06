@@ -10,8 +10,9 @@ import java.io.IOException;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
-import javax.swing.JPanel;
-//TODO: Change color on individual lines. String of price
+import javax.swing.*;
+import javax.swing.text.StyledEditorKit;
+//TODO: Change color on individual lines. String of price (DONE)
 //TODO: Add button and get refresh working
     //TODO: Refresh should only change current price
 //TODO: isPageClicked
@@ -54,22 +55,24 @@ public class ItemView extends JPanel {
     /** Overridden here to display the details of the item. */
     @Override
 	public void paintComponent(Graphics g) {
+
         super.paintComponent(g);
         Item iphone= new Item("Iphone x","https://www.apple.com/iphone/");
         //Dimension dim = getSize();
-        
+
         //--
         //-- WRITE YOUR CODE HERE!
         //--
         int x = 20, y = 30;
-        //g.drawString("Name" +iphone.getName(),x,y);
-        //g.drawString("");
+
         //g.drawImage(getImage("IphoneX.png"), x,y);
-        //g.drawImage(x,y, getImage("IphoneX.png"));
-        g.drawImage(getImage("IphoneX.png"),x,y,20,20,this);
-        g.drawString("[View]", x, y);
-        y += 22;
-        g.drawString("Name: \t" + iphone.getName(),x,y);
+
+        //g.drawOval(x,y,20,50);
+        Main.class.getResource("IphoneX.png");
+        //y += 22;
+        String itemName= iphone.getName();
+        //g.setFont(new Font(itemName,Font.BOLD,16));
+        g.drawString("Name: \t" + itemName,x,y);
         y+=22;
         g.drawString("URL: \t" + iphone.getURL(),x,y);
         y+=22;
@@ -104,15 +107,14 @@ public class ItemView extends JPanel {
         g.drawString("Added: \t" +iphone.getDateAdded() + "\t($" + origPrice + ")",x,y );
 
     }
-    
     /** Return true if the given screen coordinate is inside the viewPage icon. */
     private boolean isViewPageClicked(int x, int y) {
-    	//--
     	//-- WRITE YOUR CODE HERE
-    	//--
+        if(x == 20 && y==20)
+            return true;
+
     	return new Rectangle(20, 20, 30, 20).contains(x,  y);
     }
-        
     /** Return the image stored in the given file. */
     public Image getImage(String file) {
         try {
@@ -132,4 +134,3 @@ public class ItemView extends JPanel {
     }
 }
 //test change kdkdkpdpk
-//sdfgsdfgsfg
