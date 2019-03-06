@@ -74,11 +74,13 @@ public class ItemView extends JPanel {
         y+=20;
         g.drawString("URL: \t" + iphone.getURL(),x,y);
         y+=20;
+        String origPrice= Double.toString(iphone.getCurrentPrice());
+
         g.drawString("Price: \t" + iphone.getCurrentPrice(),x,y);
         y+=20;
         g.drawString("Change: \t" + iphone.getChange(),x,y);
         y+=20;
-        g.drawString("Added: \t" +iphone.getDateAdded(), x,y);
+        g.drawString("Added: \t" +iphone.getDateAdded() + "\t" + origPrice,x,y );
 
     }
     
