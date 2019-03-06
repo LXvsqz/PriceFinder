@@ -48,7 +48,8 @@ public class Main extends JFrame{
         //setResizable(false);
         showMessage("Welcome!");
     }
-  
+  //TODO: refreshButtonCLicked
+    //TODO: viewPageClicked
     /** Callback to be invoked when the refresh button is clicked. 
      * Find the current price of the watched item and display it 
      * along with a percentage price change. */

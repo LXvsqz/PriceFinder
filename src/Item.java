@@ -10,7 +10,8 @@ public class Item{
     //never use float or double when dealing with currency
     //use int or long//
 
-
+    //TODO: Need to fix currency
+    //TODO: Need to seperate methods for generating this currency and make originalPrice a final variable
 
 
     public Item(String name, double price, String description, String url, String date) {

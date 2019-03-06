@@ -11,7 +11,10 @@ import java.net.URL;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
-
+//TODO: Change color on individual lines. String of price
+//TODO: Add button and get refresh working
+    //TODO: Refresh should only change current price
+//TODO: isPageClicked
 /** A special panel to display the detail of an item. */
 
 @SuppressWarnings("serial")
