@@ -34,6 +34,13 @@ public class Item{
         double percentChange= ((original - current) / original) * 100;
         return percentChange;
     }
+    public double getChange(){
+        double original= this.originalPrice;
+        double current= this.currentPrice;
+        double percentChange= ((original - current) / original) * 100;
+        return percentChange;
+    }
+
 
     public void displayInfo(){
         System.out.println("Item: " + this.Name);

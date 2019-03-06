@@ -1,5 +1,7 @@
 //package pricewatcher.base;
 
+import org.w3c.dom.css.Rect;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -71,7 +73,7 @@ public class ItemView extends JPanel {
         y+=20;
         g.drawString("Price: \t" + iphone.getCurrentPrice(),x,y);
         y+=20;
-        g.drawString("Change: \t",x,y);
+        g.drawString("Change: \t" + iphone.getChange(),x,y);
     }
     
     /** Return true if the given screen coordinate is inside the viewPage icon. */
