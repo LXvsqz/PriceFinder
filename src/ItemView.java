@@ -69,18 +69,37 @@ public class ItemView extends JPanel {
         g.drawImage(getImage("IphoneX.png"),x,y,20,20,this);
         g.drawString("[View]", x, y);
         y += 22;
-        //g.drawString("Hi, I am your item!", x, y);
         g.drawString("Name: \t" + iphone.getName(),x,y);
         y+=22;
         g.drawString("URL: \t" + iphone.getURL(),x,y);
         y+=22;
         String origPrice= Double.toString(iphone.getOriginalPrice());
+        String currPrice= Double.toString(iphone.getCurrentPrice());
 
+        g.drawString("Price: \t",x,y);
         g.setColor(Color.BLUE);
-        g.drawString("Price: \t$" + iphone.getCurrentPrice(),x,y);
+        x += 40;
+        g.drawString("$"+ currPrice,x,y);
+        x -=40;
         y+=22;
         g.setColor(Color.BLACK);
-        g.drawString("Change: \t" + iphone.getChange()+ "%",x,y);
+        String change= Double.toString(iphone.getChange());
+        if(iphone.getChange() < 0) {
+            g.drawString("Change: \t", x, y);
+            g.setColor(Color.red);
+            x += 50;
+            g.drawString("\t" + change + "%", x, y);
+            x -= 50;
+        }
+        else{
+            g.drawString("Change: \t",x,y);
+            g.setColor(Color.green);
+            x+=50;
+            g.drawString("\t" + change + "%",x,y);
+            x-=50;
+        }
+        g.setColor(Color.BLACK);
+
         y+=22;
         g.drawString("Added: \t" +iphone.getDateAdded() + "\t($" + origPrice + ")",x,y );
 
