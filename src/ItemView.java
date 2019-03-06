@@ -68,19 +68,21 @@ public class ItemView extends JPanel {
         //g.drawImage(x,y, getImage("IphoneX.png"));
         g.drawImage(getImage("IphoneX.png"),x,y,20,20,this);
         g.drawString("[View]", x, y);
-        y += 20;
+        y += 22;
         //g.drawString("Hi, I am your item!", x, y);
         g.drawString("Name: \t" + iphone.getName(),x,y);
-        y+=20;
+        y+=22;
         g.drawString("URL: \t" + iphone.getURL(),x,y);
-        y+=20;
-        String origPrice= Double.toString(iphone.getCurrentPrice());
+        y+=22;
+        String origPrice= Double.toString(iphone.getOriginalPrice());
 
-        g.drawString("Price: \t" + iphone.getCurrentPrice(),x,y);
-        y+=20;
-        g.drawString("Change: \t" + iphone.getChange(),x,y);
-        y+=20;
-        g.drawString("Added: \t" +iphone.getDateAdded() + "\t" + origPrice,x,y );
+        g.setColor(Color.BLUE);
+        g.drawString("Price: \t$" + iphone.getCurrentPrice(),x,y);
+        y+=22;
+        g.setColor(Color.BLACK);
+        g.drawString("Change: \t" + iphone.getChange()+ "%",x,y);
+        y+=22;
+        g.drawString("Added: \t" +iphone.getDateAdded() + "\t($" + origPrice + ")",x,y );
 
     }
     

@@ -47,7 +47,7 @@ public class Item {
     public double getOriginalPrice(){
         return originalPrice;
     }
-    static double getRandomNumber(double min, double max) { //function from CS2
+    static double getRandomNumber(double min, double max){
         return (Math.random() * ((max - min) + 1)) + min;
     }
 
