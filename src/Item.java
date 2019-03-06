@@ -2,7 +2,7 @@ public class Item {
     private String Name;
     private double currentPrice;
     private String description;
-    private double originalPrice = getRandomNumber(100, 500.00);
+    private double originalPrice = Math.floor(getRandomNumber(100, 500.00)*100)/100;
     private String URL;
     private String dateAdded;
 
@@ -16,7 +16,7 @@ public class Item {
 
     public Item(String name, double price, String description, String url, String date) {
         Name = name;
-        price = getRandomNumber(100, 500);
+        price = Math.floor(getRandomNumber(100, 500)*100)/100;
         this.currentPrice = price;
         this.description = description;
         this.URL = url;
@@ -39,6 +39,7 @@ public class Item {
         double original = this.originalPrice;
         double current = this.currentPrice;
         double percentChange = ((original - current) / original) * 100;
+        percentChange = Math.floor(percentChange*100)/100;
         return percentChange;
     }
     public double getCurrentPrice() {
