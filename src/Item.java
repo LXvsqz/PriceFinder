@@ -7,6 +7,7 @@ public class Item {
     private double originalPrice;
     private String URL;
     private String dateAdded;
+    private double percentChange;
 
 
     //never use float or double when dealing with currency
@@ -22,6 +23,7 @@ public class Item {
         this.description = description;
         this.URL = url;
         this.dateAdded = "" + LocalDate.now();
+        this.percentChange =  Math.floor(((originalPrice-currentPrice)/originalPrice)*10000) * 100;
     }
 
     public String getName() {
@@ -37,10 +39,7 @@ public class Item {
     }
 
     public double getChange() {
-        double original = this.originalPrice;
-        double current = this.currentPrice;
-        double percentChange = ((original - current) / original) * 100;
-        percentChange = Math.floor(percentChange*100)/100;
+
         return percentChange;
     }
     public double getCurrentPrice() {
@@ -50,7 +49,8 @@ public class Item {
         return originalPrice;
     }
     public double checkCurrentPrice(String url){
-        return PriceFinder.getCurrentPrice(url);
+        currentPrice =  PriceFinder.getCurrentPrice(url);
+        percentChange = Math.floor(((originalPrice-currentPrice)/originalPrice)*10000) * 100;
 
     }
 
