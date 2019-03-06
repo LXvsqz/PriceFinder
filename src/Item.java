@@ -16,18 +16,17 @@ public class Item {
     //TODO: Need to seperate methods for generating this currency and make originalPrice a final variable
 
 
-    public Item(String name, String url) {
-        Name = name;
+    public Item(String description, String url) {
         this.originalPrice = PriceFinder.getOriginalPrice(url);
         this.currentPrice = PriceFinder.getCurrentPrice(url);
         this.description = description;
         this.URL = url;
         this.dateAdded = "" + LocalDate.now();
-        this.percentChange =  Math.floor(((originalPrice-currentPrice)/originalPrice)*10000) * 100;
+        this.percentChange =  Math.floor(((originalPrice-currentPrice)/originalPrice)*10000) / 100;
     }
 
     public String getName() {
-        return Name;
+        return description;
     }
 
     public String getURL() {
@@ -48,9 +47,9 @@ public class Item {
     public double getOriginalPrice(){
         return originalPrice;
     }
-    public double checkCurrentPrice(String url){
+    public void checkCurrentPrice(String url){
         currentPrice =  PriceFinder.getCurrentPrice(url);
-        percentChange = Math.floor(((originalPrice-currentPrice)/originalPrice)*10000) * 100;
+        percentChange = Math.floor(((originalPrice-currentPrice)/originalPrice)*10000) / 100;
 
     }
 

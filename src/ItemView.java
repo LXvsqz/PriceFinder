@@ -77,13 +77,12 @@ public class ItemView extends JPanel {
         y+=22;
         g.drawString("URL: \t" + item.getURL(),x,y);
         y+=22;
-        String origPrice= Double.toString(PriceFinder.getOriginalPrice(item.getURL()));
-        String currPrice= Double.toString(PriceFinder.getCurrentPrice(item.getURL()));
+
 
         g.drawString("Price: \t",x,y);
         g.setColor(Color.BLUE);
         x += 40;
-        g.drawString("$"+ currPrice,x,y);
+        g.drawString("$"+ item.getCurrentPrice(),x,y);
         x -=40;
         y+=22;
         g.setColor(Color.BLACK);
@@ -92,7 +91,7 @@ public class ItemView extends JPanel {
             g.drawString("Change: \t", x, y);
             g.setColor(Color.red);
             x += 50;
-            g.drawString("\t" + change + "%", x, y);
+            g.drawString("\t" + item.getChange() + "%", x, y);
             x -= 50;
         }
         else{
@@ -105,7 +104,7 @@ public class ItemView extends JPanel {
         g.setColor(Color.BLACK);
 
         y+=22;
-        g.drawString("Added: \t" +item.getDateAdded() + "\t($" + origPrice + ")",x,y );
+        g.drawString("Added: \t" +item.getDateAdded() + "\t($" + item.getOriginalPrice() + ")",x,y );
 
     }
     /** Return true if the given screen coordinate is inside the viewPage icon. */
@@ -132,6 +131,9 @@ public class ItemView extends JPanel {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public void checkPriceAgain(){
+
     }
 }
 //test change kdkdkpdpk

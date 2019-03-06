@@ -56,7 +56,8 @@ public class Main extends JFrame{
      * along with a percentage price change. */
     private void refreshButtonClicked(ActionEvent event){
     	//-- WRITE YOUR CODE HERE!
-
+        //itemView.paintComponent();
+        configureUI();
 
 
     	showMessage("Refresh clicked!");
