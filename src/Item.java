@@ -18,7 +18,8 @@ public class Item {
 
     public Item(String name, String url) {
         Name = name;
-        this.currentPrice = PriceFinder.getOriginalPrice(url);
+        this.originalPrice = PriceFinder.getOriginalPrice(url);
+        this.currentPrice = PriceFinder.getCurrentPrice(url);
         this.description = description;
         this.URL = url;
         this.dateAdded = "" + LocalDate.now();
