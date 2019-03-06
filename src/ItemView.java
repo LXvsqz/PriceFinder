@@ -55,7 +55,7 @@ public class ItemView extends JPanel {
     @Override
 	public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Item iphone= new Item("Iphone x", 350.00,"Newest Iphone on the market", "https://www.apple.com/iphone/", "03/05/2019");
+        Item iphone= new Item("Iphone x","https://www.apple.com/iphone/");
         //Dimension dim = getSize();
         
         //--

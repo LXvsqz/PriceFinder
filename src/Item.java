@@ -1,8 +1,10 @@
+import java.time.LocalDate;
+
 public class Item {
     private String Name;
     private double currentPrice;
     private String description;
-    private double originalPrice = Math.floor(getRandomNumber(100, 500.00)*100)/100;
+    private double originalPrice;
     private String URL;
     private String dateAdded;
 
@@ -14,13 +16,12 @@ public class Item {
     //TODO: Need to seperate methods for generating this currency and make originalPrice a final variable
 
 
-    public Item(String name, double price, String description, String url, String date) {
+    public Item(String name, String url) {
         Name = name;
-        price = Math.floor(getRandomNumber(100, 500)*100)/100;
-        this.currentPrice = price;
+        this.currentPrice = PriceFinder.getOriginalPrice(url);
         this.description = description;
         this.URL = url;
-        this.dateAdded = date;
+        this.dateAdded = "" + LocalDate.now();
     }
 
     public String getName() {
@@ -48,18 +49,9 @@ public class Item {
     public double getOriginalPrice(){
         return originalPrice;
     }
-    static double getRandomNumber(double min, double max){
-        return (Math.random() * ((max - min) + 1)) + min;
-    }
 
 
-    public void displayInfo() {
-        System.out.println("Item: " + this.Name);
-        System.out.println("URL: " + this.URL);
-        System.out.println("Current Price: " + this.currentPrice);
-        System.out.println("Change: " + this.getChange() + "%");
-        System.out.println("Added: 02/04/2018 (" + originalPrice + ")");
-    }
+
 
     public void setURL(String newURL){ //not used now but will be needed later on
         this.URL = newURL;

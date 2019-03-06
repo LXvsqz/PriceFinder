@@ -1,15 +1,21 @@
 public class PriceFinder{
-    private Item item;
 
-    public PriceFinder(Item item) {
-        this.item = item;
+
+    public PriceFinder() {
+
     }
 
-    public double getCurrentPrice(){
-        return this.item.getCurrentPrice();
+    public static double getCurrentPrice(String url)
+    {
+
+        return Math.floor(getRandomNumber(100, 500)*100)/100;
     }
 
-    public double getOriginalPrice(){
-        return this.item.getOriginalPrice();
+    public static double getOriginalPrice(String url){
+        return Math.floor(getRandomNumber(100, 500)*100)/100;
+
+    }
+    static double getRandomNumber(double min, double max){
+        return (Math.random() * ((max - min) + 1)) + min;
     }
 }
