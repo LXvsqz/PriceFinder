@@ -66,18 +66,21 @@ public class ItemView extends JPanel {
 
 
 
-        //--
-        //-- WRITE YOUR CODE HERE!
-        //--
+
         int x = 20, y = 30;
 
-        //g.drawImage(getImage("IphoneX.png"), x,y);
 
-        //g.drawOval(x,y,20,50);
-        Main.class.getResource("IphoneX.png");
-        //y += 22;
-        String itemName= item.getName();
-        //g.setFont(new Font(itemName,Font.BOLD,16));
+
+        //g.drawOval(x,y,20,20);
+        //g.fillOval(x,y,20,20);
+
+
+
+        //g.drawImage(getImage("phone.png"),10,10,this);
+        g.setColor(Color.MAGENTA);
+        g.drawString("{Site}", x,y);
+        g.setColor(Color.BLACK);
+        y+=30;
         g.drawString("Name: \t" + item.getName(),x,y);
         y+=22;
         g.drawString("URL: \t" + item.getURL(),x,y);
@@ -114,7 +117,7 @@ public class ItemView extends JPanel {
 
         y+=22;
         g.drawString("Added: \t" +item.getDateAdded() + "\t($" + item.getOriginalPrice() + ")",x,y );
-
+        g.drawImage(getImage("IphoneX.png"),10,10,null);
     }
     /** Return true if the given screen coordinate is inside the viewPage icon. */
     private boolean isViewPageClicked(int x, int y) {
