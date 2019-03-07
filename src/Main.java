@@ -22,7 +22,7 @@ import javax.swing.SwingUtilities;
 */
 @SuppressWarnings("serial")
 public class Main extends JFrame{
-
+    Item item = new Item("Iphone X","https://apple.com/iphone");
     /** Default dimension of the dialog. */
     private final static Dimension DEFAULT_SIZE = new Dimension(400, 300);
       
@@ -41,7 +41,7 @@ public class Main extends JFrame{
     public Main(Dimension dim) {
         super("Price Watcher");
         setSize(dim);
-        Item item = new Item("Iphone X","https://apple.com/iphone");
+        //Item item = new Item("Iphone X","https://apple.com/iphone");
         configureUI();
         //setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -57,8 +57,9 @@ public class Main extends JFrame{
     private void refreshButtonClicked(ActionEvent event){
     	//-- WRITE YOUR CODE HERE!
         //itemView.paintComponent();
-        configureUI();
-
+        //item.checkCurrentPrice(item.getURL());
+        itemView.updatePrice();
+        repaint();
 
     	showMessage("Refresh clicked!");
     }
@@ -70,7 +71,7 @@ public class Main extends JFrame{
     	//--
     	//-- WRITE YOUR CODE HERE!
     	//--
-
+        ItemView.openURL(itemView.getURL());
     	showMessage("View clicked!");
     }
         
@@ -86,6 +87,8 @@ public class Main extends JFrame{
         		BorderFactory.createLineBorder(Color.GRAY)));
         board.setLayout(new GridLayout(1,1));
         itemView = new ItemView();
+        //Item item = new Item("Iphone X","https://apple.com/iphone");
+        //itemView.setItem();
         itemView.setClickListener(this::viewPageClicked);
         board.add(itemView);
         add(board, BorderLayout.CENTER);

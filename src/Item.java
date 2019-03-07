@@ -4,7 +4,7 @@ public class Item {
     private String Name;
     private double currentPrice;
     private String description;
-    private double originalPrice;
+    private final double originalPrice;
     private String URL;
     private String dateAdded;
     private double percentChange;

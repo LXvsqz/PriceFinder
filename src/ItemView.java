@@ -20,14 +20,19 @@ import javax.swing.text.StyledEditorKit;
 
 @SuppressWarnings("serial")
 public class ItemView extends JPanel {
-    
+    private Item item = new Item("Iphone X","https://apple.com/iphone");
 	/** Interface to notify a click on the view page icon. */
 	public interface ClickListener {
 		
 		/** Callback to be invoked when the view page icon is clicked. */
 		void clicked();
 	}
-	
+	public void updatePrice(){
+	    item.checkCurrentPrice(item.getURL());
+    }
+    public String getURL(){
+	    return item.getURL();
+    }
 	/** Directory for image files: src/image in Eclipse. */
 	private final static String IMAGE_DIR = "/image/";
         
@@ -57,7 +62,7 @@ public class ItemView extends JPanel {
 	public void paintComponent(Graphics g) {
 
         super.paintComponent(g);
-        Item item= new Item("Iphone x","https://www.apple.com/iphone/");
+        //Item item= new Item("Iphone x","https://www.apple.com/iphone/");
 
         //Dimension dim = getSize();
 
@@ -125,7 +130,7 @@ public class ItemView extends JPanel {
         }
         return null;
     }
-    public void openURL(String url) {
+    public static void openURL(String url) {
         try {
             Desktop.getDesktop().browse(new URL(url).toURI());
         } catch (Exception e) {

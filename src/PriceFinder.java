@@ -1,5 +1,5 @@
 public class PriceFinder{
-    private double originalPrice;
+
 
     public PriceFinder() {
 
