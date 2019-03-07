@@ -22,7 +22,7 @@ import javax.swing.SwingUtilities;
 */
 @SuppressWarnings("serial")
 public class Main extends JFrame{
-    Item item = new Item("Iphone X","https://apple.com/iphone");
+
     /** Default dimension of the dialog. */
     private final static Dimension DEFAULT_SIZE = new Dimension(400, 300);
       
@@ -36,17 +36,17 @@ public class Main extends JFrame{
     public Main() {
     	this(DEFAULT_SIZE);
     }
-    
+
     /** Create a new dialog of the given screen dimension. */
     public Main(Dimension dim) {
         super("Price Watcher");
         setSize(dim);
-        //Item item = new Item("Iphone X","https://apple.com/iphone");
+
         configureUI();
         //setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
-        //setResizable(false);
+        setResizable(false);
         showMessage("Welcome!");
     }
   //TODO: refreshButtonCLicked
@@ -56,8 +56,7 @@ public class Main extends JFrame{
      * along with a percentage price change. */
     private void refreshButtonClicked(ActionEvent event){
     	//-- WRITE YOUR CODE HERE!
-        //itemView.paintComponent();
-        //item.checkCurrentPrice(item.getURL());
+
         itemView.updatePrice();
         repaint();
 
@@ -87,8 +86,6 @@ public class Main extends JFrame{
         		BorderFactory.createLineBorder(Color.GRAY)));
         board.setLayout(new GridLayout(1,1));
         itemView = new ItemView();
-        //Item item = new Item("Iphone X","https://apple.com/iphone");
-        //itemView.setItem();
         itemView.setClickListener(this::viewPageClicked);
         board.add(itemView);
         add(board, BorderLayout.CENTER);
@@ -119,7 +116,7 @@ public class Main extends JFrame{
         	}
         }).start();
     }
-    
+
     public static void main(String[] args) {
         new Main();
 

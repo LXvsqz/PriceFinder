@@ -54,12 +54,6 @@ public class Item {
     }
 
 
-
-
-    public void setURL(String newURL){ //not used now but will be needed later on
-        this.URL = newURL;
-    }
-
 }
 
 

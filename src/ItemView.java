@@ -62,9 +62,9 @@ public class ItemView extends JPanel {
 	public void paintComponent(Graphics g) {
 
         super.paintComponent(g);
-        //Item item= new Item("Iphone x","https://www.apple.com/iphone/");
 
-        //Dimension dim = getSize();
+
+
 
         //--
         //-- WRITE YOUR CODE HERE!
@@ -141,8 +141,5 @@ public class ItemView extends JPanel {
             e.printStackTrace();
         }
     }
-    public void checkPriceAgain(){
 
-    }
 }
-//test change kdkdkpdpk
