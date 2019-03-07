@@ -63,20 +63,8 @@ public class ItemView extends JPanel {
 
         super.paintComponent(g);
 
-
-
-
-
         int x = 20, y = 30;
 
-
-
-        //g.drawOval(x,y,20,20);
-        //g.fillOval(x,y,20,20);
-
-
-
-        //g.drawImage(getImage("phone.png"),10,10,this);
         g.setColor(Color.MAGENTA);
         g.drawString("{Site}", x,y);
         g.setColor(Color.BLACK);
@@ -102,7 +90,7 @@ public class ItemView extends JPanel {
             x += 50;
             g.drawString("\t" + item.getChange() + "%", x, y);
             x -= 50;
-            app.play("https://www.pacdv.com/sounds/voices/no-6.wav");
+            app.play("http://www.wavsource.com/snds_2018-06-03_5106726768923853/sfx/boo.wav");
         }
         else{
             g.drawString("Change: \t",x,y);
@@ -111,7 +99,7 @@ public class ItemView extends JPanel {
             g.drawString("\t" + change + "%",x,y);
             x-=50;
 
-            app.play("https://www.pacdv.com/sounds/voices/yes-3.wav");
+            app.play("http://www.wavsource.com/snds_2018-06-03_5106726768923853/sfx/boing_x.wav");
         }
         g.setColor(Color.BLACK);
 
