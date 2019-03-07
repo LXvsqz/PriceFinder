@@ -1,4 +1,4 @@
-package noapplet;
+//package noapplet;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;

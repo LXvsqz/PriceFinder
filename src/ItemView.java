@@ -1,4 +1,4 @@
-//package pricewatcher.base;
+
 
 import org.w3c.dom.css.Rect;
 
@@ -92,12 +92,14 @@ public class ItemView extends JPanel {
         y+=22;
         g.setColor(Color.BLACK);
         String change= Double.toString(item.getChange());
+        NoApplet app = new NoApplet();
         if(item.getChange() < 0) {
             g.drawString("Change: \t", x, y);
             g.setColor(Color.red);
             x += 50;
             g.drawString("\t" + item.getChange() + "%", x, y);
             x -= 50;
+            app.play("https://www.pacdv.com/sounds/voices/no-6.wav");
         }
         else{
             g.drawString("Change: \t",x,y);
@@ -105,6 +107,8 @@ public class ItemView extends JPanel {
             x+=50;
             g.drawString("\t" + change + "%",x,y);
             x-=50;
+
+            app.play("https://www.pacdv.com/sounds/voices/yes-3.wav");
         }
         g.setColor(Color.BLACK);
 
