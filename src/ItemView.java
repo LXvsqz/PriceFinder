@@ -57,14 +57,14 @@ public class ItemView extends JPanel {
     @Override
 	public void paintComponent(Graphics g) {
 
-        Image logo= getImage("https://hsto.org/getpro/habr/avatars/959/9b4/383/9599b438369fb32281ef2dc4baaeccd1.png");
+        Image logo= getImage("https://www.macobserver.com/wp-content/uploads/2018/02/apple-rainbow-logo.jpg");
 
         super.paintComponent(g);
 
         int x = 20, y = 30;
 
         g.setColor(Color.MAGENTA);
-        g.drawImage(logo,x,y-10,20,20,null);
+        g.drawImage(logo,x-5,y-10,40,20,null);
         //g.drawString("{Site}", x,y); //"button" for webLauncher
 
         g.setColor(Color.BLACK);
