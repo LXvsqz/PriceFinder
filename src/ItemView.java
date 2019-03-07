@@ -57,12 +57,15 @@ public class ItemView extends JPanel {
     @Override
 	public void paintComponent(Graphics g) {
 
+        Image logo= getImage("https://hsto.org/getpro/habr/avatars/959/9b4/383/9599b438369fb32281ef2dc4baaeccd1.png");
+
         super.paintComponent(g);
 
         int x = 20, y = 30;
 
         g.setColor(Color.MAGENTA);
-        g.drawString("{Site}", x,y); //"button" for webLauncher
+        g.drawImage(logo,x,y-10,20,20,null);
+        //g.drawString("{Site}", x,y); //"button" for webLauncher
 
         g.setColor(Color.BLACK);
         y+=30;
@@ -115,7 +118,6 @@ public class ItemView extends JPanel {
     }
     /** Return true if the given screen coordinate is inside the viewPage icon. */
     private boolean isViewPageClicked(int x, int y) {
-    	//-- WRITE YOUR CODE HERE
         if(x == 20 && y==20)
             return true;
 
