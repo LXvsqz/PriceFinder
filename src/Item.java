@@ -9,14 +9,8 @@ public class Item {
     private String dateAdded;
     private double percentChange;
 
-    // fufbdnas;fojadsn;fkjas
-    //never use float or double when dealing with currency
-    //use int or long//
 
-    //TODO: Need to seperate methods for generating this currency and make originalPrice a final variable
-
-
-    public Item(String description, String url) {
+    public Item(String description, String url){
         this.originalPrice = PriceFinder.getOriginalPrice(url);
         this.currentPrice = PriceFinder.getCurrentPrice(url);
         this.description = description;

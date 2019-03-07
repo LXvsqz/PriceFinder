@@ -1,5 +1,9 @@
 //package pricewatcher.base;
 
+
+//Luis Ochoa 80508534
+//Alex Vasquez 80579070
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -55,7 +59,6 @@ public class Main extends JFrame{
      * Find the current price of the watched item and display it 
      * along with a percentage price change. */
     private void refreshButtonClicked(ActionEvent event){
-    	//-- WRITE YOUR CODE HERE!
 
         itemView.updatePrice();
         repaint();
@@ -67,9 +70,7 @@ public class Main extends JFrame{
      * Launch a (default) web browser by supplying the URL of
      * the item. */
     private void viewPageClicked() {    	
-    	//--
-    	//-- WRITE YOUR CODE HERE!
-    	//--
+
         ItemView.openURL(itemView.getURL());
     	showMessage("View clicked!");
     }
