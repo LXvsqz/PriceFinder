@@ -9,7 +9,7 @@ public class Item {
     private String dateAdded;
     private double percentChange;
 
-
+    // fufbdnas;fojadsn;fkjas
     //never use float or double when dealing with currency
     //use int or long//
 
