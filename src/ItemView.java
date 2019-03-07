@@ -63,20 +63,23 @@ public class ItemView extends JPanel {
 
         int x = 20, y = 30;
 
-        g.setColor(Color.MAGENTA);
+
         g.drawImage(logo,x-5,y-10,40,20,null);
-        //g.drawString("{Site}", x,y); //"button" for webLauncher
 
         g.setColor(Color.BLACK);
         y+=30;
 
-        g.drawString("Name: \t" + item.getName(),x,y); //displayItemName
+        g.drawString("Name: \t",x,y);
+
+        g.setFont(new Font("default",Font.BOLD,12)); //Bolding item name
+        g.drawString(item.getName(),x+45,y);
+        g.setFont(new Font("default",Font.PLAIN,12)); //setting font back to normal
         y+=22;
 
         g.drawString("URL: \t" + item.getURL(),x,y); //displayURL
         y+=22;
 
-        g.drawString("Price: \t",x,y); //
+        g.drawString("Price: \t",x,y);
         g.setColor(Color.BLUE);
         x += 40;
 
@@ -101,7 +104,7 @@ public class ItemView extends JPanel {
         }else{
 
             g.drawString("Change: \t",x,y);
-            g.setColor(Color.green);
+            g.setColor(Color.GREEN);
             x+=50;
             g.drawString("\t" + change + "%",x,y);
             x-=50;
