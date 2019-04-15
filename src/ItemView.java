@@ -61,6 +61,10 @@ public class ItemView extends JPanel {
 
         super.paintComponent(g);
 
+
+
+
+
         int x = 20, y = 30;
 
 

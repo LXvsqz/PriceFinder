@@ -98,26 +98,85 @@ public class Main extends JFrame{
         //menu.setBounds(0,0,441,21);
        // control.add(menu,BorderLayout.NORTH);
         //Create the menu bar.
-        JMenuBar menuBar = new JMenuBar();
+        //JMenuBar menuBar = new JMenuBar();
 
 //Build the first menu.
-        JMenu menu = new JMenu("A Menu");
-        JMenuItem test = new JMenuItem("Test");
-        menu.getAccessibleContext().setAccessibleDescription(
-                "The only menu in this program that has menu items");
-        menu.add(test);
-        menuBar.add(menu);
-        control.add(menuBar, BorderLayout.NORTH);
+        //JMenu menu = new JMenu("A Menu");
+        //JMenuItem test = new JMenuItem("Test");
+        //JLabel l = new JLabel("no task");
+        //test.addActionListener(this::actionPerformed);
+       // menu.getAccessibleContext().setAccessibleDescription(
+               // "The only menu in this program that has menu items");
+        //menu.add(test);
+        //menuBar.add(menu);
+        //control.add(menuBar, BorderLayout.NORTH);
 
     }
       
     /** Create a control panel consisting of a refresh button. */
     private JPanel makeControlPanel() {
     	JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEADING));
-    	JButton refreshButton = new JButton("Refresh");
-    	refreshButton.setFocusPainted(false);
-        refreshButton.addActionListener(this::refreshButtonClicked);
-        panel.add(refreshButton);
+    	//JButton refreshButton = new JButton("Refresh");
+    	//refreshButton.setFocusPainted(false);
+        //refreshButton.addActionListener(this::refreshButtonClicked);
+       // panel.add(refreshButton);
+        JMenuBar menubar = new JMenuBar();
+        JMenu menu0 = new JMenu("App");
+        JMenu menu1 = new JMenu("Item");
+        JMenu menu2 = new JMenu("Sort");
+        JMenu menu3 = new JMenu("Selected");
+
+        JMenuItem item = new JMenuItem("About");
+        JMenuItem item_ = new JMenuItem("Exit");
+
+        JMenuItem item0 = new JMenuItem("Check Prices");
+        JMenuItem item1 = new JMenuItem("Add Item");
+        JMenuItem item2 = new JMenuItem("Search");
+        JMenuItem item3 = new JMenuItem("Select First");
+        JMenuItem item4 = new JMenuItem("Select Last");
+        JMenuItem item5 = new JMenuItem("Price");
+        JMenuItem item6 = new JMenuItem("View");
+        JMenuItem item7 = new JMenuItem("Item");
+        JMenuItem item8 = new JMenuItem("Review");
+
+        JCheckBox checkBox0 = new JCheckBox("Added Oldest");
+        JCheckBox checkBox1 = new JCheckBox("Added Newest");
+        JCheckBox checkBox2 = new JCheckBox("Name Ascending");
+        JCheckBox checkBox3 = new JCheckBox("Name Descending");
+        JCheckBox checkBox4 = new JCheckBox("Price Change (%)");
+        JCheckBox checkBox5 = new JCheckBox("Price Low ($)");
+        JCheckBox checkBox6 = new JCheckBox("Price High($)");
+
+        menu0.add(item);
+        menu0.add(item_);
+
+        menu1.add(item0);
+        menu1.add(item1);
+        menu1.addSeparator();
+        menu1.add(item2);
+        menu1.add(item3);
+        menu1.add(item4);
+        menu1.addSeparator();
+        menu1.add(menu3);
+        menu3.add(item5);
+        menu3.add(item6);
+        menu3.add(item7);
+        menu3.add(item8);
+
+        menu2.add(checkBox0);
+        menu2.add(checkBox1);
+        menu2.addSeparator();
+        menu2.add(checkBox2);
+        menu2.add(checkBox3);
+        menu2.addSeparator();
+        menu2.add(checkBox4);
+        menu2.add(checkBox5);
+        menu2.add(checkBox6);
+
+        menubar.add(menu0);
+        menubar.add(menu1);
+        menubar.add(menu2);
+        panel.add(menubar,BorderLayout.EAST);
         return panel;
     }
 
@@ -133,6 +192,10 @@ public class Main extends JFrame{
         		SwingUtilities.invokeLater(() -> msgBar.setText(" "));
         	}
         }).start();
+    }
+    private void actionPerformed(ActionEvent e){
+        //String s = e.getActionCommand();
+        //l.setText(s+"selected");
     }
 
     public static void main(String[] args) {
