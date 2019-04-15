@@ -10,14 +10,11 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-
+import java.awt.*;
 import javax.security.auth.Refreshable;
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
 
 /**
 * A dialog for tracking the price of an item.
@@ -92,6 +89,26 @@ public class Main extends JFrame{
         add(board, BorderLayout.CENTER);
         msgBar.setBorder(BorderFactory.createEmptyBorder(10,16,10,0));
         add(msgBar, BorderLayout.SOUTH);
+        //JFrame menu = new JFrame("Menu");
+        //menu.setVisible(true);
+        //menu.setSize(600,400);
+        //menu.add(control);
+        //menu.add(board);
+        //JMenuBar menu = new JMenuBar();
+        //menu.setBounds(0,0,441,21);
+       // control.add(menu,BorderLayout.NORTH);
+        //Create the menu bar.
+        JMenuBar menuBar = new JMenuBar();
+
+//Build the first menu.
+        JMenu menu = new JMenu("A Menu");
+        JMenuItem test = new JMenuItem("Test");
+        menu.getAccessibleContext().setAccessibleDescription(
+                "The only menu in this program that has menu items");
+        menu.add(test);
+        menuBar.add(menu);
+        control.add(menuBar, BorderLayout.NORTH);
+
     }
       
     /** Create a control panel consisting of a refresh button. */
