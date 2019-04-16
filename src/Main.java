@@ -17,6 +17,7 @@ import javax.swing.*;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import java.io.*;
+import java.net.URL;
 
 /**
 * A dialog for tracking the price of an item.
@@ -77,9 +78,9 @@ public class Main extends JFrame{
     /** Configure UI. */
     private void configureUI() {
         setLayout(new BorderLayout());
-        JPanel control = makeControlPanel();
+        JMenuBar control = makeControlPanel();
         control.setBorder(BorderFactory.createEmptyBorder(10,16,0,16)); 
-        add(control, BorderLayout.NORTH);
+        setJMenuBar(control);
         JPanel board = new JPanel();
         board.setBorder(BorderFactory.createCompoundBorder(
         		BorderFactory.createEmptyBorder(10,16,0,16),
@@ -118,8 +119,8 @@ public class Main extends JFrame{
        */
 
     /** Create a control panel consisting of a refresh button. */
-    private JPanel makeControlPanel() {
-    	JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEADING));
+    private JMenuBar makeControlPanel() {
+    	//JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEADING));
     	//JButton refreshButton = new JButton("Refresh");
     	//refreshButton.setFocusPainted(false);
         //refreshButton.addActionListener(this::refreshButtonClicked);
@@ -130,15 +131,15 @@ public class Main extends JFrame{
         JMenu menu2 = new JMenu("Sort");
         JMenu menu3 = new JMenu("Selected");
 
-        JMenuItem item = new JMenuItem("About");
+        JMenuItem item = new JMenuItem("About",createImageIcon("envelope.png"));
         item.setAccelerator(KeyStroke.getKeyStroke('N', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
-        item.setIcon(new ImageIcon("https://www.flaticon.com/free-icon/avatar_126486"));
+
         item.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFrame frame = new JFrame("About");
 
-                frame.setLocationRelativeTo(panel);
+                frame.setLocationRelativeTo(menubar);
 
                 JLabel textLabel = new JLabel("Written by Luis Ochoa :)",SwingConstants.CENTER);
                 textLabel.setPreferredSize(new Dimension(300, 100));
@@ -149,7 +150,7 @@ public class Main extends JFrame{
                 frame.setVisible(true);
             }
         });
-        JMenuItem item_ = new JMenuItem("Exit",new ImageIcon("envelope.png"));
+        JMenuItem item_ = new JMenuItem("Exit",createImageIcon("cancel.png"));
         item_.setAccelerator(KeyStroke.getKeyStroke('E', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
         item_.addActionListener(new ActionListener() {
             @Override
@@ -158,7 +159,7 @@ public class Main extends JFrame{
             }
         });
 
-        JMenuItem item0 = new JMenuItem("Check Prices");
+        JMenuItem item0 = new JMenuItem("Check Prices",createImageIcon("reload.png"));
         item0.setAccelerator(KeyStroke.getKeyStroke('Q', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
         item0.addActionListener(new ActionListener() {
             @Override
@@ -166,10 +167,10 @@ public class Main extends JFrame{
                 refreshButtonClicked(e);
             }
         });
-        JMenuItem item1 = new JMenuItem("Add Item");
+        JMenuItem item1 = new JMenuItem("Add Item",createImageIcon("plus.png"));
 
         item1.setAccelerator(KeyStroke.getKeyStroke('W', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
-        JMenuItem item2 = new JMenuItem("Search");
+        JMenuItem item2 = new JMenuItem("Search",createImageIcon("magnifying-glass.png"));
         item2.setAccelerator(KeyStroke.getKeyStroke('R', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
         JMenuItem item3 = new JMenuItem("Select First");
         item3.setAccelerator(KeyStroke.getKeyStroke('T', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
@@ -227,8 +228,16 @@ public class Main extends JFrame{
         menubar.add(menu0);
         menubar.add(menu1);
         menubar.add(menu2);
-        panel.add(menubar,BorderLayout.EAST);
-        return panel;
+        //panel.add(menubar,BorderLayout.CENTER);
+        //JToolBar jtoolbar = new JToolBar();
+        //JButton button = new JButton(createImageIcon("envelope.png"));
+       // button.setToolTipText("Testing");
+        //button.setFocusPainted(false);
+        //jtoolbar.add(button);
+        //JPanel panel2 = new JPanel(new FlowLayout(FlowLayout.LEADING));
+       // panel2.add(jtoolbar);
+        //panel.add(panel2);
+         return menubar;
     }
 
     /** Show briefly the given string in the message bar. */
@@ -244,6 +253,16 @@ public class Main extends JFrame{
         	}
         }).start();
     }
+    private ImageIcon createImageIcon(String filename) {
+        URL imageUrl = getClass().getResource( filename);
+
+        if (imageUrl != null) {
+            return  new ImageIcon(new ImageIcon(imageUrl).getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
+        }
+        return null;
+    }
+
+
 
 
     public static void main(String[] args) {
