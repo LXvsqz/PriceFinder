@@ -34,6 +34,7 @@ public class Main extends JFrame{
     DefaultListModel itemList = new DefaultListModel();
     JList itemHolder;
 
+
     Item item1= new Item("Samsung Galaxy", "https://www.samsung.com/us/mobile/galaxy-s10/?cid=sem-mktg-pfs-mob-22019-22509&gclid=Cj0KCQjw19DlBRCSARIsAOnfRejgqcLTCgyV41Wg4_f-UNYVifG_0yix7br2SFXYgpDwoAznwMEnnIEaAuByEALw_wcB&gclsrc=aw.ds");
     Item item2= new Item("Iphone X", "https://www.bestbuy.com/site/iphone/iphone-x/pcmcat1505326434742.c?id=pcmcat1505326434742");
     Item item3= new Item("Google Pixel", "https://store.google.com/us/product/pixel_3?hl=en-US");
@@ -147,6 +148,7 @@ public class Main extends JFrame{
         add(toolbar,BorderLayout.NORTH);
 
         //Board (ALEX)
+
         Item item1= new Item("Samsung Galaxy", "https://www.samsung.com/us/mobile/galaxy-s10/?cid=sem-mktg-pfs-mob-22019-22509&gclid=Cj0KCQjw19DlBRCSARIsAOnfRejgqcLTCgyV41Wg4_f-UNYVifG_0yix7br2SFXYgpDwoAznwMEnnIEaAuByEALw_wcB&gclsrc=aw.ds");
         Item item2= new Item("Iphone X", "https://www.bestbuy.com/site/iphone/iphone-x/pcmcat1505326434742.c?id=pcmcat1505326434742");
         Item item3= new Item("Iphone X", "https://www.bestbuy.com/site/iphone/iphone-x/pcmcat1505326434742.c?id=pcmcat1505326434742");
@@ -164,7 +166,9 @@ public class Main extends JFrame{
 
 
         for (int i = 0; i < 5 ; i++){
+            //itemView.setItem(displayItem[i]);
             itemList.addElement(displayItem.getClass());
+            //itemList.addElement(itemView.getItem());
         }
 
 
