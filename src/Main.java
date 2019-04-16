@@ -62,7 +62,7 @@ public class Main extends JFrame{
         //setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
-        setResizable(false);
+        setResizable(true);
         showMessage("Welcome!");
 
 
@@ -75,6 +75,17 @@ public class Main extends JFrame{
     /** Callback to be invoked when the refresh button is clicked.
      * Find the current price of the watched item and display it
      * along with a percentage price change. */
+
+    private void addItem(String name, String url){
+        Item newItem= new Item(name,url);
+        itemHolder.add(newItem);
+
+    }
+    private void deleteItem(){
+        itemHolder.remove();
+
+    }
+
     private void refreshButtonClicked(ActionEvent event){
 
         //itemView.updatePrice();
@@ -133,6 +144,8 @@ public class Main extends JFrame{
                 BorderFactory.createLineBorder(Color.GRAY)));
         board.setLayout(new GridLayout(itemHolder.size(),1));
 
+        addItem("Lexus", "new Car");
+
         for (int i = 0; i < itemHolder.size(); i++) {
             itemView = new ItemView(itemHolder.get(i));
 
@@ -140,6 +153,9 @@ public class Main extends JFrame{
             board.add(itemView);
 
         }
+
+       
+
 
         add(board, BorderLayout.CENTER);
         msgBar.setBorder(BorderFactory.createEmptyBorder(10,16,10,0));
