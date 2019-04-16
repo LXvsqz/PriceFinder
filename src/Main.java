@@ -113,6 +113,13 @@ public class Main extends JFrame{
     */
     //***********************************************************//
 
+
+    private void addItem(String name, String url){
+        Item newItem= new Item(name,url);
+        itemList.addElement(newItem);
+    }
+
+
     private void AddButtonClicked(ActionEvent event){
 
         itemView.establish();
@@ -143,12 +150,14 @@ public class Main extends JFrame{
         Item[]displayItem= {item1,item2,item3};
 
 
-       
 
+        addItem("iphoneColor", "iphone.com");
+
+        /*
         for (int i = 0; i < 1 ; i++){
             itemList.addElement(displayItem);
         }
-
+*/
 
         itemHolder= new JList(itemList);
 
