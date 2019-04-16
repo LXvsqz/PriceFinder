@@ -11,6 +11,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import javax.security.auth.Refreshable;
 import javax.swing.*;
 import javax.swing.JMenuBar;
@@ -127,9 +128,37 @@ public class Main extends JFrame{
         JMenu menu3 = new JMenu("Selected");
 
         JMenuItem item = new JMenuItem("About");
+        item.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame frame = new JFrame("About");
+
+                frame.setLocationRelativeTo(panel);
+
+                JLabel textLabel = new JLabel("Written by Luis Ochoa :)",SwingConstants.CENTER);
+                textLabel.setPreferredSize(new Dimension(300, 100));
+                frame.getContentPane().add(textLabel, BorderLayout.CENTER);
+                //Display the window.
+
+                frame.pack();
+                frame.setVisible(true);
+            }
+        });
         JMenuItem item_ = new JMenuItem("Exit");
+        item_.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
 
         JMenuItem item0 = new JMenuItem("Check Prices");
+        item0.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                refreshButtonClicked(e);
+            }
+        });
         JMenuItem item1 = new JMenuItem("Add Item");
         JMenuItem item2 = new JMenuItem("Search");
         JMenuItem item3 = new JMenuItem("Select First");
