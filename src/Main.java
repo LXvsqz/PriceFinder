@@ -1,5 +1,3 @@
-//package pricewatcher.base;
-
 
 //Luis Ochoa 80508534
 //Alex Vasquez 80579070
@@ -20,10 +18,6 @@ import java.io.*;
 import java.net.URL;
 import java.util.LinkedList;
 
-
-
-
-
 /**
  * A dialog for tracking the price of an item.
  *
@@ -33,11 +27,19 @@ import java.util.LinkedList;
 public class Main extends JFrame{
 
     /** Default dimension of the dialog. */
-    private final static Dimension DEFAULT_SIZE = new Dimension(400, 600);
+    private final static Dimension DEFAULT_SIZE = new Dimension(400, 400);
 
     /** Special panel to display the watched item. */
     private ItemView itemView;
-    private LinkedList<Item> itemHolder= new LinkedList<Item>();
+    DefaultListModel itemList = new DefaultListModel();
+    JList itemHolder;
+
+    Item item1= new Item("Samsung Galaxy", "https://www.samsung.com/us/mobile/galaxy-s10/?cid=sem-mktg-pfs-mob-22019-22509&gclid=Cj0KCQjw19DlBRCSARIsAOnfRejgqcLTCgyV41Wg4_f-UNYVifG_0yix7br2SFXYgpDwoAznwMEnnIEaAuByEALw_wcB&gclsrc=aw.ds");
+    Item item2= new Item("Iphone X", "https://www.bestbuy.com/site/iphone/iphone-x/pcmcat1505326434742.c?id=pcmcat1505326434742");
+    Item item3= new Item("Google Pixel", "https://store.google.com/us/product/pixel_3?hl=en-US");
+
+    JScrollPane scroller= new JScrollPane();
+
 
     /** Message bar to display various messages. */
     private JLabel msgBar = new JLabel(" ");
@@ -49,26 +51,15 @@ public class Main extends JFrame{
     public Main() {
         super("Price Watcher");
         setSize(DEFAULT_SIZE);
-        Item item1= new Item("Samsung Galaxy", "https://www.samsung.com/us/mobile/galaxy-s10/?cid=sem-mktg-pfs-mob-22019-22509&gclid=Cj0KCQjw19DlBRCSARIsAOnfRejgqcLTCgyV41Wg4_f-UNYVifG_0yix7br2SFXYgpDwoAznwMEnnIEaAuByEALw_wcB&gclsrc=aw.ds");
-        Item item2= new Item("Iphone X", "https://www.bestbuy.com/site/iphone/iphone-x/pcmcat1505326434742.c?id=pcmcat1505326434742");
-        Item item3= new Item("Google Pixel", "https://store.google.com/us/product/pixel_3?hl=en-US");
-
-        itemHolder.add(item1);
-        itemHolder.add(item2);
-        itemHolder.add(item3);
-
 
         configureUI();
         //setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
-        setResizable(true);
+        setResizable(false);
         showMessage("Welcome!");
 
-
-
         //this(DEFAULT_SIZE);
-
     }
     //TODO: refreshButtonCLicked
     //TODO: viewPageClicked
@@ -76,23 +67,21 @@ public class Main extends JFrame{
      * Find the current price of the watched item and display it
      * along with a percentage price change. */
 
-    private void addItem(String name, String url){
-        Item newItem= new Item(name,url);
-        itemHolder.add(newItem);
 
-    }
-    private void deleteItem(){
-        itemHolder.remove();
 
-    }
+    //******************* NEEDS FIXING ***************************//
 
     private void refreshButtonClicked(ActionEvent event){
 
         //itemView.updatePrice();
         repaint();
 
-        showMessage("Refresh clicked!");
+        showMessage("Refresh clicked!");                                //need to fix with current code
     }
+
+
+    /*
+
     private void refreshButtonClicked(ActionEvent event, ItemView iV){
         for(Item view :itemHolder) {
             iV.updatePrice(view);
@@ -101,21 +90,28 @@ public class Main extends JFrame{
         repaint();
         showMessage("Refresh clicked!");
     }
-
+    */
+//****************************************************************//
 
     /** Callback to be invoked when the view-page icon is clicked.
      * Launch a (default) web browser by supplying the URL of
      * the item. */
+
+
+    //********************* NEEDS FIXING *************************//
+    /*
     private void viewPageClicked() {
 
         //ItemView.openURL(itemView.getURL());
         showMessage("View clicked!");
     }
-    private void viewPageClicked(ItemView iV) {
+    private void viewPageClicked(ItemView iV) {                 //Not sure if we need this?
 
         ItemView.openURL(iV.getItem().getURL());
         showMessage("View clicked!");
     }
+    */
+    //***********************************************************//
 
     private void AddButtonClicked(ActionEvent event){
 
@@ -133,35 +129,44 @@ public class Main extends JFrame{
         setJMenuBar(control);
 
         //Toolbar
+
         JPanel toolbar = tools();
         toolbar.setBorder(BorderFactory.createEmptyBorder(10,0,0,16));
         add(toolbar,BorderLayout.NORTH);
 
+        //Board (ALEX)
+        Item item1= new Item("Samsung Galaxy", "https://www.samsung.com/us/mobile/galaxy-s10/?cid=sem-mktg-pfs-mob-22019-22509&gclid=Cj0KCQjw19DlBRCSARIsAOnfRejgqcLTCgyV41Wg4_f-UNYVifG_0yix7br2SFXYgpDwoAznwMEnnIEaAuByEALw_wcB&gclsrc=aw.ds");
+        Item item2= new Item("Iphone X", "https://www.bestbuy.com/site/iphone/iphone-x/pcmcat1505326434742.c?id=pcmcat1505326434742");
+        Item item3= new Item("Iphone X", "https://www.bestbuy.com/site/iphone/iphone-x/pcmcat1505326434742.c?id=pcmcat1505326434742");
 
-        //Board
-        JPanel board = new JPanel();
-        board.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createEmptyBorder(10,16,0,16),
-                BorderFactory.createLineBorder(Color.GRAY)));
-        board.setLayout(new GridLayout(itemHolder.size(),1));
 
-        addItem("Lexus", "new Car");
+        Item[]displayItem= {item1,item2,item3};
 
-        for (int i = 0; i < itemHolder.size(); i++) {
-            itemView = new ItemView(itemHolder.get(i));
-
-            itemView.setClickListener(this::viewPageClicked);
-            board.add(itemView);
-
-        }
 
        
 
+        for (int i = 0; i < 1 ; i++){
+            itemList.addElement(displayItem);
+        }
 
-        add(board, BorderLayout.CENTER);
-        msgBar.setBorder(BorderFactory.createEmptyBorder(10,16,10,0));
-        add(msgBar, BorderLayout.SOUTH);
 
+        itemHolder= new JList(itemList);
+
+        itemHolder.setVisibleRowCount(3);
+
+        scroller= new JScrollPane(itemHolder,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
+        itemHolder.setFixedCellHeight(100);
+
+        itemHolder.setFixedCellWidth(350);
+
+
+        JPanel board = new JPanel();
+
+        board.add(scroller);
+
+        this.add(scroller);
+        this.setVisible(true);
 
     }
 
@@ -211,7 +216,7 @@ public class Main extends JFrame{
         item0.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                refreshButtonClicked(e,itemView);
+               // refreshButtonClicked(e,itemView);
             }
         });
         JMenuItem item1 = new JMenuItem("Add Item",createImageIcon("plus.png"));
