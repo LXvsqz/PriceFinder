@@ -27,7 +27,7 @@ import java.util.LinkedList;
 public class Main extends JFrame{
 
     /** Default dimension of the dialog. */
-    private final static Dimension DEFAULT_SIZE = new Dimension(400, 400);
+    private final static Dimension DEFAULT_SIZE = new Dimension(400, 600);
 
     /** Special panel to display the watched item. */
     private ItemView itemView;
@@ -118,6 +118,11 @@ public class Main extends JFrame{
         Item newItem= new Item(name,url);
         itemList.addElement(newItem);
     }
+    private void removeItem(int index){
+
+        itemList.remove(index);
+
+    }
 
 
     private void AddButtonClicked(ActionEvent event){
@@ -152,12 +157,16 @@ public class Main extends JFrame{
 
 
         addItem("iphoneColor", "iphone.com");
+        addItem("REDiphone", "iphone.com");
+        //removeItem(1);
 
-        /*
-        for (int i = 0; i < 1 ; i++){
-            itemList.addElement(displayItem);
+
+
+
+        for (int i = 0; i < 5 ; i++){
+            itemList.addElement(displayItem.getClass());
         }
-*/
+
 
         itemHolder= new JList(itemList);
 
@@ -165,7 +174,7 @@ public class Main extends JFrame{
 
         scroller= new JScrollPane(itemHolder,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
-        itemHolder.setFixedCellHeight(100);
+        itemHolder.setFixedCellHeight(150);
 
         itemHolder.setFixedCellWidth(350);
 
@@ -173,6 +182,8 @@ public class Main extends JFrame{
         JPanel board = new JPanel();
 
         board.add(scroller);
+
+        //TODO: Add frame around the board. (user experience)
 
         this.add(scroller);
         this.setVisible(true);
