@@ -79,6 +79,22 @@ public class Item {
 
     }
 
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public void setCurrentPrice(double currentPrice) {
+        this.currentPrice = currentPrice;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setURL(String URL) {
+        this.URL = URL;
+    }
+
 
 }
 
