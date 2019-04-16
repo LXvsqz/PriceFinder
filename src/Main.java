@@ -74,13 +74,29 @@ public class Main extends JFrame{
         ItemView.openURL(itemView.getURL());
     	showMessage("View clicked!");
     }
-        
+
+    private void AddButtonClicked(ActionEvent event){
+
+        itemView.establish();
+        repaint();
+
+        showMessage("Added item");
+    }
     /** Configure UI. */
     private void configureUI() {
+        //Luis
         setLayout(new BorderLayout());
         JMenuBar control = makeControlPanel();
         control.setBorder(BorderFactory.createEmptyBorder(10,16,0,16)); 
         setJMenuBar(control);
+
+        //Toolbar
+        JPanel toolbar = tools();
+        toolbar.setBorder(BorderFactory.createEmptyBorder(10,0,0,16));
+        add(toolbar,BorderLayout.NORTH);
+
+
+        //Board
         JPanel board = new JPanel();
         board.setBorder(BorderFactory.createCompoundBorder(
         		BorderFactory.createEmptyBorder(10,16,0,16),
@@ -92,31 +108,9 @@ public class Main extends JFrame{
         add(board, BorderLayout.CENTER);
         msgBar.setBorder(BorderFactory.createEmptyBorder(10,16,10,0));
         add(msgBar, BorderLayout.SOUTH);
-        //JFrame menu = new JFrame("Menu");
-        //menu.setVisible(true);
-        //menu.setSize(600,400);
-        //menu.add(control);
-        //menu.add(board);
-        //JMenuBar menu = new JMenuBar();
-        //menu.setBounds(0,0,441,21);
-       // control.add(menu,BorderLayout.NORTH);
-        //Create the menu bar.
-        //JMenuBar menuBar = new JMenuBar();
 
-//Build the first menu.
-        //JMenu menu = new JMenu("A Menu");
-        //JMenuItem test = new JMenuItem("Test");
-        //JLabel l = new JLabel("no task");
-        //test.addActionListener(this::actionPerformed);
-       // menu.getAccessibleContext().setAccessibleDescription(
-               // "The only menu in this program that has menu items");
-        //menu.add(test);
-        //menuBar.add(menu);
-        //control.add(menuBar, BorderLayout.NORTH);
 
     }
-       /*@author Luis Ochoa
-       */
 
     /** Create a control panel consisting of a refresh button. */
     private JMenuBar makeControlPanel() {
@@ -239,7 +233,27 @@ public class Main extends JFrame{
         //panel.add(panel2);
          return menubar;
     }
+    private JPanel tools() {
+        JPanel control = new JPanel(new FlowLayout(FlowLayout.LEADING));
 
+        JToolBar toolBar = new JToolBar("Pricewatch");
+        JButton b1 = new JButton("Check");
+        b1.addActionListener(this::refreshButtonClicked);
+        b1.setToolTipText("Check the price");
+        b1.setFocusPainted(false);
+        toolBar.add(b1);
+
+        JButton b2 = new JButton("Add");
+        b2.addActionListener(this::AddButtonClicked);
+        b2.setToolTipText("Add to the pricefinder");
+        b2.setFocusPainted(false);
+        toolBar.add(b2);
+
+        control.add(toolBar, BorderLayout.NORTH);
+
+        return control;
+
+    }
     /** Show briefly the given string in the message bar. */
     private void showMessage(String msg) {
         msgBar.setText(msg);
