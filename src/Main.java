@@ -18,6 +18,11 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import java.io.*;
 import java.net.URL;
+import java.util.LinkedList;
+
+
+
+
 
 /**
  * A dialog for tracking the price of an item.
@@ -32,26 +37,38 @@ public class Main extends JFrame{
 
     /** Special panel to display the watched item. */
     private ItemView itemView;
+    private LinkedList<Item> itemHolder= new LinkedList<Item>();
 
     /** Message bar to display various messages. */
     private JLabel msgBar = new JLabel(" ");
 
     /** Create a new dialog. */
-    public Main() {
-        this(DEFAULT_SIZE);
-    }
+
 
     /** Create a new dialog of the given screen dimension. */
-    public Main(Dimension dim) {
+    public Main() {
         super("Price Watcher");
-        setSize(dim);
+        setSize(DEFAULT_SIZE);
+        Item item1= new Item("Samsung", "url.url.url");
+        Item item2= new Item("Samsung2", "url.url.url");
+        Item item3= new Item("Samsung3", "url.url.url");
+
+        itemHolder.add(item1);
+        itemHolder.add(item2);
+        itemHolder.add(item3);
+
 
         configureUI();
         //setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
-        setResizable(false);
+        setResizable(true);
         showMessage("Welcome!");
+
+
+
+        //this(DEFAULT_SIZE);
+
     }
     //TODO: refreshButtonCLicked
     //TODO: viewPageClicked
@@ -60,18 +77,31 @@ public class Main extends JFrame{
      * along with a percentage price change. */
     private void refreshButtonClicked(ActionEvent event){
 
-        itemView.updatePrice();
+        //itemView.updatePrice();
         repaint();
 
         showMessage("Refresh clicked!");
     }
+    private void refreshButtonClicked(ActionEvent event, ItemView iV){
+
+        iV.updatePrice(iV.getItem());
+        repaint();
+
+        showMessage("Refresh clicked!");
+    }
+
 
     /** Callback to be invoked when the view-page icon is clicked.
      * Launch a (default) web browser by supplying the URL of
      * the item. */
     private void viewPageClicked() {
 
-        ItemView.openURL(itemView.getURL());
+        //ItemView.openURL(itemView.getURL());
+        showMessage("View clicked!");
+    }
+    private void viewPageClicked(ItemView iV) {
+
+        ItemView.openURL(iV.getItem().getURL());
         showMessage("View clicked!");
     }
 
@@ -101,10 +131,16 @@ public class Main extends JFrame{
         board.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createEmptyBorder(10,16,0,16),
                 BorderFactory.createLineBorder(Color.GRAY)));
-        board.setLayout(new GridLayout(1,1));
-        itemView = new ItemView();
-        itemView.setClickListener(this::viewPageClicked);
-        board.add(itemView);
+        board.setLayout(new GridLayout(itemHolder.size(),1));
+
+        for (int i = 0; i < itemHolder.size(); i++) {
+            itemView = new ItemView(itemHolder.get(i));
+
+            itemView.setClickListener(this::viewPageClicked);
+            board.add(itemView);
+
+        }
+
         add(board, BorderLayout.CENTER);
         msgBar.setBorder(BorderFactory.createEmptyBorder(10,16,10,0));
         add(msgBar, BorderLayout.SOUTH);
