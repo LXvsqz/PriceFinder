@@ -166,17 +166,17 @@ public class Main extends JFrame{
         item1.setAccelerator(KeyStroke.getKeyStroke('W', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
         JMenuItem item2 = new JMenuItem("Search",createImageIcon("magnifying-glass.png"));
         item2.setAccelerator(KeyStroke.getKeyStroke('R', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
-        JMenuItem item3 = new JMenuItem("Select First");
+        JMenuItem item3 = new JMenuItem("Select First",createImageIcon("next.png"));
         item3.setAccelerator(KeyStroke.getKeyStroke('T', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
-        JMenuItem item4 = new JMenuItem("Select Last");
+        JMenuItem item4 = new JMenuItem("Select Last",createImageIcon("previous.png"));
         item4.setAccelerator(KeyStroke.getKeyStroke('Y', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
-        JMenuItem item5 = new JMenuItem("Price");
+        JMenuItem item5 = new JMenuItem("Price",createImageIcon("list.png"));
         item5.setAccelerator(KeyStroke.getKeyStroke('U', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
-        JMenuItem item6 = new JMenuItem("View");
+        JMenuItem item6 = new JMenuItem("View",createImageIcon("eye.png"));
         item6.setAccelerator(KeyStroke.getKeyStroke('I', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
-        JMenuItem item7 = new JMenuItem("Item");
+        JMenuItem item7 = new JMenuItem("Item",createImageIcon("edit.png"));
         item7.setAccelerator(KeyStroke.getKeyStroke('O', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
-        JMenuItem item8 = new JMenuItem("Review");
+        JMenuItem item8 = new JMenuItem("Review",createImageIcon("shopping-cart.png"));
         item8.setAccelerator(KeyStroke.getKeyStroke('P', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
         JMenuItem item9 = new JMenuItem("Copy Name");
         JMenuItem item10 = new JMenuItem("Copy URL");
@@ -200,6 +200,7 @@ public class Main extends JFrame{
         menu1.add(item4);
         menu1.addSeparator();
         menu1.add(menu3);
+
         menu3.add(item5);
         menu3.add(item6);
         menu3.add(item7);
@@ -209,12 +210,27 @@ public class Main extends JFrame{
         menu3.add(item10);
         menu3.add(item11);
 
+        ButtonGroup group0 = new ButtonGroup();
+        group0.add(checkBox0);
+        group0.add(checkBox1);
+
+
+        group0.add(checkBox2);
+        group0.add(checkBox3);
+
+
+        group0.add(checkBox4);
+        group0.add(checkBox5);
+        group0.add(checkBox6);
+
         menu2.add(checkBox0);
         menu2.add(checkBox1);
         menu2.addSeparator();
+
         menu2.add(checkBox2);
         menu2.add(checkBox3);
         menu2.addSeparator();
+
         menu2.add(checkBox4);
         menu2.add(checkBox5);
         menu2.add(checkBox6);
@@ -261,6 +277,7 @@ public class Main extends JFrame{
         	try {
 				Thread.sleep(3 * 1000); // 3 seconds
 			} catch (InterruptedException e) {
+        	    System.out.print("");
 			}
         	if (msg.equals(msgBar.getText())) {
         		SwingUtilities.invokeLater(() -> msgBar.setText(" "));
