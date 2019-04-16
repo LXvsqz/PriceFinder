@@ -33,7 +33,7 @@ import java.util.LinkedList;
 public class Main extends JFrame{
 
     /** Default dimension of the dialog. */
-    private final static Dimension DEFAULT_SIZE = new Dimension(400, 300);
+    private final static Dimension DEFAULT_SIZE = new Dimension(400, 600);
 
     /** Special panel to display the watched item. */
     private ItemView itemView;
@@ -49,9 +49,9 @@ public class Main extends JFrame{
     public Main() {
         super("Price Watcher");
         setSize(DEFAULT_SIZE);
-        Item item1= new Item("Samsung", "url.url.url");
-        Item item2= new Item("Samsung2", "url.url.url");
-        Item item3= new Item("Samsung3", "url.url.url");
+        Item item1= new Item("Samsung Galaxy", "https://www.samsung.com/us/mobile/galaxy-s10/?cid=sem-mktg-pfs-mob-22019-22509&gclid=Cj0KCQjw19DlBRCSARIsAOnfRejgqcLTCgyV41Wg4_f-UNYVifG_0yix7br2SFXYgpDwoAznwMEnnIEaAuByEALw_wcB&gclsrc=aw.ds");
+        Item item2= new Item("Iphone X", "https://www.bestbuy.com/site/iphone/iphone-x/pcmcat1505326434742.c?id=pcmcat1505326434742");
+        Item item3= new Item("Google Pixel", "https://store.google.com/us/product/pixel_3?hl=en-US");
 
         itemHolder.add(item1);
         itemHolder.add(item2);
@@ -62,7 +62,7 @@ public class Main extends JFrame{
         //setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
-        setResizable(true);
+        setResizable(false);
         showMessage("Welcome!");
 
 
