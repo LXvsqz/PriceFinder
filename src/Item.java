@@ -1,6 +1,38 @@
 import java.time.LocalDate;
 
 public class Item {
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public void setCurrentPrice(double currentPrice) {
+        this.currentPrice = currentPrice;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setURL(String URL) {
+        this.URL = URL;
+    }
+
+    public void setDateAdded(String dateAdded) {
+        this.dateAdded = dateAdded;
+    }
+
+    public double getPercentChange() {
+        return percentChange;
+    }
+
+    public void setPercentChange(double percentChange) {
+        this.percentChange = percentChange;
+    }
+
     private String Name;
     private double currentPrice;
     private String description;
