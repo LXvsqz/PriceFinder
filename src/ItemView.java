@@ -27,10 +27,9 @@ public class ItemView extends JPanel {
 	    item.checkCurrentPrice(item.getURL());
     }
     public void establish(){
-        JTextField txtInput = new JTextField("");
-	    item.setName(txtInput.getText());
-        JTextField txtInputs = new JTextField("");
-	    item.setURL(txtInputs.getText());
+
+	    item.getName();
+        item.getURL();
 	    item.getCurrentPrice();
     }
 

@@ -1,8 +1,8 @@
 //package pricewatcher.base;
 
-
 //Luis Ochoa 80508534
 //Alex Vasquez 80579070
+//Jacob Padilla 80617758
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -22,7 +22,9 @@ import java.net.URL;
 /**
 * A dialog for tracking the price of an item.
 *
-* @author Yoonsik Cheon
+* @author Alex Vasquez
+ * @author Luis Ochoa
+ * @author Jacob Padilla
 */
 @SuppressWarnings("serial")
 public class Main extends JFrame{
@@ -53,8 +55,6 @@ public class Main extends JFrame{
         setResizable(false);
         showMessage("Welcome!");
     }
-  //TODO: refreshButtonCLicked
-    //TODO: viewPageClicked
     /** Callback to be invoked when the refresh button is clicked. 
      * Find the current price of the watched item and display it 
      * along with a percentage price change. */
@@ -75,13 +75,15 @@ public class Main extends JFrame{
     	showMessage("View clicked!");
     }
 
-    private void AddButtonClicked(ActionEvent event){
-
-        itemView.establish();
-        repaint();
+    /*private void AddButtonClicked(ActionEvent event){
+        String s = event.getActionCommand();
+        if(s.equals("Submit")){
+            l.setText(t.getText());
+            t.setText(" ");
+        }
 
         showMessage("Added item");
-    }
+    }*/
     /** Configure UI. */
     private void configureUI() {
         //Luis
@@ -95,6 +97,15 @@ public class Main extends JFrame{
         toolbar.setBorder(BorderFactory.createEmptyBorder(10,0,0,16));
         add(toolbar,BorderLayout.NORTH);
 
+        //PopMenu
+        JPopupMenu menu = MenuPop();
+        menu.setBorder(BorderFactory.createEmptyBorder(10,0,0,16));
+        add(menu,BorderLayout.WEST);
+
+        //Help
+        JPanel h = Help();
+        h.setBorder(BorderFactory.createEmptyBorder(10,0,0,16));
+        add(h,BorderLayout.EAST);
 
         //Board
         JPanel board = new JPanel();
@@ -112,6 +123,7 @@ public class Main extends JFrame{
 
     }
 
+    /** @author Luis Ochoa **/
     /** Create a control panel consisting of a refresh button. */
     private JMenuBar makeControlPanel() {
     	//JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEADING));
@@ -233,21 +245,54 @@ public class Main extends JFrame{
         //panel.add(panel2);
          return menubar;
     }
+    private JPopupMenu MenuPop(){
+        JPopupMenu mp = new JPopupMenu();
+        JMenu mp1 = new JMenu("check");
+        JMenu mp2 = new JMenu("web");
+        JMenu mp3 = new JMenu("Edit");
+        JMenu mp4 = new JMenu("Remove");
+        return mp;
+    }
+    private JPanel Help(){
+        JPanel h = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        JButton help = new JButton(createImageIcon("question.jpg"));
+        return h;
+    }
+    /** @author jacob Padilla **/
     private JPanel tools() {
         JPanel control = new JPanel(new FlowLayout(FlowLayout.LEADING));
 
         JToolBar toolBar = new JToolBar("Pricewatch");
-        JButton b1 = new JButton("Check");
+        JButton b1 = new JButton(createImageIcon("check.png"));
         b1.addActionListener(this::refreshButtonClicked);
         b1.setToolTipText("Check the price");
         b1.setFocusPainted(false);
         toolBar.add(b1);
 
-        JButton b2 = new JButton("Add");
-        b2.addActionListener(this::AddButtonClicked);
+        JButton b2 = new JButton(createImageIcon("add.jpg"));
+        b2.addActionListener(this::refreshButtonClicked);
         b2.setToolTipText("Add to the pricefinder");
         b2.setFocusPainted(false);
         toolBar.add(b2);
+
+        JButton b3 = new JButton(createImageIcon("search.png"));
+        b3.addActionListener(this::refreshButtonClicked);
+        b3.setToolTipText("Search for item in pricefinder");
+        b3.setFocusPainted(false);
+        toolBar.add(b3);
+
+        JButton b4 = new JButton(createImageIcon("first.png"));
+        b4.addActionListener(this::refreshButtonClicked);
+        b4.setToolTipText("First item");
+        b4.setFocusPainted(false);
+        toolBar.add(b4);
+
+        JButton b5 = new JButton(createImageIcon("last.png"));
+        b5.addActionListener(this::refreshButtonClicked);
+        b5.setToolTipText("Last item");
+        b5.setFocusPainted(false);
+        toolBar.add(b5);
+
 
         control.add(toolBar, BorderLayout.NORTH);
 
@@ -269,14 +314,11 @@ public class Main extends JFrame{
     }
     private ImageIcon createImageIcon(String filename) {
         URL imageUrl = getClass().getResource( filename);
-
         if (imageUrl != null) {
             return  new ImageIcon(new ImageIcon(imageUrl).getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
         }
         return null;
     }
-
-
 
 
     public static void main(String[] args) {
