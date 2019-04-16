@@ -16,27 +16,29 @@ import javax.security.auth.Refreshable;
 import javax.swing.*;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
+import java.io.*;
+import java.net.URL;
 
 /**
-* A dialog for tracking the price of an item.
-*
-* @author Yoonsik Cheon
-*/
+ * A dialog for tracking the price of an item.
+ *
+ * @author Yoonsik Cheon
+ */
 @SuppressWarnings("serial")
 public class Main extends JFrame{
 
     /** Default dimension of the dialog. */
     private final static Dimension DEFAULT_SIZE = new Dimension(400, 300);
-      
+
     /** Special panel to display the watched item. */
     private ItemView itemView;
-      
+
     /** Message bar to display various messages. */
     private JLabel msgBar = new JLabel(" ");
 
     /** Create a new dialog. */
     public Main() {
-    	this(DEFAULT_SIZE);
+        this(DEFAULT_SIZE);
     }
 
     /** Create a new dialog of the given screen dimension. */
@@ -51,38 +53,54 @@ public class Main extends JFrame{
         setResizable(false);
         showMessage("Welcome!");
     }
-  //TODO: refreshButtonCLicked
+    //TODO: refreshButtonCLicked
     //TODO: viewPageClicked
-    /** Callback to be invoked when the refresh button is clicked. 
-     * Find the current price of the watched item and display it 
+    /** Callback to be invoked when the refresh button is clicked.
+     * Find the current price of the watched item and display it
      * along with a percentage price change. */
     private void refreshButtonClicked(ActionEvent event){
 
         itemView.updatePrice();
         repaint();
 
-    	showMessage("Refresh clicked!");
+        showMessage("Refresh clicked!");
     }
 
     /** Callback to be invoked when the view-page icon is clicked.
      * Launch a (default) web browser by supplying the URL of
      * the item. */
-    private void viewPageClicked() {    	
+    private void viewPageClicked() {
 
         ItemView.openURL(itemView.getURL());
-    	showMessage("View clicked!");
+        showMessage("View clicked!");
     }
-        
+
+    private void AddButtonClicked(ActionEvent event){
+
+        itemView.establish();
+        repaint();
+
+        showMessage("Added item");
+    }
     /** Configure UI. */
     private void configureUI() {
+        //Luis
         setLayout(new BorderLayout());
-        JPanel control = makeControlPanel();
-        control.setBorder(BorderFactory.createEmptyBorder(10,16,0,16)); 
-        add(control, BorderLayout.NORTH);
+        JMenuBar control = makeControlPanel();
+        control.setBorder(BorderFactory.createEmptyBorder(10,16,0,16));
+        setJMenuBar(control);
+
+        //Toolbar
+        JPanel toolbar = tools();
+        toolbar.setBorder(BorderFactory.createEmptyBorder(10,0,0,16));
+        add(toolbar,BorderLayout.NORTH);
+
+
+        //Board
         JPanel board = new JPanel();
         board.setBorder(BorderFactory.createCompoundBorder(
-        		BorderFactory.createEmptyBorder(10,16,0,16),
-        		BorderFactory.createLineBorder(Color.GRAY)));
+                BorderFactory.createEmptyBorder(10,16,0,16),
+                BorderFactory.createLineBorder(Color.GRAY)));
         board.setLayout(new GridLayout(1,1));
         itemView = new ItemView();
         itemView.setClickListener(this::viewPageClicked);
@@ -90,50 +108,32 @@ public class Main extends JFrame{
         add(board, BorderLayout.CENTER);
         msgBar.setBorder(BorderFactory.createEmptyBorder(10,16,10,0));
         add(msgBar, BorderLayout.SOUTH);
-        //JFrame menu = new JFrame("Menu");
-        //menu.setVisible(true);
-        //menu.setSize(600,400);
-        //menu.add(control);
-        //menu.add(board);
-        //JMenuBar menu = new JMenuBar();
-        //menu.setBounds(0,0,441,21);
-       // control.add(menu,BorderLayout.NORTH);
-        //Create the menu bar.
-        //JMenuBar menuBar = new JMenuBar();
 
-//Build the first menu.
-        //JMenu menu = new JMenu("A Menu");
-        //JMenuItem test = new JMenuItem("Test");
-        //JLabel l = new JLabel("no task");
-        //test.addActionListener(this::actionPerformed);
-       // menu.getAccessibleContext().setAccessibleDescription(
-               // "The only menu in this program that has menu items");
-        //menu.add(test);
-        //menuBar.add(menu);
-        //control.add(menuBar, BorderLayout.NORTH);
 
     }
-      
+
     /** Create a control panel consisting of a refresh button. */
-    private JPanel makeControlPanel() {
-    	JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEADING));
-    	//JButton refreshButton = new JButton("Refresh");
-    	//refreshButton.setFocusPainted(false);
+    private JMenuBar makeControlPanel() {
+        //JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEADING));
+        //JButton refreshButton = new JButton("Refresh");
+        //refreshButton.setFocusPainted(false);
         //refreshButton.addActionListener(this::refreshButtonClicked);
-       // panel.add(refreshButton);
+        // panel.add(refreshButton);
         JMenuBar menubar = new JMenuBar();
         JMenu menu0 = new JMenu("App");
         JMenu menu1 = new JMenu("Item");
         JMenu menu2 = new JMenu("Sort");
         JMenu menu3 = new JMenu("Selected");
 
-        JMenuItem item = new JMenuItem("About");
+        JMenuItem item = new JMenuItem("About",createImageIcon("envelope.png"));
+        item.setAccelerator(KeyStroke.getKeyStroke('N', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
+
         item.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFrame frame = new JFrame("About");
 
-                frame.setLocationRelativeTo(panel);
+                frame.setLocationRelativeTo(menubar);
 
                 JLabel textLabel = new JLabel("Written by Luis Ochoa :)",SwingConstants.CENTER);
                 textLabel.setPreferredSize(new Dimension(300, 100));
@@ -144,7 +144,8 @@ public class Main extends JFrame{
                 frame.setVisible(true);
             }
         });
-        JMenuItem item_ = new JMenuItem("Exit");
+        JMenuItem item_ = new JMenuItem("Exit",createImageIcon("cancel.png"));
+        item_.setAccelerator(KeyStroke.getKeyStroke('E', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
         item_.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -152,22 +153,34 @@ public class Main extends JFrame{
             }
         });
 
-        JMenuItem item0 = new JMenuItem("Check Prices");
+        JMenuItem item0 = new JMenuItem("Check Prices",createImageIcon("reload.png"));
+        item0.setAccelerator(KeyStroke.getKeyStroke('Q', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
         item0.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 refreshButtonClicked(e);
             }
         });
-        JMenuItem item1 = new JMenuItem("Add Item");
-        JMenuItem item2 = new JMenuItem("Search");
-        JMenuItem item3 = new JMenuItem("Select First");
-        JMenuItem item4 = new JMenuItem("Select Last");
-        JMenuItem item5 = new JMenuItem("Price");
-        JMenuItem item6 = new JMenuItem("View");
-        JMenuItem item7 = new JMenuItem("Item");
-        JMenuItem item8 = new JMenuItem("Review");
+        JMenuItem item1 = new JMenuItem("Add Item",createImageIcon("plus.png"));
 
+        item1.setAccelerator(KeyStroke.getKeyStroke('W', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
+        JMenuItem item2 = new JMenuItem("Search",createImageIcon("magnifying-glass.png"));
+        item2.setAccelerator(KeyStroke.getKeyStroke('R', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
+        JMenuItem item3 = new JMenuItem("Select First",createImageIcon("next.png"));
+        item3.setAccelerator(KeyStroke.getKeyStroke('T', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
+        JMenuItem item4 = new JMenuItem("Select Last",createImageIcon("previous.png"));
+        item4.setAccelerator(KeyStroke.getKeyStroke('Y', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
+        JMenuItem item5 = new JMenuItem("Price",createImageIcon("list.png"));
+        item5.setAccelerator(KeyStroke.getKeyStroke('U', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
+        JMenuItem item6 = new JMenuItem("View",createImageIcon("eye.png"));
+        item6.setAccelerator(KeyStroke.getKeyStroke('I', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
+        JMenuItem item7 = new JMenuItem("Item",createImageIcon("edit.png"));
+        item7.setAccelerator(KeyStroke.getKeyStroke('O', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
+        JMenuItem item8 = new JMenuItem("Review",createImageIcon("shopping-cart.png"));
+        item8.setAccelerator(KeyStroke.getKeyStroke('P', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
+        JMenuItem item9 = new JMenuItem("Copy Name");
+        JMenuItem item10 = new JMenuItem("Copy URL");
+        JMenuItem item11 = new JMenuItem("Copy Item");
         JCheckBox checkBox0 = new JCheckBox("Added Oldest");
         JCheckBox checkBox1 = new JCheckBox("Added Newest");
         JCheckBox checkBox2 = new JCheckBox("Name Ascending");
@@ -187,17 +200,37 @@ public class Main extends JFrame{
         menu1.add(item4);
         menu1.addSeparator();
         menu1.add(menu3);
+
         menu3.add(item5);
         menu3.add(item6);
         menu3.add(item7);
         menu3.add(item8);
+        menu3.addSeparator();
+        menu3.add(item9);
+        menu3.add(item10);
+        menu3.add(item11);
+
+        ButtonGroup group0 = new ButtonGroup();
+        group0.add(checkBox0);
+        group0.add(checkBox1);
+
+
+        group0.add(checkBox2);
+        group0.add(checkBox3);
+
+
+        group0.add(checkBox4);
+        group0.add(checkBox5);
+        group0.add(checkBox6);
 
         menu2.add(checkBox0);
         menu2.add(checkBox1);
         menu2.addSeparator();
+
         menu2.add(checkBox2);
         menu2.add(checkBox3);
         menu2.addSeparator();
+
         menu2.add(checkBox4);
         menu2.add(checkBox5);
         menu2.add(checkBox6);
@@ -205,27 +238,63 @@ public class Main extends JFrame{
         menubar.add(menu0);
         menubar.add(menu1);
         menubar.add(menu2);
-        panel.add(menubar,BorderLayout.EAST);
-        return panel;
+        //panel.add(menubar,BorderLayout.CENTER);
+        //JToolBar jtoolbar = new JToolBar();
+        //JButton button = new JButton(createImageIcon("envelope.png"));
+        // button.setToolTipText("Testing");
+        //button.setFocusPainted(false);
+        //jtoolbar.add(button);
+        //JPanel panel2 = new JPanel(new FlowLayout(FlowLayout.LEADING));
+        // panel2.add(jtoolbar);
+        //panel.add(panel2);
+        return menubar;
     }
+    private JPanel tools() {
+        JPanel control = new JPanel(new FlowLayout(FlowLayout.LEADING));
 
+        JToolBar toolBar = new JToolBar("Pricewatch");
+        JButton b1 = new JButton("Check");
+        b1.addActionListener(this::refreshButtonClicked);
+        b1.setToolTipText("Check the price");
+        b1.setFocusPainted(false);
+        toolBar.add(b1);
+
+        JButton b2 = new JButton("Add");
+        b2.addActionListener(this::AddButtonClicked);
+        b2.setToolTipText("Add to the pricefinder");
+        b2.setFocusPainted(false);
+        toolBar.add(b2);
+
+        control.add(toolBar, BorderLayout.NORTH);
+
+        return control;
+
+    }
     /** Show briefly the given string in the message bar. */
     private void showMessage(String msg) {
         msgBar.setText(msg);
         new Thread(() -> {
-        	try {
-				Thread.sleep(3 * 1000); // 3 seconds
-			} catch (InterruptedException e) {
-			}
-        	if (msg.equals(msgBar.getText())) {
-        		SwingUtilities.invokeLater(() -> msgBar.setText(" "));
-        	}
+            try {
+                Thread.sleep(3 * 1000); // 3 seconds
+            } catch (InterruptedException e) {
+                System.out.print("");
+            }
+            if (msg.equals(msgBar.getText())) {
+                SwingUtilities.invokeLater(() -> msgBar.setText(" "));
+            }
         }).start();
     }
-    private void actionPerformed(ActionEvent e){
-        //String s = e.getActionCommand();
-        //l.setText(s+"selected");
+    private ImageIcon createImageIcon(String filename) {
+        URL imageUrl = getClass().getResource( filename);
+
+        if (imageUrl != null) {
+            return  new ImageIcon(new ImageIcon(imageUrl).getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
+        }
+        return null;
     }
+
+
+
 
     public static void main(String[] args) {
         new Main();

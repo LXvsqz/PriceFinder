@@ -17,45 +17,53 @@ import javax.swing.text.StyledEditorKit;
 @SuppressWarnings("serial")
 public class ItemView extends JPanel {
     private Item item = new Item("Iphone X","https://apple.com/iphone");
-	/** Interface to notify a click on the view page icon. */
-	public interface ClickListener {
-		
-		/** Callback to be invoked when the view page icon is clicked. */
-		void clicked();
-	}
-	public void updatePrice(){
-	    item.checkCurrentPrice(item.getURL());
+    /** Interface to notify a click on the view page icon. */
+    public interface ClickListener {
+
+        /** Callback to be invoked when the view page icon is clicked. */
+        void clicked();
     }
+    public void updatePrice(){
+        item.checkCurrentPrice(item.getURL());
+    }
+    public void establish(){
+        JTextField txtInput = new JTextField("");
+        item.setName(txtInput.getText());
+        JTextField txtInputs = new JTextField("");
+        item.setURL(txtInputs.getText());
+        item.getCurrentPrice();
+    }
+
     public String getURL(){
-	    return item.getURL();
+        return item.getURL();
     }
-	/** Directory for image files: src/image in Eclipse. */
-	private final static String IMAGE_DIR = "/image/";
-        
-	/** View-page clicking listener. */
+    /** Directory for image files: src/image in Eclipse. */
+    private final static String IMAGE_DIR = "/image/";
+
+    /** View-page clicking listener. */
     private ClickListener listener;
-    
+
     /** Create a new instance. */
     public ItemView() {
-    	setPreferredSize(new Dimension(100, 160));
+        setPreferredSize(new Dimension(100, 160));
         setBackground(Color.WHITE);
         addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-            	if (isViewPageClicked(e.getX(), e.getY()) && listener != null) {
-            		listener.clicked();
-            	}
+                if (isViewPageClicked(e.getX(), e.getY()) && listener != null) {
+                    listener.clicked();
+                }
             }
         });
     }
-        
+
     /** Set the view-page click listener. */
     public void setClickListener(ClickListener listener) {
-    	this.listener = listener;
+        this.listener = listener;
     }
-    
+
     /** Overridden here to display the details of the item. */
     @Override
-	public void paintComponent(Graphics g) {
+    public void paintComponent(Graphics g) {
 
         Image logo= getImage("http://icons.iconarchive.com/icons/wineass/ios7-redesign/256/Safari-icon.png");
 
@@ -128,12 +136,12 @@ public class ItemView extends JPanel {
         if(x == 20 && y==20)
             return true;
 
-    	return new Rectangle(20, 20, 30, 20).contains(x,  y);
+        return new Rectangle(20, 20, 30, 20).contains(x,  y);
     }
     /** Return the image stored in the given file. */
     public Image getImage(String file) {
         try {
-        	URL url = new URL(getClass().getResource(IMAGE_DIR), file);
+            URL url = new URL(getClass().getResource(IMAGE_DIR), file);
             return ImageIO.read(url);
         } catch (IOException e) {
             e.printStackTrace();
