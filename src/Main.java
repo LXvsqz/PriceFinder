@@ -94,10 +94,11 @@ public class Main extends JFrame{
         showMessage("Refresh clicked!");
     }
     private void refreshButtonClicked(ActionEvent event, ItemView iV){
+        for(Item view :itemHolder) {
+            iV.updatePrice(view);
 
-        iV.updatePrice(iV.getItem());
+        }
         repaint();
-
         showMessage("Refresh clicked!");
     }
 
@@ -210,7 +211,7 @@ public class Main extends JFrame{
         item0.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                refreshButtonClicked(e);
+                refreshButtonClicked(e,itemView);
             }
         });
         JMenuItem item1 = new JMenuItem("Add Item",createImageIcon("plus.png"));
