@@ -16,6 +16,7 @@ import javax.security.auth.Refreshable;
 import javax.swing.*;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
+import java.io.*;
 
 /**
 * A dialog for tracking the price of an item.
@@ -113,7 +114,9 @@ public class Main extends JFrame{
         //control.add(menuBar, BorderLayout.NORTH);
 
     }
-      
+       /*@author Luis Ochoa
+       */
+
     /** Create a control panel consisting of a refresh button. */
     private JPanel makeControlPanel() {
     	JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEADING));
@@ -128,6 +131,8 @@ public class Main extends JFrame{
         JMenu menu3 = new JMenu("Selected");
 
         JMenuItem item = new JMenuItem("About");
+        item.setAccelerator(KeyStroke.getKeyStroke('N', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
+        item.setIcon(new ImageIcon("https://www.flaticon.com/free-icon/avatar_126486"));
         item.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -144,7 +149,8 @@ public class Main extends JFrame{
                 frame.setVisible(true);
             }
         });
-        JMenuItem item_ = new JMenuItem("Exit");
+        JMenuItem item_ = new JMenuItem("Exit",new ImageIcon("envelope.png"));
+        item_.setAccelerator(KeyStroke.getKeyStroke('E', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
         item_.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -153,6 +159,7 @@ public class Main extends JFrame{
         });
 
         JMenuItem item0 = new JMenuItem("Check Prices");
+        item0.setAccelerator(KeyStroke.getKeyStroke('Q', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
         item0.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -160,14 +167,25 @@ public class Main extends JFrame{
             }
         });
         JMenuItem item1 = new JMenuItem("Add Item");
-        JMenuItem item2 = new JMenuItem("Search");
-        JMenuItem item3 = new JMenuItem("Select First");
-        JMenuItem item4 = new JMenuItem("Select Last");
-        JMenuItem item5 = new JMenuItem("Price");
-        JMenuItem item6 = new JMenuItem("View");
-        JMenuItem item7 = new JMenuItem("Item");
-        JMenuItem item8 = new JMenuItem("Review");
 
+        item1.setAccelerator(KeyStroke.getKeyStroke('W', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
+        JMenuItem item2 = new JMenuItem("Search");
+        item2.setAccelerator(KeyStroke.getKeyStroke('R', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
+        JMenuItem item3 = new JMenuItem("Select First");
+        item3.setAccelerator(KeyStroke.getKeyStroke('T', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
+        JMenuItem item4 = new JMenuItem("Select Last");
+        item4.setAccelerator(KeyStroke.getKeyStroke('Y', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
+        JMenuItem item5 = new JMenuItem("Price");
+        item5.setAccelerator(KeyStroke.getKeyStroke('U', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
+        JMenuItem item6 = new JMenuItem("View");
+        item6.setAccelerator(KeyStroke.getKeyStroke('I', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
+        JMenuItem item7 = new JMenuItem("Item");
+        item7.setAccelerator(KeyStroke.getKeyStroke('O', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
+        JMenuItem item8 = new JMenuItem("Review");
+        item8.setAccelerator(KeyStroke.getKeyStroke('P', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
+        JMenuItem item9 = new JMenuItem("Copy Name");
+        JMenuItem item10 = new JMenuItem("Copy URL");
+        JMenuItem item11 = new JMenuItem("Copy Item");
         JCheckBox checkBox0 = new JCheckBox("Added Oldest");
         JCheckBox checkBox1 = new JCheckBox("Added Newest");
         JCheckBox checkBox2 = new JCheckBox("Name Ascending");
@@ -191,6 +209,10 @@ public class Main extends JFrame{
         menu3.add(item6);
         menu3.add(item7);
         menu3.add(item8);
+        menu3.addSeparator();
+        menu3.add(item9);
+        menu3.add(item10);
+        menu3.add(item11);
 
         menu2.add(checkBox0);
         menu2.add(checkBox1);
@@ -222,10 +244,7 @@ public class Main extends JFrame{
         	}
         }).start();
     }
-    private void actionPerformed(ActionEvent e){
-        //String s = e.getActionCommand();
-        //l.setText(s+"selected");
-    }
+
 
     public static void main(String[] args) {
         new Main();
