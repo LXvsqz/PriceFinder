@@ -10,12 +10,13 @@ import java.net.URL;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.plaf.ComponentUI;
 import javax.swing.text.StyledEditorKit;
 
 /** A special panel to display the detail of an item. */
 
 @SuppressWarnings("serial")
-public class ItemView extends JPanel {
+public class ItemView extends JPanel{
     //private Item item = new Item("Iphone X","https://apple.com/iphone");
     private Item item;
 
@@ -162,6 +163,43 @@ public class ItemView extends JPanel {
         g.drawString("Added: \t" + item.getDateAdded() + "\t($" + item.getOriginalPrice() + ")", x, y);
 
     }
+    /*
+
+    public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected) {
+
+       // setText(value.toString());
+
+        Color background;
+        Color foreground;
+
+        // check if this cell represents the current DnD drop location
+        JList.DropLocation dropLocation = list.getDropLocation();
+        if (dropLocation != null
+                && !dropLocation.isInsert()
+                && dropLocation.getIndex() == index) {
+
+            background = Color.BLUE;
+            foreground = Color.WHITE;
+
+            // check if this cell is selected
+        } else if (isSelected) {
+            background = Color.RED;
+            foreground = Color.WHITE;
+
+            // unselected, and not the DnD drop location
+        } else {
+            background = Color.WHITE;
+            foreground = Color.BLACK;
+        };
+
+        setBackground(background);
+        setForeground(foreground);
+
+        return this;
+    }
+    */
+
+
 
     /**
      * Return true if the given screen coordinate is inside the viewPage icon.
