@@ -1,6 +1,6 @@
 import java.time.LocalDate;
 
-public class Item {
+public class Item{
     private String Name;
     private double currentPrice;
     private String description;
@@ -10,13 +10,13 @@ public class Item {
     private double percentChange;
 
 
-    public Item(String description, String url){
+    public Item(String description, String url) {
         this.originalPrice = PriceFinder.getOriginalPrice(url);
         this.currentPrice = PriceFinder.getCurrentPrice(url);
         this.description = description;
         this.URL = url;
         this.dateAdded = "" + LocalDate.now();
-        this.percentChange =  Math.floor(((originalPrice-currentPrice)/originalPrice)*10000) / 100;
+        this.percentChange = Math.floor(((originalPrice - currentPrice) / originalPrice) * 10000) / 100;
     }
 
     public String getName() {
@@ -35,15 +35,18 @@ public class Item {
 
         return percentChange;
     }
+
     public double getCurrentPrice() {
         return currentPrice;
     }
-    public double getOriginalPrice(){
+
+    public double getOriginalPrice() {
         return originalPrice;
     }
-    public void checkCurrentPrice(String url){
-        currentPrice =  PriceFinder.getCurrentPrice(url);
-        percentChange = Math.floor(((originalPrice-currentPrice)/originalPrice)*10000) / 100;
+
+    public void checkCurrentPrice(String url) {
+        currentPrice = PriceFinder.getCurrentPrice(url);
+        percentChange = Math.floor(((originalPrice - currentPrice) / originalPrice) * 10000) / 100;
 
     }
 
@@ -63,8 +66,8 @@ public class Item {
         this.URL = URL;
     }
 
-
+    @Override
+    public String toString() {
+        return this.Name + this.getCurrentPrice() + this.getOriginalPrice();
+    }
 }
-
-
-
