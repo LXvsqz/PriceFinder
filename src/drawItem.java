@@ -1,6 +1,6 @@
 import javax.swing.*;
 
-import java.awt.Component;
+import java.awt.*;
 import javax.swing.ImageIcon;
 import javax.swing.JList;
 import javax.swing.JLabel;
@@ -22,6 +22,14 @@ public class drawItem extends ItemView implements ListCellRenderer<Item>{
 
         setItem(value);
         repaint();
+
+        if (isSelected) {
+            setBackground(list.getSelectionBackground().LIGHT_GRAY);
+            setForeground(list.getSelectionForeground());
+        } else {
+            setBackground(list.getBackground());
+            setForeground(list.getForeground());
+        }
 
         return this;
 

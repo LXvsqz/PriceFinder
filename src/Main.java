@@ -172,15 +172,6 @@ public class Main extends JFrame{
         //removeItem(1);
 
 
-        /*
-
-        for (int i = 0; i < 5 ; i++){
-            //itemView.setItem(displayItem[i]);
-
-            itemList.addElement(displayItem);
-            //itemList.addElement(itemView.getItem());
-        }
-    */
 
         itemHolder= new JList(itemList);
         itemHolder.setCellRenderer(new drawItem());
