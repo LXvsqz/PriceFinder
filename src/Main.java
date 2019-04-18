@@ -21,6 +21,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JList;
 import javax.swing.JLabel;
 import javax.swing.ListCellRenderer;
+import javax.swing.border.LineBorder;
 
 
 /**
@@ -141,7 +142,7 @@ public class Main extends JFrame{
         control.setBorder(BorderFactory.createEmptyBorder(10,16,0,16));
         setJMenuBar(control);
 
-        //Toolbar
+        //Toolbar Jacob
         JPanel toolbar = tools();
         toolbar.setBorder(BorderFactory.createEmptyBorder(10,0,0,16));
         add(toolbar,BorderLayout.NORTH);
@@ -160,7 +161,7 @@ public class Main extends JFrame{
         Item item3= new Item("Iphone X", "https://www.bestbuy.com/site/iphone/iphone-x/pcmcat1505326434742.c?id=pcmcat1505326434742");
 
 
-        Item[]displayItem= {item1,item2,item3};
+        Item[] displayItem = {item1,item2,item3};
 
 
 
@@ -174,8 +175,9 @@ public class Main extends JFrame{
 
 
 
-        itemHolder= new JList(itemList);
+        itemHolder = new JList(itemList);
         itemHolder.setCellRenderer(new drawItem());
+        itemHolder.setBorder(BorderFactory.createLineBorder(Color.BLUE));
 
         itemHolder.setVisibleRowCount(3);
 
@@ -186,17 +188,20 @@ public class Main extends JFrame{
         itemHolder.setFixedCellWidth(350);
 
         //itemView.getListCellRendererComponent(itemHolder,itemList.getElementAt(0),0,true);
-
+        //itemHolder.setBorder(BorderFactory.createLineBorder(Color.BLUE));
 
         JPanel board = new JPanel();
-
         board.add(scroller);
 
         //TODO: Add frame around the board. (user experience)
 
         this.add(scroller);
         this.setVisible(true);
+        //board.setBorder(BorderFactory.createLineBorder(Color.BLUE));
 
+        JPanel bottom = new JPanel();
+        bottom.setBorder(BorderFactory.createEmptyBorder(10,0,0,16));
+        add(bottom,BorderLayout.SOUTH);
     }
 
     /** Create a control panel consisting of a refresh button. */
@@ -343,74 +348,68 @@ public class Main extends JFrame{
 
         //Buttons
         JButton b1 = new JButton(createImageIcon("blueCheck.png"));
-        b1.addActionListener(this::refreshButtonClicked);
+        //b1.addActionListener(this::refreshButtonClicked);
         b1.setToolTipText("Check the price");
         b1.setFocusPainted(false);
         toolBar.add(b1);
 
         JButton b2 = new JButton(createImageIcon("addBlue.png"));
-        b2.addActionListener(this::AddButtonClicked);
+        //b2.addActionListener(this::AddButtonClicked);
         b2.setToolTipText("Add to the price finder");
         b2.setFocusPainted(false);
         toolBar.add(b2);
 
         JButton b3 = new JButton(createImageIcon("search.png"));
-        b3.addActionListener(this::AddButtonClicked);
-
+        //b3.addActionListener(this::AddButtonClicked);
         b3.setToolTipText("Search");
         b3.setFocusPainted(false);
         toolBar.add(b3);
 
         JButton b4 = new JButton(createImageIcon("blueLast.png"));
-        b4.addActionListener(this::AddButtonClicked);
+        //b4.addActionListener(this::AddButtonClicked);
         b4.setToolTipText("First item");
         b4.setFocusPainted(false);
         toolBar.add(b4);
 
         JButton b5 = new JButton(createImageIcon("blueFirst.png"));
-        b5.addActionListener(this::AddButtonClicked);
+        //b5.addActionListener(this::AddButtonClicked);
         b5.setToolTipText("Last item");
         b5.setFocusPainted(false);
         toolBar.add(b5);
 
         toolBar.addSeparator();
 
-        JButton b6= new JButton(createImageIcon("CheckGreen.png"));
-        b6.addActionListener(this::AddButtonClicked);
-        b6.addActionListener(this::AddButtonClicked);
-        b6.setToolTipText("Item Price of Selected Item");
-        b6.setFocusPainted(false);
-        toolBar.add(b6);
+        JButton menu_1= new JButton(createImageIcon("CheckGreen.png"));
+        menu_1.addActionListener(this::AddButtonClicked);
+        menu_1.setToolTipText("Item Price of Selected Item");
+        menu_1.setFocusPainted(false);
+        toolBar.add(menu_1);
 
-        JButton b7= new JButton(createImageIcon("launch.png"));
-        b7.addActionListener(this::AddButtonClicked);
-        b7.setToolTipText("Launch Item Web-page");
-        b7.setFocusPainted(false);
-        toolBar.add(b7);
+        JButton menu_2= new JButton(createImageIcon("launch.png"));
+        menu_2.addActionListener(this::AddButtonClicked);
+        menu_2.setToolTipText("Launch Item Web-page");
+        menu_2.setFocusPainted(false);
+        toolBar.add(menu_2);
 
-        JButton b8= new JButton(createImageIcon("EditGreen.png"));
-        b8.addActionListener(this::AddButtonClicked);
-        b8.setToolTipText("Edit Selected Item");
-        b8.setFocusPainted(false);
-        toolBar.add(b8);
+        JButton menu_3= new JButton(createImageIcon("EditGreen.png"));
+        menu_3.addActionListener(this::AddButtonClicked);
+        menu_3.setToolTipText("Edit Selected Item");
+        menu_3.setFocusPainted(false);
+        toolBar.add(menu_3);
 
-        JButton b9= new JButton(createImageIcon("minus.png"));
-        b9.addActionListener(this::AddButtonClicked);
-        b9.setToolTipText("Delete Selected Item");
-        b9.setFocusPainted(false);
-        toolBar.add(b9);
+        JButton menu_4= new JButton(createImageIcon("minus.png"));
+        menu_4.addActionListener(this::AddButtonClicked);
+        menu_4.setToolTipText("Delete Selected Item");
+        menu_4.setFocusPainted(false);
+        toolBar.add(menu_4);
 
         toolBar.addSeparator();
 
-        JButton bA= new JButton(createImageIcon("Questionblue.png"));
-        bA.addActionListener(this::AddButtonClicked);
-        bA.setToolTipText("App Information");
-        bA.setFocusPainted(false);
-        toolBar.add(bA);
-
-
-
-
+        JButton info = new JButton(createImageIcon("Questionblue.png"));
+        info.addActionListener(this::AddButtonClicked);
+        info.setToolTipText("App Information");
+        info.setFocusPainted(false);
+        toolBar.add(info);
 
 
         control.add(toolBar, BorderLayout.NORTH);
@@ -456,8 +455,6 @@ public class Main extends JFrame{
         }
         return null;
     }
-
-
 
 
     public static void main(String[] args) {
