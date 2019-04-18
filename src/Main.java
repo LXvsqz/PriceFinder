@@ -16,7 +16,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import java.io.*;
 import java.net.URL;
-import java.util.LinkedList;
+import java.awt.Component;
+import javax.swing.ImageIcon;
+import javax.swing.JList;
+import javax.swing.JLabel;
+import javax.swing.ListCellRenderer;
+
 
 /**
  * A dialog for tracking the price of an item.
@@ -160,20 +165,25 @@ public class Main extends JFrame{
 
         addItem("iphoneColor", "iphone.com");
         addItem("REDiphone", "iphone.com");
+        addItem("Samsung", "iphone.com");
+        addItem("Fortnite", "iphone.com");
+
+
         //removeItem(1);
 
 
-
+        /*
 
         for (int i = 0; i < 5 ; i++){
             //itemView.setItem(displayItem[i]);
 
-            itemList.addElement(displayItem.toString());
+            itemList.addElement(displayItem);
             //itemList.addElement(itemView.getItem());
         }
-
+    */
 
         itemHolder= new JList(itemList);
+        itemHolder.setCellRenderer(new drawItem());
 
         itemHolder.setVisibleRowCount(3);
 

@@ -19,7 +19,7 @@ public class drawItem extends ItemView implements ListCellRenderer<Item>{
     public Component getListCellRendererComponent(JList<? extends Item> list, Item value, int index, boolean isSelected, boolean cellHasFocus) {
 
 
-        
+
         setItem(value);
         repaint();
 

@@ -20,6 +20,14 @@ public class ItemView extends JPanel{
     //private Item item = new Item("Iphone X","https://apple.com/iphone");
     private Item item;
 
+    public ItemView(Item newItem){
+        this.item= newItem;
+
+    }
+    public ItemView(){
+
+    }
+
 
     /**
      * Interface to notify a click on the view page icon.
@@ -35,6 +43,7 @@ public class ItemView extends JPanel{
     public void updatePrice(Item item) {
         item.checkCurrentPrice(item.getURL());
     }
+
 
 
     public void establish() {
@@ -64,6 +73,9 @@ public class ItemView extends JPanel{
      */
 
 
+
+    /*
+
     public ItemView(Item item) {
         this.item = item;
         setPreferredSize(new Dimension(100, 160));
@@ -84,6 +96,8 @@ public class ItemView extends JPanel{
 
 
     }
+
+    */
 
 
     /**
