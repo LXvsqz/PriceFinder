@@ -180,7 +180,7 @@ public class Main extends JFrame{
 
         scroller= new JScrollPane(itemHolder,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
-        itemHolder.setFixedCellHeight(150);
+        itemHolder.setFixedCellHeight(160);
 
         itemHolder.setFixedCellWidth(350);
 
