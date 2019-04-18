@@ -340,34 +340,35 @@ public class Main extends JFrame{
         JPanel control = new JPanel(new FlowLayout(FlowLayout.LEADING));
 
         JToolBar toolBar = new JToolBar("Price watch");
+
         //Buttons
         JButton b1 = new JButton(createImageIcon("blueCheck.png"));
-        //b1.addActionListener(this::refreshButtonClicked);
+        b1.addActionListener(this::refreshButtonClicked);
         b1.setToolTipText("Check the price");
         b1.setFocusPainted(false);
         toolBar.add(b1);
 
         JButton b2 = new JButton(createImageIcon("addBlue.png"));
-        //b2.addActionListener(this::AddButtonClicked);
+        b2.addActionListener(this::AddButtonClicked);
         b2.setToolTipText("Add to the price finder");
         b2.setFocusPainted(false);
         toolBar.add(b2);
 
         JButton b3 = new JButton(createImageIcon("search.png"));
-        //b3.addActionListener(this::AddButtonClicked);
+        b3.addActionListener(this::AddButtonClicked);
 
         b3.setToolTipText("Search");
         b3.setFocusPainted(false);
         toolBar.add(b3);
 
         JButton b4 = new JButton(createImageIcon("blueLast.png"));
-        //b4.addActionListener(this::AddButtonClicked);
+        b4.addActionListener(this::AddButtonClicked);
         b4.setToolTipText("First item");
         b4.setFocusPainted(false);
         toolBar.add(b4);
 
         JButton b5 = new JButton(createImageIcon("blueFirst.png"));
-        //b5.addActionListener(this::AddButtonClicked);
+        b5.addActionListener(this::AddButtonClicked);
         b5.setToolTipText("Last item");
         b5.setFocusPainted(false);
         toolBar.add(b5);
@@ -375,6 +376,7 @@ public class Main extends JFrame{
         toolBar.addSeparator();
 
         JButton b6= new JButton(createImageIcon("CheckGreen.png"));
+        b6.addActionListener(this::AddButtonClicked);
         b6.addActionListener(this::AddButtonClicked);
         b6.setToolTipText("Item Price of Selected Item");
         b6.setFocusPainted(false);
