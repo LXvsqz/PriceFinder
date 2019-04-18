@@ -76,24 +76,29 @@ public class Main extends JFrame{
 
     //******************* NEEDS FIXING ***************************//
 
-    private void refreshButtonClicked(ActionEvent event){
+   // private void refreshButtonClicked(ActionEvent event){
 
         //itemView.updatePrice();
-        repaint();
+        //repaint();
 
-        showMessage("Refresh clicked!");                                //need to fix with current code
-    }
+        //showMessage("Refresh clicked!");                                //need to fix with current code
+    //}
 
 
-    /*
-    private void refreshButtonClicked(ActionEvent event, ItemView iV){
-        for(Item view :itemHolder) {
-            iV.updatePrice(view);
+
+    private void refreshButtonClicked(ActionEvent event){
+        //for(Item view :itemList) {
+            //iV.updatePrice(view);
+        //}
+        Item temp;
+        for (int i = 0; i < itemList.getSize(); i++) {
+            temp = ((Item)itemList.getElementAt(i));
+            itemView.updatePrice(temp);
         }
         repaint();
         showMessage("Refresh clicked!");
     }
-    */
+
 //****************************************************************//
 
     /** Callback to be invoked when the view-page icon is clicked.
@@ -116,7 +121,12 @@ public class Main extends JFrame{
 
 
 
-    private void addItem(String name, String url){
+    private void addItem(){
+        String name = JOptionPane.showInputDialog(this,"Enter Name of item");
+        String url = JOptionPane.showInputDialog(this,"Enter website");
+        //JTextField field1 = new JTextField();
+        //JTextField field2 = new JTextField();
+
         Item newItem= new Item(name,url);
         itemList.addElement(newItem);
     }
@@ -165,10 +175,10 @@ public class Main extends JFrame{
 
 
 
-        addItem("iphoneColor", "iphone.com");
-        addItem("REDiphone", "iphone.com");
-        addItem("Samsung", "iphone.com");
-        addItem("Fortnite", "iphone.com");
+        //addItem("iphoneColor", "iphone.com");
+        //addItem("REDiphone", "iphone.com");
+        //addItem("Samsung", "iphone.com");
+        //addItem("Fortnite", "iphone.com");
 
 
         //removeItem(1);
@@ -203,7 +213,19 @@ public class Main extends JFrame{
         bottom.setBorder(BorderFactory.createEmptyBorder(10,0,0,16));
         add(bottom,BorderLayout.SOUTH);
     }
+    private void about(){
+        JFrame frame = new JFrame("About");
 
+        frame.setLocationRelativeTo(this);
+
+        JLabel textLabel = new JLabel("Written by Luis Ochoa :)",SwingConstants.CENTER);
+        textLabel.setPreferredSize(new Dimension(300, 100));
+        frame.getContentPane().add(textLabel, BorderLayout.CENTER);
+        //Display the window.
+
+        frame.pack();
+        frame.setVisible(true);
+    }
     /** Create a control panel consisting of a refresh button. */
     private JMenuBar makeControlPanel() {
         //JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEADING));
@@ -223,17 +245,7 @@ public class Main extends JFrame{
         item.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame("About");
-
-                frame.setLocationRelativeTo(menubar);
-
-                JLabel textLabel = new JLabel("Written by Luis Ochoa :)",SwingConstants.CENTER);
-                textLabel.setPreferredSize(new Dimension(300, 100));
-                frame.getContentPane().add(textLabel, BorderLayout.CENTER);
-                //Display the window.
-
-                frame.pack();
-                frame.setVisible(true);
+                about();
             }
         });
         JMenuItem item_ = new JMenuItem("Exit",createImageIcon("cancel.png"));
@@ -250,10 +262,16 @@ public class Main extends JFrame{
         item0.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // refreshButtonClicked(e,itemView);
+                 refreshButtonClicked(e);
             }
         });
         JMenuItem item1 = new JMenuItem("Add Item",createImageIcon("plus.png"));
+        item1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addItem();
+            }
+        });
 
         item1.setAccelerator(KeyStroke.getKeyStroke('W', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
         JMenuItem item2 = new JMenuItem("Search",createImageIcon("magnifying-glass.png"));
@@ -354,6 +372,12 @@ public class Main extends JFrame{
         toolBar.add(b1);
 
         JButton b2 = new JButton(createImageIcon("addBlue.png"));
+        b2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addItem();
+            }
+        });
         //b2.addActionListener(this::AddButtonClicked);
         b2.setToolTipText("Add to the price finder");
         b2.setFocusPainted(false);
@@ -380,25 +404,25 @@ public class Main extends JFrame{
         toolBar.addSeparator();
 
         JButton menu_1= new JButton(createImageIcon("CheckGreen.png"));
-        menu_1.addActionListener(this::AddButtonClicked);
+        //menu_1.addActionListener(this::AddButtonClicked);
         menu_1.setToolTipText("Item Price of Selected Item");
         menu_1.setFocusPainted(false);
         toolBar.add(menu_1);
 
         JButton menu_2= new JButton(createImageIcon("launch.png"));
-        menu_2.addActionListener(this::AddButtonClicked);
+        //menu_2.addActionListener(this::AddButtonClicked);
         menu_2.setToolTipText("Launch Item Web-page");
         menu_2.setFocusPainted(false);
         toolBar.add(menu_2);
 
         JButton menu_3= new JButton(createImageIcon("EditGreen.png"));
-        menu_3.addActionListener(this::AddButtonClicked);
+        //menu_3.addActionListener(this::AddButtonClicked);
         menu_3.setToolTipText("Edit Selected Item");
         menu_3.setFocusPainted(false);
         toolBar.add(menu_3);
 
         JButton menu_4= new JButton(createImageIcon("minus.png"));
-        menu_4.addActionListener(this::AddButtonClicked);
+        //menu_4.addActionListener(this::AddButtonClicked);
         menu_4.setToolTipText("Delete Selected Item");
         menu_4.setFocusPainted(false);
         toolBar.add(menu_4);
@@ -406,7 +430,12 @@ public class Main extends JFrame{
         toolBar.addSeparator();
 
         JButton info = new JButton(createImageIcon("Questionblue.png"));
-        info.addActionListener(this::AddButtonClicked);
+        info.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                about();
+            }
+        });
         info.setToolTipText("App Information");
         info.setFocusPainted(false);
         toolBar.add(info);
