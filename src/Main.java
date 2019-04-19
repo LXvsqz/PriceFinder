@@ -122,13 +122,22 @@ public class Main extends JFrame{
 
 
     private void addItem(){
-        String name = JOptionPane.showInputDialog(this,"Enter Name of item");
-        String url = JOptionPane.showInputDialog(this,"Enter website");
-        //JTextField field1 = new JTextField();
-        //JTextField field2 = new JTextField();
+        //String name = JOptionPane.showInputDialog(this,"Enter Name of item");
+        //String url = JOptionPane.showInputDialog(this,"Enter website");
+        JTextField field1 = new JTextField();
+        JTextField field2 = new JTextField();
+        Object [] message = {
+                "Enter Name : ",field1,
+                "Enter URL : ", field2,
+        };
+        int option = JOptionPane.showConfirmDialog(this,message,"Enter all your values",JOptionPane.OK_CANCEL_OPTION);
+        if(option==JOptionPane.OK_OPTION){
+            String name = field1.getText();
+            String url = field2.getText();
+            Item newItem= new Item(name,url);
+            itemList.addElement(newItem);
+        }
 
-        Item newItem= new Item(name,url);
-        itemList.addElement(newItem);
     }
     private void removeItem(int index){
 
