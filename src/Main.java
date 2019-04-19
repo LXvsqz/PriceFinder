@@ -14,6 +14,8 @@ import javax.security.auth.Refreshable;
 import javax.swing.*;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.*;
 import java.net.URL;
 import java.awt.Component;
@@ -205,10 +207,22 @@ public class Main extends JFrame{
         itemHolder.setFixedCellHeight(160);
 
         itemHolder.setFixedCellWidth(350);
-
         //itemView.getListCellRendererComponent(itemHolder,itemList.getElementAt(0),0,true);
         //itemHolder.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+        itemHolder.addMouseListener( new MouseAdapter()
+        {
+            public void mousePressed(MouseEvent e)
+            {
+                //System.out.println(e);
+                if ( SwingUtilities.isRightMouseButton(e) )
+                {
+                    JPopupMenu popo = MenuPop();
+                    popo.show(itemHolder,e.getX(),e.getY());
 
+
+                }
+            }
+        });
         JPanel board = new JPanel();
         board.add(scroller);
 
@@ -458,10 +472,14 @@ public class Main extends JFrame{
     private JPopupMenu MenuPop(){
         JPopupMenu mp = new JPopupMenu();
         JMenuItem mp1 = new JMenuItem(createImageIcon("bluecheck.jpg"));
+        mp1.setToolTipText("Check price");
         JMenuItem mp2 = new JMenuItem(createImageIcon("Web.png"));
+        mp2.setToolTipText("Open Website");
         JMenuItem mp3 = new JMenuItem(createImageIcon("35-512.png"));
-        JMenuItem mp4 = new JMenuItem(createImageIcon("remove.jpg"));
+        mp3.setToolTipText("edit Item");
 
+        JMenuItem mp4 = new JMenuItem(createImageIcon("remove.jpg"));
+        mp4.setToolTipText("remove item");
 
         mp.add(mp1);
         mp.add(mp2);
