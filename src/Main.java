@@ -87,7 +87,21 @@ public class Main extends JFrame{
     //}
 
 
-
+    private void itemRefresh(){
+        if(!itemHolder.isSelectionEmpty()) {
+            int index = itemHolder.getSelectedIndex();
+            Item item = (Item)itemList.getElementAt(index);
+            item.checkCurrentPrice(item.getURL());
+        }
+    }
+    private void refreshAll(){
+        Item temp;
+        for(int i = 0; i < itemList.getSize();i++){
+            temp = (Item)itemList.getElementAt(i);
+            temp.checkCurrentPrice(temp.getURL());
+        }
+        repaint();
+    }
     private void refreshButtonClicked(ActionEvent event){
         //for(Item view :itemList) {
             //iV.updatePrice(view);
@@ -285,7 +299,7 @@ public class Main extends JFrame{
         item0.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                 refreshButtonClicked(e);
+                refreshAll();
             }
         });
         JMenuItem item1 = new JMenuItem("Add Item",createImageIcon("plus.png"));
@@ -304,10 +318,23 @@ public class Main extends JFrame{
         JMenuItem item4 = new JMenuItem("Select Last",createImageIcon("previous.png"));
         item4.setAccelerator(KeyStroke.getKeyStroke('Y', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
         JMenuItem item5 = new JMenuItem("Price",createImageIcon("list.png"));
+        item5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                itemRefresh();
+            }
+        });
         item5.setAccelerator(KeyStroke.getKeyStroke('U', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
         JMenuItem item6 = new JMenuItem("View",createImageIcon("eye.png"));
         item6.setAccelerator(KeyStroke.getKeyStroke('I', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
-        JMenuItem item7 = new JMenuItem("Item",createImageIcon("edit.png"));
+        JMenuItem item7 = new JMenuItem("Edit",createImageIcon("edit.png"));
+        item7.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                    itemEditor();
+            }
+        });
         item7.setAccelerator(KeyStroke.getKeyStroke('O', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
         JMenuItem item8 = new JMenuItem("Review",createImageIcon("shopping-cart.png"));
         item8.setAccelerator(KeyStroke.getKeyStroke('P', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
@@ -469,14 +496,45 @@ public class Main extends JFrame{
         return control;
 
     }
+    private void itemEditor(){
+        if(!itemHolder.isSelectionEmpty()) {
+            int index = itemHolder.getSelectedIndex();
+            Item item = (Item) itemList.getElementAt(index);
+            JTextField field1 = new JTextField();
+            JTextField field2 = new JTextField();
+            Object[] message = {
+                    "Enter new Name : ", field1,
+                    "Enter new URL : ", field2,
+            };
+            int option = JOptionPane.showConfirmDialog(this, message, "Enter all your values", JOptionPane.OK_CANCEL_OPTION);
+            if (option == JOptionPane.OK_OPTION) {
+                String name = field1.getText();
+                String url = field2.getText();
+                item.setURL(url);
+                item.setDescription(name);
+            }
+        }
+    }
     private JPopupMenu MenuPop(){
         JPopupMenu mp = new JPopupMenu();
         JMenuItem mp1 = new JMenuItem(createImageIcon("bluecheck.jpg"));
         mp1.setToolTipText("Check price");
+        mp1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                itemRefresh();
+            }
+        });
         JMenuItem mp2 = new JMenuItem(createImageIcon("Web.png"));
         mp2.setToolTipText("Open Website");
         JMenuItem mp3 = new JMenuItem(createImageIcon("35-512.png"));
         mp3.setToolTipText("edit Item");
+        mp3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                itemEditor();
+            }
+        });
 
         JMenuItem mp4 = new JMenuItem(createImageIcon("remove.jpg"));
         mp4.setToolTipText("remove item");
