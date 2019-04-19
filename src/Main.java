@@ -24,6 +24,7 @@ import javax.swing.JList;
 import javax.swing.JLabel;
 import javax.swing.ListCellRenderer;
 import javax.swing.border.LineBorder;
+import java.net.URI;
 
 
 /**
@@ -92,6 +93,7 @@ public class Main extends JFrame{
             int index = itemHolder.getSelectedIndex();
             Item item = (Item)itemList.getElementAt(index);
             item.checkCurrentPrice(item.getURL());
+            repaint();
         }
     }
     private void refreshAll(){
@@ -101,6 +103,21 @@ public class Main extends JFrame{
             temp.checkCurrentPrice(temp.getURL());
         }
         repaint();
+    }
+    private void openWebsite(){
+        if(!itemHolder.isSelectionEmpty()){
+            int index = itemHolder.getSelectedIndex();
+            Item item = (Item)itemList.getElementAt(index);
+            itemView.openURL(item.getURL());
+
+        }
+    }
+    private void selectLast(){
+        itemHolder.setSelectedIndex(itemHolder.getLastVisibleIndex());
+
+    }
+    private void selectFirst(){
+        itemHolder.setSelectedIndex(itemHolder.getFirstVisibleIndex());
     }
     private void refreshButtonClicked(ActionEvent event){
         //for(Item view :itemList) {
@@ -155,9 +172,12 @@ public class Main extends JFrame{
         }
 
     }
-    private void removeItem(int index){
+    private void removeItem(){
 
-        itemList.remove(index);
+        if(!itemHolder.isSelectionEmpty()){
+            int index = itemHolder.getSelectedIndex();
+            itemList.removeElementAt(index);
+        }
 
     }
 
@@ -314,8 +334,20 @@ public class Main extends JFrame{
         JMenuItem item2 = new JMenuItem("Search",createImageIcon("magnifying-glass.png"));
         item2.setAccelerator(KeyStroke.getKeyStroke('R', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
         JMenuItem item3 = new JMenuItem("Select First",createImageIcon("next.png"));
+        item3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                selectFirst();
+            }
+        });
         item3.setAccelerator(KeyStroke.getKeyStroke('T', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
         JMenuItem item4 = new JMenuItem("Select Last",createImageIcon("previous.png"));
+        item4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                selectLast();
+            }
+        });
         item4.setAccelerator(KeyStroke.getKeyStroke('Y', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
         JMenuItem item5 = new JMenuItem("Price",createImageIcon("list.png"));
         item5.addActionListener(new ActionListener() {
@@ -326,6 +358,12 @@ public class Main extends JFrame{
         });
         item5.setAccelerator(KeyStroke.getKeyStroke('U', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
         JMenuItem item6 = new JMenuItem("View",createImageIcon("eye.png"));
+        item6.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                openWebsite();
+            }
+        });
         item6.setAccelerator(KeyStroke.getKeyStroke('I', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
         JMenuItem item7 = new JMenuItem("Edit",createImageIcon("edit.png"));
         item7.addActionListener(new ActionListener() {
@@ -441,12 +479,24 @@ public class Main extends JFrame{
 
         JButton b4 = new JButton(createImageIcon("blueLast.png"));
         //b4.addActionListener(this::AddButtonClicked);
+        b4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                selectFirst();
+            }
+        });
         b4.setToolTipText("First item");
         b4.setFocusPainted(false);
         toolBar.add(b4);
 
         JButton b5 = new JButton(createImageIcon("blueFirst.png"));
         //b5.addActionListener(this::AddButtonClicked);
+        b5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                selectLast();
+            }
+        });
         b5.setToolTipText("Last item");
         b5.setFocusPainted(false);
         toolBar.add(b5);
@@ -456,23 +506,44 @@ public class Main extends JFrame{
         JButton menu_1= new JButton(createImageIcon("CheckGreen.png"));
         //menu_1.addActionListener(this::AddButtonClicked);
         menu_1.setToolTipText("Item Price of Selected Item");
+        menu_1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                itemRefresh();
+            }
+        });
         menu_1.setFocusPainted(false);
         toolBar.add(menu_1);
 
         JButton menu_2= new JButton(createImageIcon("launch.png"));
-        //menu_2.addActionListener(this::AddButtonClicked);
+        menu_2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                openWebsite();
+            }
+        });
         menu_2.setToolTipText("Launch Item Web-page");
         menu_2.setFocusPainted(false);
         toolBar.add(menu_2);
 
         JButton menu_3= new JButton(createImageIcon("EditGreen.png"));
-        //menu_3.addActionListener(this::AddButtonClicked);
+        menu_3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                itemEditor();
+            }
+        });
         menu_3.setToolTipText("Edit Selected Item");
         menu_3.setFocusPainted(false);
         toolBar.add(menu_3);
 
         JButton menu_4= new JButton(createImageIcon("minus.png"));
-        //menu_4.addActionListener(this::AddButtonClicked);
+        menu_4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                removeItem();
+            }
+        });
         menu_4.setToolTipText("Delete Selected Item");
         menu_4.setFocusPainted(false);
         toolBar.add(menu_4);
@@ -526,6 +597,12 @@ public class Main extends JFrame{
             }
         });
         JMenuItem mp2 = new JMenuItem(createImageIcon("Web.png"));
+        mp2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                openWebsite();
+            }
+        });
         mp2.setToolTipText("Open Website");
         JMenuItem mp3 = new JMenuItem(createImageIcon("35-512.png"));
         mp3.setToolTipText("edit Item");
@@ -537,6 +614,12 @@ public class Main extends JFrame{
         });
 
         JMenuItem mp4 = new JMenuItem(createImageIcon("remove.jpg"));
+        mp4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                removeItem();
+            }
+        });
         mp4.setToolTipText("remove item");
 
         mp.add(mp1);
