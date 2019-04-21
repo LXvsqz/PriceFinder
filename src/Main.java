@@ -74,6 +74,7 @@ public class Main extends JFrame{
 
     /**
      * Refreshes item price that is currently selected; if none are selected, does nothing
+     * @see a new item price
      *
      *
     */
@@ -89,6 +90,7 @@ public class Main extends JFrame{
 
     /**
      * Refreshes prices of all items
+     * @see refreshAll items refreshed
      */
     private void refreshAll(){
         Item temp;
@@ -163,7 +165,10 @@ public class Main extends JFrame{
 
     }
 
-    /** Configure UI. */
+    /** Configure UI.
+     * Manages the display of the application
+     *
+     * */
     private void configureUI() {
         //Luis
         setLayout(new BorderLayout());
@@ -233,7 +238,7 @@ public class Main extends JFrame{
 
         frame.setLocationRelativeTo(this);
 
-        JLabel textLabel = new JLabel("Written by Luis Ochoa :)",SwingConstants.CENTER);
+        JLabel textLabel = new JLabel("Price Finder Application :)",SwingConstants.CENTER);
         textLabel.setPreferredSize(new Dimension(300, 100));
         frame.getContentPane().add(textLabel, BorderLayout.CENTER);
         //Display the window.
@@ -241,7 +246,10 @@ public class Main extends JFrame{
         frame.pack();
         frame.setVisible(true);
     }
-    /** Create a control panel consisting a JMenubar with multiple functions*/
+    /** Create a control panel consisting a JMenubar with multiple functions
+     * @return  JMenuBar with menu functionality
+     * */
+
     private JMenuBar makeControlPanel() {
 
         JMenuBar menubar = new JMenuBar();

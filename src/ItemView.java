@@ -40,6 +40,9 @@ public class ItemView extends JPanel{
         void clicked();
     }
 
+    /**
+     * @param item in path of Item
+     */
     public void updatePrice(Item item) {
         item.checkCurrentPrice(item.getURL());
     }
@@ -53,7 +56,9 @@ public class ItemView extends JPanel{
         item.setURL(txtInputs.getText());
         item.getCurrentPrice();
     }
-
+    /**
+     * @param item in path of Item
+     */
     public String getURL(Item item) {
         return item.getURL();
     }
