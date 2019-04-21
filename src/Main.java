@@ -1,7 +1,3 @@
-//Luis Ochoa 80508534
-//Alex Vasquez 80579070
-//Jacob Padilla 80617758
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -29,9 +25,10 @@ import java.net.URI;
 
 /**
  * A dialog for tracking the price of an item.
- * @author Alex Vasquez
- * @author Luis Ochoa
- * @author Jacob Padilla
+ * @author Alex Vasquez 80579070
+ * @author Luis Ochoa 80508534
+ * @author Jacob Padilla 80617758
+ * @version HW3
  *
  *
  */
@@ -75,6 +72,11 @@ public class Main extends JFrame{
      * Find the current price of the watched item and display it
      * along with a percentage price change. */
 
+    /**
+     * Refreshes item price that is currently selected; if none are selected, does nothing
+     *
+     *
+    */
 
     private void itemRefresh(){
         if(!itemHolder.isSelectionEmpty()) {
@@ -84,6 +86,10 @@ public class Main extends JFrame{
             repaint();
         }
     }
+
+    /**
+     * Refreshes prices of all items
+     */
     private void refreshAll(){
         Item temp;
         for(int i = 0; i < itemList.getSize();i++){
@@ -92,6 +98,10 @@ public class Main extends JFrame{
         }
         repaint();
     }
+
+    /**
+     * Opens web browser with item website of selected item; if none does nothing
+     */
     private void openWebsite(){
         if(!itemHolder.isSelectionEmpty()){
             int index = itemHolder.getSelectedIndex();
@@ -100,31 +110,29 @@ public class Main extends JFrame{
 
         }
     }
+
+    /**
+     * Selects the last item in the list
+     */
     private void selectLast(){
         itemHolder.setSelectedIndex(itemHolder.getLastVisibleIndex());
 
     }
+
+    /**
+     * Selects the first item in the list
+     */
     private void selectFirst(){
         itemHolder.setSelectedIndex(itemHolder.getFirstVisibleIndex());
     }
-    private void refreshButtonClicked(ActionEvent event){
 
-        Item temp;
-        for (int i = 0; i < itemList.getSize(); i++) {
-            temp = ((Item)itemList.getElementAt(i));
-            itemView.updatePrice(temp);
-        }
-        repaint();
-        showMessage("Refresh clicked!");
-    }
 
 //****************************************************************//
 
-    /** Callback to be invoked when the view-page icon is clicked.
-     * Launch a (default) web browser by supplying the URL of
-     * the item. */
-
-
+    /**
+     * Adds item to List
+     * By prompting user to input a short description of item as well as a valid URL to check price from
+     */
     private void addItem(){
 
         JTextField field1 = new JTextField();
@@ -143,6 +151,9 @@ public class Main extends JFrame{
 
     }
 
+    /**
+     * Removes selected item from list; if none selected does nothing
+     */
     private void removeItem(){
 
         if(!itemHolder.isSelectionEmpty()){
@@ -213,6 +224,10 @@ public class Main extends JFrame{
         bottom.setBorder(BorderFactory.createEmptyBorder(10,0,0,16));
         add(bottom,BorderLayout.SOUTH);
     }
+
+    /**
+     * Opens a new window that displays further information regarding PriceFinder
+     */
     private void about(){
         JFrame frame = new JFrame("About");
 
@@ -226,7 +241,7 @@ public class Main extends JFrame{
         frame.pack();
         frame.setVisible(true);
     }
-    /** Create a control panel consisting of a refresh button. */
+    /** Create a control panel consisting a JMenubar with multiple functions*/
     private JMenuBar makeControlPanel() {
 
         JMenuBar menubar = new JMenuBar();
@@ -386,6 +401,11 @@ public class Main extends JFrame{
 
         return menubar;
     }
+
+    /**
+     * Creates a toolbar with many functions
+     * @return JPanel with toolbar
+     */
     private JPanel tools() {
         JPanel control = new JPanel(new FlowLayout(FlowLayout.LEADING));
 
@@ -500,6 +520,10 @@ public class Main extends JFrame{
         return control;
 
     }
+
+    /**
+     * Allows user to edit currently selected item by prompting user to input new/updated item information
+     */
     private void itemEditor(){
         if(!itemHolder.isSelectionEmpty()) {
             int index = itemHolder.getSelectedIndex();
@@ -519,6 +543,11 @@ public class Main extends JFrame{
             }
         }
     }
+
+    /**
+     * Creates a JPopupMenu that gives user options when right clicking item
+     * @return JPopupMenu
+     */
     private JPopupMenu MenuPop(){
         JPopupMenu mp = new JPopupMenu();
         JMenuItem mp1 = new JMenuItem(createImageIcon("/images/bluecheck.jpg"));
@@ -577,6 +606,11 @@ public class Main extends JFrame{
         }).start();
     }
 
+    /**
+     * Creates an icon that fits desired size specs from an image file
+     * @param filename path of file
+     * @return ImageIcon
+     */
     private ImageIcon createImageIcon(String filename) {
         URL imageUrl = getClass().getResource( filename);
 
