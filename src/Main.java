@@ -235,7 +235,7 @@ public class Main extends JFrame{
         JMenu menu2 = new JMenu("Sort");
         JMenu menu3 = new JMenu("Selected");
 
-        JMenuItem item = new JMenuItem("About",createImageIcon("envelope.png"));
+        JMenuItem item = new JMenuItem("About",createImageIcon("/images/envelope.png"));
         item.setAccelerator(KeyStroke.getKeyStroke('N', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
 
         item.addActionListener(new ActionListener() {
@@ -245,7 +245,7 @@ public class Main extends JFrame{
             }
         });
 
-        JMenuItem item_ = new JMenuItem("Exit",createImageIcon("cancel.png"));
+        JMenuItem item_ = new JMenuItem("Exit",createImageIcon("/images/cancel.png"));
         item_.setAccelerator(KeyStroke.getKeyStroke('E', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
         item_.addActionListener(new ActionListener() {
             @Override
@@ -254,7 +254,7 @@ public class Main extends JFrame{
             }
         });
 
-        JMenuItem item0 = new JMenuItem("Check Prices",createImageIcon("reload.png"));
+        JMenuItem item0 = new JMenuItem("Check Prices",createImageIcon("/images/reload.png"));
         item0.setAccelerator(KeyStroke.getKeyStroke('Q', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
         item0.addActionListener(new ActionListener() {
             @Override
@@ -263,7 +263,7 @@ public class Main extends JFrame{
             }
         });
 
-        JMenuItem item1 = new JMenuItem("Add Item",createImageIcon("plus.png"));
+        JMenuItem item1 = new JMenuItem("Add Item",createImageIcon("/images/plus.png"));
         item1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -273,9 +273,9 @@ public class Main extends JFrame{
         item1.setAccelerator(KeyStroke.getKeyStroke('W', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
 
 
-        JMenuItem item2 = new JMenuItem("Search",createImageIcon("magnifying-glass.png"));
+        JMenuItem item2 = new JMenuItem("Search",createImageIcon("/images/magnifying-glass.png"));
         item2.setAccelerator(KeyStroke.getKeyStroke('R', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
-        JMenuItem item3 = new JMenuItem("Select First",createImageIcon("next.png"));
+        JMenuItem item3 = new JMenuItem("Select First",createImageIcon("/images/next.png"));
         item3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -284,7 +284,7 @@ public class Main extends JFrame{
         });
 
         item3.setAccelerator(KeyStroke.getKeyStroke('T', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
-        JMenuItem item4 = new JMenuItem("Select Last",createImageIcon("previous.png"));
+        JMenuItem item4 = new JMenuItem("Select Last",createImageIcon("/images/previous.png"));
         item4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -293,7 +293,7 @@ public class Main extends JFrame{
         });
 
         item4.setAccelerator(KeyStroke.getKeyStroke('Y', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
-        JMenuItem item5 = new JMenuItem("Price",createImageIcon("list.png"));
+        JMenuItem item5 = new JMenuItem("Price",createImageIcon("/images/list.png"));
         item5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -302,7 +302,7 @@ public class Main extends JFrame{
         });
 
         item5.setAccelerator(KeyStroke.getKeyStroke('U', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
-        JMenuItem item6 = new JMenuItem("View",createImageIcon("eye.png"));
+        JMenuItem item6 = new JMenuItem("View",createImageIcon("/images/eye.png"));
         item6.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -311,7 +311,7 @@ public class Main extends JFrame{
         });
 
         item6.setAccelerator(KeyStroke.getKeyStroke('I', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
-        JMenuItem item7 = new JMenuItem("Edit",createImageIcon("edit.png"));
+        JMenuItem item7 = new JMenuItem("Edit",createImageIcon("/images/edit.png"));
         item7.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -321,7 +321,7 @@ public class Main extends JFrame{
         });
         item7.setAccelerator(KeyStroke.getKeyStroke('O', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
 
-        JMenuItem item8 = new JMenuItem("Review",createImageIcon("shopping-cart.png"));
+        JMenuItem item8 = new JMenuItem("Review",createImageIcon("/images/shopping-cart.png"));
         item8.setAccelerator(KeyStroke.getKeyStroke('P', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
 
         JMenuItem item9 = new JMenuItem("Copy Name");
@@ -392,12 +392,12 @@ public class Main extends JFrame{
         JToolBar toolBar = new JToolBar("Price watch");
 
         //Buttons
-        JButton b1 = new JButton(createImageIcon("blueCheck.png"));
+        JButton b1 = new JButton(createImageIcon("/images/blueCheck.png"));
         b1.setToolTipText("Check the price");
         b1.setFocusPainted(false);
         toolBar.add(b1);
 
-        JButton b2 = new JButton(createImageIcon("addBlue.png"));
+        JButton b2 = new JButton(createImageIcon("/images/addBlue.png"));
         b2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -408,12 +408,12 @@ public class Main extends JFrame{
         b2.setFocusPainted(false);
         toolBar.add(b2);
 
-        JButton b3 = new JButton(createImageIcon("search.png"));
+        JButton b3 = new JButton(createImageIcon("/images/search.png"));
         b3.setToolTipText("Search");
         b3.setFocusPainted(false);
         toolBar.add(b3);
 
-        JButton b4 = new JButton(createImageIcon("blueLast.png"));
+        JButton b4 = new JButton(createImageIcon("/images/blueLast.png"));
         b4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -424,7 +424,7 @@ public class Main extends JFrame{
         b4.setFocusPainted(false);
         toolBar.add(b4);
 
-        JButton b5 = new JButton(createImageIcon("blueFirst.png"));
+        JButton b5 = new JButton(createImageIcon("/images/blueFirst.png"));
         b5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -437,7 +437,7 @@ public class Main extends JFrame{
 
         toolBar.addSeparator();
 
-        JButton menu_1= new JButton(createImageIcon("CheckGreen.png"));
+        JButton menu_1= new JButton(createImageIcon("/images/CheckGreen.png"));
         menu_1.setToolTipText("Item Price of Selected Item");
         menu_1.addActionListener(new ActionListener() {
             @Override
@@ -448,7 +448,7 @@ public class Main extends JFrame{
         menu_1.setFocusPainted(false);
         toolBar.add(menu_1);
 
-        JButton menu_2= new JButton(createImageIcon("launch.png"));
+        JButton menu_2= new JButton(createImageIcon("/images/launch.png"));
         menu_2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -459,7 +459,7 @@ public class Main extends JFrame{
         menu_2.setFocusPainted(false);
         toolBar.add(menu_2);
 
-        JButton menu_3= new JButton(createImageIcon("EditGreen.png"));
+        JButton menu_3= new JButton(createImageIcon("/images/EditGreen.png"));
         menu_3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -470,7 +470,7 @@ public class Main extends JFrame{
         menu_3.setFocusPainted(false);
         toolBar.add(menu_3);
 
-        JButton menu_4= new JButton(createImageIcon("minus.png"));
+        JButton menu_4= new JButton(createImageIcon("/images/minus.png"));
         menu_4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -483,7 +483,7 @@ public class Main extends JFrame{
 
         toolBar.addSeparator();
 
-        JButton info = new JButton(createImageIcon("Questionblue.png"));
+        JButton info = new JButton(createImageIcon("/images/Questionblue.png"));
         info.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -521,7 +521,7 @@ public class Main extends JFrame{
     }
     private JPopupMenu MenuPop(){
         JPopupMenu mp = new JPopupMenu();
-        JMenuItem mp1 = new JMenuItem(createImageIcon("bluecheck.jpg"));
+        JMenuItem mp1 = new JMenuItem(createImageIcon("/images/bluecheck.jpg"));
         mp1.setToolTipText("Check price");
         mp1.addActionListener(new ActionListener() {
             @Override
@@ -529,7 +529,7 @@ public class Main extends JFrame{
                 itemRefresh();
             }
         });
-        JMenuItem mp2 = new JMenuItem(createImageIcon("Web.png"));
+        JMenuItem mp2 = new JMenuItem(createImageIcon("/images/Web.png"));
         mp2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -537,7 +537,7 @@ public class Main extends JFrame{
             }
         });
         mp2.setToolTipText("Open Website");
-        JMenuItem mp3 = new JMenuItem(createImageIcon("35-512.png"));
+        JMenuItem mp3 = new JMenuItem(createImageIcon("/images/35-512.png"));
         mp3.setToolTipText("edit Item");
         mp3.addActionListener(new ActionListener() {
             @Override
@@ -546,7 +546,7 @@ public class Main extends JFrame{
             }
         });
 
-        JMenuItem mp4 = new JMenuItem(createImageIcon("remove.jpg"));
+        JMenuItem mp4 = new JMenuItem(createImageIcon("/images/remove.jpg"));
         mp4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
