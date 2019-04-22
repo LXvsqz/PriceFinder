@@ -17,7 +17,7 @@ import javax.swing.text.StyledEditorKit;
 
 @SuppressWarnings("serial")
 public class ItemView extends JPanel{
-    //private Item item = new Item("Iphone X","https://apple.com/iphone");
+
     private Item item;
 
     public ItemView(Item newItem){
@@ -76,33 +76,6 @@ public class ItemView extends JPanel{
     /**
      * Create a new instance.
      */
-
-
-
-    /*
-
-    public ItemView(Item item) {
-        this.item = item;
-        setPreferredSize(new Dimension(100, 160));
-        setBackground(Color.white);
-        addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
-                if (isViewPageClicked(e.getX(), e.getY()) && listener != null) {
-                    listener.clicked();
-                }
-            }
-        });
-
-        JFrame frame = new JFrame();
-        JLabel label = new JLabel(item.getName());
-        //JPanel panel= new JPanel(item.getURL();
-        frame.add(label);
-        frame.setVisible(true);
-
-
-    }
-
-    */
 
 
     /**
@@ -224,9 +197,5 @@ public class ItemView extends JPanel{
         this.item = item;
     }
 
-    public ItemView getIteminfo(){
-        return this;
-
-    }
 
 }

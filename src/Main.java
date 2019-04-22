@@ -74,7 +74,7 @@ public class Main extends JFrame{
 
     /**
      * Refreshes item price that is currently selected; if none are selected, does nothing
-     * @see a new item price
+     * @see  new item price
      *
      *
     */
