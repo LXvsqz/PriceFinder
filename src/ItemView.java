@@ -20,12 +20,18 @@ public class ItemView extends JPanel{
 
     private Item item;
 
-    public ItemView(Item newItem){
-        this.item= newItem;
+    //public ItemView(Item newItem){
+      //  this.item= newItem;
 
-    }
+    //}
     public ItemView(){
-
+        addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                if (isViewPageClicked(e.getX(), e.getY()) && listener != null) {
+                    listener.clicked();
+                }
+            }
+        });
     }
 
 
@@ -71,7 +77,7 @@ public class ItemView extends JPanel{
     /**
      * View-page clicking listener.
      */
-    private ClickListener listener;
+    protected ClickListener listener;
 
     /**
      * Create a new instance.
@@ -162,10 +168,12 @@ public class ItemView extends JPanel{
      * Return true if the given screen coordinate is inside the viewPage icon.
      */
     private boolean isViewPageClicked(int x, int y) {
-        if (x == 20 && y == 20)
+        if (x <= 20 && y <= 20) {
+            openURL(item.getURL());
             return true;
+        }
 
-        return new Rectangle(20, 20, 30, 20).contains(x, y);
+        return new Rectangle(20, 20, 30, 30).contains(x, y);
     }
 
     /**

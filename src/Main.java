@@ -39,7 +39,7 @@ public class Main extends JFrame{
     private final static Dimension DEFAULT_SIZE = new Dimension(400, 600);
 
     /** Special panel to display the watched item. */
-    private ItemView itemView;
+    private ItemView itemView = new ItemView();
     DefaultListModel itemList = new DefaultListModel();
     JList itemHolder;
 
@@ -180,13 +180,6 @@ public class Main extends JFrame{
         JPanel toolbar = tools();
         toolbar.setBorder(BorderFactory.createEmptyBorder(10,0,0,16));
         add(toolbar,BorderLayout.NORTH);
-
-        //PopMenu
-        JPopupMenu menu = MenuPop();
-        menu.setBorder(BorderFactory.createEmptyBorder(10,0,0,16));
-        menu.setLocation(195,90);
-        menu.setVisible(false);
-
 
         //Board (ALEX)
 
