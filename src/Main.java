@@ -21,6 +21,8 @@ import javax.swing.JLabel;
 import javax.swing.ListCellRenderer;
 import javax.swing.border.LineBorder;
 import java.net.URI;
+import java.util.Arrays;
+import java.util.Comparator;
 
 
 /**
@@ -39,7 +41,7 @@ public class Main extends JFrame{
     private final static Dimension DEFAULT_SIZE = new Dimension(400, 600);
 
     /** Special panel to display the watched item. */
-    private ItemView itemView = new ItemView();
+    private ItemView itemView;
     DefaultListModel itemList = new DefaultListModel();
     JList itemHolder;
 
@@ -153,6 +155,15 @@ public class Main extends JFrame{
 
     }
 
+
+    /**
+    private void sortName(){
+        Item [] finta = (Item [])itemList.toArray();
+        Arrays.sort(finta, Comparator.comparing(Item::getName));
+        itemHolder = new JList(finta);
+        repaint();
+    }
+     */
     /**
      * Removes selected item from list; if none selected does nothing
      */
@@ -347,6 +358,12 @@ public class Main extends JFrame{
         JMenuItem item11 = new JMenuItem("Copy Item");
 
         JCheckBox checkBox0 = new JCheckBox("Added Oldest");
+        checkBox0.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //sortName();
+            }
+        });
         JCheckBox checkBox1 = new JCheckBox("Added Newest");
         JCheckBox checkBox2 = new JCheckBox("Name Ascending");
         JCheckBox checkBox3 = new JCheckBox("Name Descending");
