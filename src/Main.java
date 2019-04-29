@@ -13,6 +13,7 @@ import javax.swing.JMenu;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.*;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.awt.Component;
 import javax.swing.ImageIcon;
@@ -23,6 +24,9 @@ import javax.swing.border.LineBorder;
 import java.net.URI;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.io.BufferedReader;
+import java.io.FileWriter;
+
 
 
 /**
@@ -149,6 +153,8 @@ public class Main extends JFrame{
         if(option==JOptionPane.OK_OPTION){
             String name = field1.getText();
             String url = field2.getText();
+            //URL website = null;
+            url = urlChecker(url);
             Item newItem= new Item(name,url);
             itemList.addElement(newItem);
         }
@@ -167,6 +173,16 @@ public class Main extends JFrame{
     /**
      * Removes selected item from list; if none selected does nothing
      */
+    private String urlChecker(String url){
+        URL website = null;
+        while(website == null){
+            try {
+                website = new URL(url);
+            }catch(MalformedURLException e){
+                url = JOptionPane.showInputDialog(this,"URL is malformed, Try Again\nPast input : "+ url );
+            }}
+        return url;
+    }
     private void removeItem(){
 
         if(!itemHolder.isSelectionEmpty()){
@@ -238,6 +254,7 @@ public class Main extends JFrame{
      * Opens a new window that displays further information regarding PriceFinder
      */
     private void about(){
+
         JFrame frame = new JFrame("About");
 
         frame.setLocationRelativeTo(this);
