@@ -448,6 +448,12 @@ public class Main extends JFrame{
 
         //Buttons
         JButton b1 = new JButton(createImageIcon("/images/blueCheck.png"));
+        b1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                itemRefresh();
+            }
+        });
         b1.setToolTipText("Check the price");
         b1.setFocusPainted(false);
         toolBar.add(b1);
