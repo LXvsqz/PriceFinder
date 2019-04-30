@@ -5,13 +5,13 @@ public class PriceFinder{
 
     }
 
-    public static double getCurrentPrice(String url)
+    public  double getCurrentPrice(String url)
     {
 
         return Math.floor(getRandomNumber(100, 500)*100)/100; //truncating double to two decimal
     }
 
-    public static double getOriginalPrice(String url){
+    public double getOriginalPrice(String url){
         return Math.floor(getRandomNumber(100, 500)*100)/100;
 
     }

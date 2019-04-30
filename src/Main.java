@@ -14,6 +14,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.*;
 import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.awt.Component;
 import javax.swing.ImageIcon;
@@ -26,7 +27,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.io.BufferedReader;
 import java.io.FileWriter;
-
+import java.util.HashSet;
 
 
 /**
@@ -154,7 +155,9 @@ public class Main extends JFrame{
             String name = field1.getText();
             String url = field2.getText();
             //URL website = null;
-            url = urlChecker(url);
+           // url = urlChecker(url);
+            url = validHost(url);
+
             Item newItem= new Item(name,url);
             itemList.addElement(newItem);
         }
@@ -174,6 +177,7 @@ public class Main extends JFrame{
      * Removes selected item from list; if none selected does nothing
      */
     private String urlChecker(String url){
+
         URL website = null;
         while(website == null){
             try {
@@ -181,7 +185,38 @@ public class Main extends JFrame{
             }catch(MalformedURLException e){
                 url = JOptionPane.showInputDialog(this,"URL is malformed, Try Again\nPast input : "+ url );
             }}
+
         return url;
+    }
+    public String validHost(String url){
+        urlChecker(url);
+        String host = getHostName(url);
+        System.out.print(host);
+        HashSet<String> domains = new HashSet<>();
+        domains.add("amazon.com");
+        domains.add("ebay.com");
+        domains.add("bestbuy.com");
+        while(!domains.contains(host)){
+
+            url = JOptionPane.showInputDialog(this,"URL is not part of supported domains, Try Again\nPast input : "+ url );
+            urlChecker(url);
+            host = getHostName(url);
+        }
+        return url;
+    }
+    public String getHostName(String url) {
+        URI uri;
+        try {
+            uri = new URI(url);
+        }catch(URISyntaxException e){
+            return null;
+        }
+        String hostname = uri.getHost();
+        // to provide faultproof result, check if not null then return only hostname, without www.
+        if (hostname != null) {
+            return hostname.startsWith("www.") ? hostname.substring(4) : hostname;
+        }
+        return hostname;
     }
     private void removeItem(){
 

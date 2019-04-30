@@ -8,11 +8,12 @@ public class Item{
     private String URL;
     private String dateAdded;
     private double percentChange;
+    private PriceFinder priceFinder = new PriceFinder();
 
 
     public Item(String description, String url) {
-        this.originalPrice = PriceFinder.getOriginalPrice(url);
-        this.currentPrice = PriceFinder.getCurrentPrice(url);
+        this.originalPrice = priceFinder.getOriginalPrice(url);
+        this.currentPrice = priceFinder.getCurrentPrice(url);
         this.description = description;
         this.URL = url;
         this.dateAdded = "" + LocalDate.now();
@@ -45,7 +46,7 @@ public class Item{
     }
 
     public void checkCurrentPrice(String url) {
-        currentPrice = PriceFinder.getCurrentPrice(url);
+        currentPrice = priceFinder.getCurrentPrice(url);
         percentChange = Math.floor(((originalPrice - currentPrice) / originalPrice) * 10000) / 100;
 
     }
