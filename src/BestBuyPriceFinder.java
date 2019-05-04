@@ -1,4 +1,4 @@
-public class BestBuyPriceFinder extends WebPriceFinder {
+class BestbuyPriceFinder extends WebPriceFinder {
     //public BestBuyPriceFinder{
 
     //}

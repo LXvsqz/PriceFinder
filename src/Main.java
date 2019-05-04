@@ -243,8 +243,12 @@ public class Main extends JFrame{
         toolbar.setBorder(BorderFactory.createEmptyBorder(10,0,0,16));
         add(toolbar,BorderLayout.NORTH);
 
-        //Board (ALEX)
+        JPanel lower = View_all_display();
+        lower.setBorder(BorderFactory.createEmptyBorder(20,16,20,16));
+        add(lower);
 
+
+        //Board (ALEX)
 
         itemHolder = new JList(itemList);
         itemHolder.setCellRenderer(new drawItem());
@@ -275,6 +279,7 @@ public class Main extends JFrame{
         JPanel board = new JPanel();
         board.add(scroller);
 
+
         //TODO: Add frame around the board. (user experience)
 
         this.add(scroller);
@@ -283,6 +288,12 @@ public class Main extends JFrame{
         JPanel bottom = new JPanel();
         bottom.setBorder(BorderFactory.createEmptyBorder(10,0,0,16));
         add(bottom,BorderLayout.SOUTH);
+    }
+    private JPanel View_all_display(){
+        JPanel control = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JLabel label = new JLabel("View all: ");
+        control.add(label);
+        return control;
     }
 
     /**
