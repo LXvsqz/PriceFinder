@@ -277,7 +277,7 @@ public class Main extends JFrame{
 
 
         //Board (ALEX)
-        //read();
+        read();
         itemHolder = new JList(itemList);
         itemHolder.setCellRenderer(new drawItem());
         itemHolder.setBorder(BorderFactory.createLineBorder(Color.BLUE));
@@ -552,15 +552,21 @@ public class Main extends JFrame{
 
         checkExist();
         try {
-            JSONTokener obj =  new JSONTokener(new FileReader("priceWatcherdata.txt"));
-            JSONArray tem = new JSONArray(obj);
-            Iterator<Object> itr = tem.iterator();
-            while(itr.hasNext()) {
-                int i =0;
-                Item temp = new Item();
-                temp.fromJson(tem.getJSONObject(i));
-                itemList.addElement(temp);
+            JSONTokener obj;
+            try {
+                 obj = new JSONTokener(new FileReader("data.txt"));
+                JSONArray tem = new JSONArray(obj);
+                for(int i = 0; i < tem.length();i++){
+                    Item temp = new Item();
+                    temp.fromJson((JSONObject)tem.get(i));
+                    System.out.println(temp.getDateAdded());
+                    itemList.addElement(temp);
+                }
+            }catch (JSONException e){
+
             }
+            //JSONArray tem = new JSONArray(obj);
+
         }catch (FileNotFoundException e){
 
         }
