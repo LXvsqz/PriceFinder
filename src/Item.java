@@ -1,4 +1,11 @@
 import java.time.LocalDate;
+import org.json.JSONObject;
+
+//import org.json.*;
+//import java.util.LinkedList;
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class Item{
     private String Name;
@@ -11,6 +18,15 @@ public class Item{
     //private PriceFinder priceFinder = new PriceFinder();
 
 
+    public Item(double currentPrice, String description, double originalPrice, String URL, String dateAdded, double percentChange) {
+        this.currentPrice = currentPrice;
+        this.description = description;
+        this.originalPrice = originalPrice;
+        this.URL = URL;
+        this.dateAdded = dateAdded;
+        this.percentChange = percentChange;
+    }
+
     public Item(String description, String url) {
         this.originalPrice = getPrice(url);
         this.currentPrice = getPrice(url);
@@ -19,6 +35,7 @@ public class Item{
         this.dateAdded = "" + LocalDate.now();
         this.percentChange = Math.floor(((originalPrice - currentPrice) / originalPrice) * 10000) / 100;
     }
+
 
     public String getName() {
         return description;
@@ -80,6 +97,28 @@ public class Item{
                 return temp3.getCurrentPrice(url);
         }
       return -1.1;
+    }
+    public JSONObject toJson() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("name", this.description);
+        map.put("currentPrice", currentPrice);
+        map.put("OriginalPrice", this.originalPrice);
+        map.put("percentChange", this.percentChange);
+        map.put("URL", this.URL);
+        map.put("dateAdded", this.dateAdded);
+        return new JSONObject(map);
+    }
+    public static Item fromJson(JSONObject obj){
+        String name = obj.getString("name");
+        double currPrice = (double) obj.getDouble("currentPrice");
+        double origPrice= (double) obj.getDouble("OriginalPrice");
+        double percentChange= (double) obj.getDouble("percentChange");
+        String url= obj.getString("URL");
+        String dateAdded= obj.getString("dateAdded");
+
+        Item item= new Item(currPrice,name,origPrice,url,dateAdded,percentChange);
+
+        return item;
     }
 }
 
