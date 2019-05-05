@@ -30,8 +30,11 @@ import java.io.FileWriter;
 import java.util.HashSet;
 import java.io.*;
 import org.json.*;
-import org.json.JSONTokener;
 
+
+import org.json.simple.*;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 
 /**
@@ -273,7 +276,7 @@ public class Main extends JFrame{
 
 
         //Board (ALEX)
-
+        read();
         itemHolder = new JList(itemList);
         itemHolder.setCellRenderer(new drawItem());
         itemHolder.setBorder(BorderFactory.createLineBorder(Color.BLUE));
@@ -511,40 +514,34 @@ public class Main extends JFrame{
 
 
 
-    public  void checkExist()throws IOException{
+    public  void checkExist(){
         if(!new File("priceWatcherData.txt").exists()){
-            FileWriter file= new FileWriter("priceWatcherData.txt");
-            file.close();
+            try{
+                FileWriter file= new FileWriter("priceWatcherData.txt");
+                file.close();
+                }catch(IOException ex){
+                System.out.println("");
+            }
 
         }
 
     }
-    public  void write() throws IOException{
+    public  void write(){
         checkExist();
 
     }
 
 
-    public void read() throws IOException{
+    public void read()  {
+
         checkExist();
+        try {
+            JSONObject obj = (JSONObject) new JSONParser().parse(new FileReader("priceWatcherdata.txt"));
+            Item temp = new Item();
+            temp = temp.fromJson(obj);
+        }catch (FileNotFoundException e){
 
-        JSONTokener tokenizer= new JSONTokener(new FileReader("priceWatcherData.txt"));
-
-        JSONObject holder= new JSONObject(tokenizer);
-
-        Item temp = new Item("","");
-
-
-        temp.fromJson(holder);
-
-        itemList.addElement(temp);
-
-
-
-
-
-
-
+        }
 
 
 

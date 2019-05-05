@@ -19,7 +19,9 @@ public class Item {
 
 
 
+    public Item(){
 
+    }
 
     public Item(double currentPrice, String description, double originalPrice, String URL, String dateAdded, double percentChange) {
         this.currentPrice = currentPrice;
@@ -113,7 +115,7 @@ public class Item {
         map.put("dateAdded", this.dateAdded);
         return new JSONObject(map);
     }
-    public static Item fromJson(JSONObject obj){
+    public  Item fromJson(JSONObject obj){
         String name = obj.getString("name");
         double currPrice = (double) obj.getDouble("currentPrice");
         double origPrice= (double) obj.getDouble("OriginalPrice");
