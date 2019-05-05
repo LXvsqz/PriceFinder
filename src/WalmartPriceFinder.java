@@ -15,7 +15,7 @@ public class WalmartPriceFinder extends PriceFinder{
         try {
             Document document = Jsoup.connect(walmart_url).get();
             String title = document.title();
-            System.out.println(title);
+            //System.out.println(title);
 
             Elements price = document.select(".price-group:contains($)");
             p =  price.get(0).text();

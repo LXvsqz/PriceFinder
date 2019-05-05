@@ -189,7 +189,7 @@ public class Main extends JFrame{
     /**
      * Removes selected item from list; if none selected does nothing
      */
-    private String urlChecker(String url){
+    private  String urlChecker(String url){
 
         URL website = null;
         while(website == null){
@@ -202,9 +202,9 @@ public class Main extends JFrame{
         return url;
     }
     public String validHost(String url){
-        urlChecker(url);
+        url = urlChecker(url);
         String host = getHostName(url);
-        System.out.print(host);
+
         HashSet<String> domains = new HashSet<>();
         domains.add("walmart.com");
         domains.add("elpaso.craigslist.org");
@@ -212,26 +212,15 @@ public class Main extends JFrame{
         while(!domains.contains(host)){
 
             url = JOptionPane.showInputDialog(this,"URL is not part of supported domains, Try Again\nPast input : "+ url );
-            urlChecker(url);
+            url = urlChecker(url);
             host = getHostName(url);
         }
         return url;
     }
-    public Double getPrice(String  url){
-        String host = getHostName(url);
-        switch(host){
-            case("walmart.com"):
-                WalmartPriceFinder temp = new WalmartPriceFinder();
-                return temp.getCurrentPrice(url);
-            case("craigslist.com"):
-                CraigslistPriceFinder temp2 = new CraigslistPriceFinder();
-                return temp2.getCurrentPrice(url);
-            }
 
-        return -1.1;
-    }
-    public static String getHostName(String url) {
+    public  static String getHostName(String url) {
         URI uri;
+        //url = urlChecker(url);
         try {
             uri = new URI(url);
         }catch(URISyntaxException e){
@@ -242,7 +231,7 @@ public class Main extends JFrame{
         if (hostname != null) {
             return hostname.startsWith("www.") ? hostname.substring(4) : hostname;
         }
-        System.out.println(hostname);
+
         return hostname;
     }
     private void removeItem(){
@@ -562,7 +551,7 @@ public class Main extends JFrame{
                 for(int i = 0; i < tem.length();i++){
                     Item temp = new Item();
                     temp.fromJson((JSONObject)tem.get(i));
-                    System.out.println(temp.getDateAdded());
+
                     itemList.addElement(temp);
                 }
             }catch (JSONException e){
