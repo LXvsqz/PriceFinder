@@ -248,6 +248,7 @@ public class Main extends JFrame{
             int index = itemHolder.getSelectedIndex();
             itemList.removeElementAt(index);
         }
+        write();
 
     }
 
@@ -513,9 +514,9 @@ public class Main extends JFrame{
 
 
     public  void checkExist(){
-        if(!new File("priceWatcherData.txt").exists()){
+        if(!new File("data.txt").exists()){
             try{
-                FileWriter file= new FileWriter("priceWatcherData.txt");
+                FileWriter file= new FileWriter("data.txt");
                 file.close();
                 }catch(IOException ex){
                 System.out.println("");
@@ -562,15 +563,9 @@ public class Main extends JFrame{
             }catch (JSONException e){
 
             }
-            //JSONArray tem = new JSONArray(obj);
-
         }catch (FileNotFoundException e){
 
-
         }
-
-
-
     }
 
     ///////////////////////////////////////
@@ -708,18 +703,25 @@ public class Main extends JFrame{
         if(!itemHolder.isSelectionEmpty()) {
             int index = itemHolder.getSelectedIndex();
             Item item = (Item) itemList.getElementAt(index);
+            String originalURL= item.getURL();
+            String originalName= item.getName();
             JTextField field1 = new JTextField();
             JTextField field2 = new JTextField();
             Object[] message = {
                     "Enter new Name : ", field1,
                     "Enter new URL : ", field2,
             };
-            int option = JOptionPane.showConfirmDialog(this, message, "Enter all your values", JOptionPane.OK_CANCEL_OPTION);
+            int option = JOptionPane.showConfirmDialog(this, message, "Edit Item", JOptionPane.OK_CANCEL_OPTION);
             if (option == JOptionPane.OK_OPTION) {
                 String name = field1.getText();
                 String url = field2.getText();
+                if(url.isEmpty())
+                    url= originalURL;
+                if(originalName.isEmpty())
+                    name= originalName;
                 item.setURL(url);
                 item.setDescription(name);
+                write();
             }
         }
     }
