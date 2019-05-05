@@ -29,12 +29,13 @@ import java.io.BufferedReader;
 import java.io.FileWriter;
 import java.util.HashSet;
 import java.io.*;
+import java.util.Iterator;
+
 import org.json.*;
 
 
-import org.json.simple.*;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+
+
 
 
 /**
@@ -173,7 +174,7 @@ public class Main extends JFrame{
             Item newItem= new Item(name,url);
             itemList.addElement(newItem);
         }
-
+      write();
     }
 
 
@@ -276,7 +277,7 @@ public class Main extends JFrame{
 
 
         //Board (ALEX)
-        read();
+        //read();
         itemHolder = new JList(itemList);
         itemHolder.setCellRenderer(new drawItem());
         itemHolder.setBorder(BorderFactory.createLineBorder(Color.BLUE));
@@ -527,8 +528,23 @@ public class Main extends JFrame{
 
     }
     public  void write(){
-        checkExist();
+        //checkExist();
 
+            JSONArray finta = new JSONArray();
+            for(int i = 0 ; i < itemList.getSize();i++){
+                JSONObject temp = ((Item)(itemList.getElementAt(i))).toJson();
+                finta.put(temp);
+            }
+            try {
+
+                FileWriter write = new FileWriter("data.txt");
+                PrintWriter pw = new PrintWriter(write,true);
+                pw.write(finta.toString());
+                pw.close();
+            }catch(IOException e){
+                e.printStackTrace();
+
+            }
     }
 
 
@@ -536,9 +552,15 @@ public class Main extends JFrame{
 
         checkExist();
         try {
-            JSONObject obj = (JSONObject) new JSONParser().parse(new FileReader("priceWatcherdata.txt"));
-            Item temp = new Item();
-            temp = temp.fromJson(obj);
+            JSONTokener obj =  new JSONTokener(new FileReader("priceWatcherdata.txt"));
+            JSONArray tem = new JSONArray(obj);
+            Iterator<Object> itr = tem.iterator();
+            while(itr.hasNext()) {
+                int i =0;
+                Item temp = new Item();
+                temp.fromJson(tem.getJSONObject(i));
+                itemList.addElement(temp);
+            }
         }catch (FileNotFoundException e){
 
         }

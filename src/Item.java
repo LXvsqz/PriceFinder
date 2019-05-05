@@ -11,7 +11,7 @@ public class Item {
     private String Name;
     private double currentPrice;
     private String description;
-    private final double originalPrice;
+    private  double originalPrice;
     private String URL;
     private String dateAdded;
     private double percentChange;
