@@ -20,15 +20,12 @@ import java.awt.Component;
 import javax.swing.ImageIcon;
 import javax.swing.JList;
 import javax.swing.JLabel;
-import javax.swing.ListCellRenderer;
-import javax.swing.border.LineBorder;
+
 import java.net.URI;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.io.BufferedReader;
+
 import java.io.FileWriter;
 import java.util.HashSet;
-import java.io.*;
+
 import java.util.Iterator;
 
 import org.json.*;
@@ -568,6 +565,7 @@ public class Main extends JFrame{
             //JSONArray tem = new JSONArray(obj);
 
         }catch (FileNotFoundException e){
+
 
         }
 

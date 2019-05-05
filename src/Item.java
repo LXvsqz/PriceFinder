@@ -116,14 +116,15 @@ public class Item {
         return new JSONObject(map);
     }
     public  Item fromJson(JSONObject obj){
-        String name = obj.getString("name");
-        double currPrice = (double) obj.getDouble("currentPrice");
-        double origPrice= (double) obj.getDouble("OriginalPrice");
-        double percentChange= (double) obj.getDouble("percentChange");
-        String url= obj.getString("URL");
-        String dateAdded= obj.getString("dateAdded");
+        this.description = obj.getString("name");
+        this.currentPrice = (double) obj.getDouble("currentPrice");
+        this.originalPrice= (double) obj.getDouble("OriginalPrice");
+        this.percentChange= (double) obj.getDouble("percentChange");
+        this.URL= obj.getString("URL");
+        this.dateAdded= obj.getString("dateAdded");
 
-        Item item= new Item(currPrice,name,origPrice,url,dateAdded,percentChange);
+
+        Item item= new Item(currentPrice,description,originalPrice,URL,dateAdded,percentChange);
 
         return item;
     }
