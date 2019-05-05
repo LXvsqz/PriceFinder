@@ -11,6 +11,15 @@ public class Item{
     //private PriceFinder priceFinder = new PriceFinder();
 
 
+    public Item(double currentPrice, String description, double originalPrice, String URL, String dateAdded, double percentChange) {
+        this.currentPrice = currentPrice;
+        this.description = description;
+        this.originalPrice = originalPrice;
+        this.URL = URL;
+        this.dateAdded = dateAdded;
+        this.percentChange = percentChange;
+    }
+
     public Item(String description, String url) {
         this.originalPrice = getPrice(url);
         this.currentPrice = getPrice(url);
@@ -19,6 +28,7 @@ public class Item{
         this.dateAdded = "" + LocalDate.now();
         this.percentChange = Math.floor(((originalPrice - currentPrice) / originalPrice) * 10000) / 100;
     }
+
 
     public String getName() {
         return description;
