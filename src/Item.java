@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class Item{
+public class Item {
     private String Name;
     private double currentPrice;
     private String description;
@@ -18,6 +18,9 @@ public class Item{
     //private PriceFinder priceFinder = new PriceFinder();
 
 
+
+
+
     public Item(double currentPrice, String description, double originalPrice, String URL, String dateAdded, double percentChange) {
         this.currentPrice = currentPrice;
         this.description = description;
@@ -26,6 +29,8 @@ public class Item{
         this.dateAdded = dateAdded;
         this.percentChange = percentChange;
     }
+
+
 
     public Item(String description, String url) {
         this.originalPrice = getPrice(url);

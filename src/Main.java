@@ -28,6 +28,10 @@ import java.util.Comparator;
 import java.io.BufferedReader;
 import java.io.FileWriter;
 import java.util.HashSet;
+import java.io.*;
+import org.json.*;
+import org.json.JSONTokener;
+
 
 
 /**
@@ -42,6 +46,10 @@ import java.util.HashSet;
 @SuppressWarnings("serial")
 public class Main extends JFrame{
 
+
+
+
+
     /** Default dimension of the dialog. */
     private final static Dimension DEFAULT_SIZE = new Dimension(400, 600);
 
@@ -49,6 +57,7 @@ public class Main extends JFrame{
     private ItemView itemView;
     DefaultListModel itemList = new DefaultListModel();
     JList itemHolder;
+
 
     JScrollPane scroller= new JScrollPane();
 
@@ -63,7 +72,7 @@ public class Main extends JFrame{
     public Main() {
         super("Price Watcher");
         setSize(DEFAULT_SIZE);
-
+        
         configureUI();
         //setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -245,7 +254,7 @@ public class Main extends JFrame{
      * Manages the display of the application
      *
      * */
-    private void configureUI() {
+    private void configureUI(){
         //Luis
         setLayout(new BorderLayout());
         JMenuBar control = makeControlPanel();
@@ -260,6 +269,7 @@ public class Main extends JFrame{
         JPanel lower = View_all_display();
         lower.setBorder(BorderFactory.createEmptyBorder(20,16,20,16));
         add(lower);
+
 
 
         //Board (ALEX)
@@ -497,6 +507,52 @@ public class Main extends JFrame{
         return menubar;
     }
 
+    /////////////START OF FILE WRITING READING//////////
+
+
+
+    public  void checkExist()throws IOException{
+        if(!new File("priceWatcherData.txt").exists()){
+            FileWriter file= new FileWriter("priceWatcherData.txt");
+            file.close();
+
+        }
+
+    }
+    public  void write() throws IOException{
+        checkExist();
+
+    }
+
+
+    public void read() throws IOException{
+        checkExist();
+
+        JSONTokener tokenizer= new JSONTokener(new FileReader("priceWatcherData.txt"));
+
+        JSONObject holder= new JSONObject(tokenizer);
+
+        Item temp = new Item("","");
+
+
+        temp.fromJson(holder);
+
+        itemList.addElement(temp);
+
+
+
+
+
+
+
+
+
+
+    }
+
+    ///////////////////////////////////////
+
+
     /**
      * Creates a toolbar with many functions
      * @return JPanel with toolbar
@@ -722,8 +778,9 @@ public class Main extends JFrame{
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         new Main();
+
 
     }
 
