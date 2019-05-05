@@ -115,6 +115,8 @@ public class Main extends JFrame{
             temp = (Item)itemList.getElementAt(i);
             temp.checkCurrentPrice(temp.getURL());
         }
+        write();
+        read();
         repaint();
     }
 
@@ -172,6 +174,7 @@ public class Main extends JFrame{
             itemList.addElement(newItem);
         }
       write();
+        read();
     }
 
 
@@ -249,6 +252,7 @@ public class Main extends JFrame{
             itemList.removeElementAt(index);
         }
         write();
+        read();
 
     }
 
@@ -554,6 +558,7 @@ public class Main extends JFrame{
             try {
                  obj = new JSONTokener(new FileReader("data.txt"));
                 JSONArray tem = new JSONArray(obj);
+                itemList.clear();
                 for(int i = 0; i < tem.length();i++){
                     Item temp = new Item();
                     temp.fromJson((JSONObject)tem.get(i));
@@ -566,6 +571,7 @@ public class Main extends JFrame{
         }catch (FileNotFoundException e){
 
         }
+
     }
 
     ///////////////////////////////////////
