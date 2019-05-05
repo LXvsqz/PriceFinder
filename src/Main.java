@@ -193,9 +193,9 @@ public class Main extends JFrame{
         String host = getHostName(url);
         System.out.print(host);
         HashSet<String> domains = new HashSet<>();
-        domains.add("amazon.com");
-        domains.add("ebay.com");
-        domains.add("bestbuy.com");
+        domains.add("walmart.com");
+        domains.add("elpaso.craigslist.org");
+        domains.add("frys.com");
         while(!domains.contains(host)){
 
             url = JOptionPane.showInputDialog(this,"URL is not part of supported domains, Try Again\nPast input : "+ url );
@@ -204,7 +204,20 @@ public class Main extends JFrame{
         }
         return url;
     }
-    public String getHostName(String url) {
+    public Double getPrice(String  url){
+        String host = getHostName(url);
+        switch(host){
+            case("walmart.com"):
+                WalmartPriceFinder temp = new WalmartPriceFinder();
+                return temp.getCurrentPrice(url);
+            case("craigslist.com"):
+                CraigslistPriceFinder temp2 = new CraigslistPriceFinder();
+                return temp2.getCurrentPrice(url);
+            }
+
+        return -1.1;
+    }
+    public static String getHostName(String url) {
         URI uri;
         try {
             uri = new URI(url);
@@ -216,6 +229,7 @@ public class Main extends JFrame{
         if (hostname != null) {
             return hostname.startsWith("www.") ? hostname.substring(4) : hostname;
         }
+        System.out.println(hostname);
         return hostname;
     }
     private void removeItem(){

@@ -8,12 +8,12 @@ public class Item{
     private String URL;
     private String dateAdded;
     private double percentChange;
-    private PriceFinder priceFinder = new PriceFinder();
+    //private PriceFinder priceFinder = new PriceFinder();
 
 
     public Item(String description, String url) {
-        this.originalPrice = priceFinder.getOriginalPrice(url);
-        this.currentPrice = priceFinder.getCurrentPrice(url);
+        this.originalPrice = getPrice(url);
+        this.currentPrice = getPrice(url);
         this.description = description;
         this.URL = url;
         this.dateAdded = "" + LocalDate.now();
@@ -46,7 +46,7 @@ public class Item{
     }
 
     public void checkCurrentPrice(String url) {
-        currentPrice = priceFinder.getCurrentPrice(url);
+        currentPrice = getPrice(url);
         percentChange = Math.floor(((originalPrice - currentPrice) / originalPrice) * 10000) / 100;
 
     }
@@ -66,9 +66,21 @@ public class Item{
     public void setURL(String URL) {
         this.URL = URL;
     }
-
-    @Override
-    public String toString() {
-        return this.Name + this.getCurrentPrice() + this.getOriginalPrice();
+    public Double getPrice(String  url){
+        String host = Main.getHostName(url);
+        switch(host){
+            case("walmart.com"):
+                WalmartPriceFinder temp = new WalmartPriceFinder();
+                return temp.getCurrentPrice(url);
+            case("elpaso.craigslist.org"):
+                CraigslistPriceFinder temp2 = new CraigslistPriceFinder();
+                return temp2.getCurrentPrice(url);
+            case("frys.com"):
+                FrysPriceFinder temp3 = new FrysPriceFinder();
+                return temp3.getCurrentPrice(url);
+        }
+      return -1.1;
     }
 }
+
+
