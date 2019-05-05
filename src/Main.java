@@ -220,7 +220,7 @@ public class Main extends JFrame{
 
     public  static String getHostName(String url) {
         URI uri;
-        //url = urlChecker(url);
+
         try {
             uri = new URI(url);
         }catch(URISyntaxException e){
