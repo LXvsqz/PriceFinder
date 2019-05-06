@@ -177,15 +177,9 @@ public class Main extends JFrame{
 
 
     /**
-    private void sortName(){
-        Item [] finta = (Item [])itemList.toArray();
-        Arrays.sort(finta, Comparator.comparing(Item::getName));
-        itemHolder = new JList(finta);
-        repaint();
-    }
-     */
-    /**
-     * Removes selected item from list; if none selected does nothing
+     *
+     * @param url
+     * @return url checks whether a url is malformed
      */
     private  String urlChecker(String url){
 
@@ -199,6 +193,13 @@ public class Main extends JFrame{
 
         return url;
     }
+
+    /**
+     *
+     * @param url
+     * @return url
+     * Checks if the url is part of the domains supported by the the application
+     */
     public String validHost(String url){
         url = urlChecker(url);
         String host = getHostName(url);
@@ -216,6 +217,12 @@ public class Main extends JFrame{
         return url;
     }
 
+    /**
+     *
+     * @param url
+     * @return hostname
+     * Used to strip url to find the domain
+     */
     public  static String getHostName(String url) {
         URI uri;
 
@@ -232,6 +239,12 @@ public class Main extends JFrame{
 
         return hostname;
     }
+
+    /**
+     *
+     * @return data
+     * used to get an array iteration of the JList in order to sort it
+     */
     public Item[] toArray(){
         ListModel listmodel = itemHolder.getModel();
         int n = listmodel.getSize();
@@ -241,6 +254,10 @@ public class Main extends JFrame{
         }
         return data;
     }
+
+    /**
+     * sorts based on percent change
+     */
     public  void sortPercentChange(){
 
         Item [] data = toArray();
@@ -250,6 +267,9 @@ public class Main extends JFrame{
         itemHolder.setListData(data);
 
     }
+    /**
+     * sorts based on price (ascending)
+     */
     public  void sortPriceLow(){
 
         Item [] data = toArray();
@@ -259,6 +279,9 @@ public class Main extends JFrame{
         itemHolder.setListData(data);
 
     }
+    /**
+     * sorts based on price(descending)
+     */
     public  void sortPriceHigh(){
 
         Item [] data = toArray();
@@ -267,28 +290,41 @@ public class Main extends JFrame{
         reverseArray(data);
         itemHolder.setListData(data);
     }
+    /**
+     * sorts based on date added(oldest)
+     */
     public  void sortOldest(){
+
+        Item [] data = toArray();
+
+        Arrays.sort(data, Comparator.comparing(Item::getDateAdded));
+
+        itemHolder.setListData(data);
+
+    }
+    /**
+     * sorts based on date added(newest)
+     */
+    public  void sortNewest(){
 
         Item [] data = toArray();
 
         Arrays.sort(data, Comparator.comparing(Item::getDateAdded));
         reverseArray(data);
         itemHolder.setListData(data);
-
     }
-    public  void sortNewest(){
-
-        Item [] data = toArray();
-
-        Arrays.sort(data, Comparator.comparing(Item::getDateAdded));
-        itemHolder.setListData(data);
-    }
+    /**
+     * sorts based on name (ascending)
+     */
     public  void sortName(){
 
         Item [] data = toArray();
         Arrays.sort(data, Comparator.comparing(Item::getName));
         itemHolder.setListData(data);
     }
+    /**
+     * sorts based on name (descending)
+     */
     public void sortNameBackwards(){
         Item [] data = toArray();
         Arrays.sort(data, Comparator.comparing(Item::getName));
@@ -297,6 +333,10 @@ public class Main extends JFrame{
 
         itemHolder.setListData(data);
     }
+    /**
+     * helper method used to reverse an array
+     * used to reverse already sorted arrays
+     */
     public void reverseArray(Item [] data){
         Item t;
         int n = data.length;
@@ -306,7 +346,9 @@ public class Main extends JFrame{
             data[n - i - 1] = t;
         }
     }
-
+    /**
+     * removes selected item if there is a selected item
+     */
     private void removeItem(){
 
         if(!itemHolder.isSelectionEmpty()){
@@ -614,7 +656,9 @@ public class Main extends JFrame{
     /////////////START OF FILE WRITING READING//////////
 
 
-
+    /**
+     * checks if there is a data file existing if not creates one
+     */
     public  void checkExist(){
         if(!new File("data.txt").exists()){
             try{
@@ -627,8 +671,12 @@ public class Main extends JFrame{
         }
 
     }
+
+    /**
+     * writes on a file the item currently being watched
+     */
     public  void write(){
-        //checkExist();
+             checkExist();
 
             JSONArray finta = new JSONArray();
             for(int i = 0 ; i < itemList.getSize();i++){
@@ -647,7 +695,9 @@ public class Main extends JFrame{
             }
     }
 
-
+    /**
+     * reads from file if there is items currently being watched
+     */
     public void read()  {
 
         checkExist();
