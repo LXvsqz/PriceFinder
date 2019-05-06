@@ -128,7 +128,7 @@ public class Item{
         }
       return -1.1;
     }
-    
+
     /**
      * Takes the item and "maps" in JSON format
      */

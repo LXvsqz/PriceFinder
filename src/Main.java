@@ -468,7 +468,7 @@ public class Main extends JFrame{
         try {
             while (i <= 100) {
 
-                JPB.setValue(i + 1);
+                JPB.setValue(i + 10);
 
                 Thread.sleep(300);
                 i += 20;
