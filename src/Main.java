@@ -25,6 +25,7 @@ import java.net.URI;
 
 import java.io.FileWriter;
 import java.util.*;
+import java.util.Timer;
 
 import org.json.*;
 
@@ -58,7 +59,9 @@ public class Main extends JFrame{
     JList itemHolder;
 
 
+
     JScrollPane scroller= new JScrollPane();
+    static JProgressBar JPB;
 
 
     /** Message bar to display various messages. */
@@ -377,9 +380,19 @@ public class Main extends JFrame{
         add(toolbar,BorderLayout.NORTH);
 
         JPanel lower = View_all_display();
-        lower.setBorder(BorderFactory.createEmptyBorder(20,16,20,16));
+        lower.setBorder(BorderFactory.createEmptyBorder(10,16,30,16));
         add(lower);
 
+        JPB= new JProgressBar();
+        JPB.setValue(0);
+        JPB.setStringPainted(true);
+
+        JPB.setBorder(BorderFactory.createEmptyBorder(16,0,0,16));
+        add(JPB,BorderLayout.SOUTH);
+        JPB.setVisible(true);
+
+
+        //fill();
 
 
         //Board (ALEX)
@@ -410,6 +423,7 @@ public class Main extends JFrame{
                 }
             }
         });
+
         JPanel board = new JPanel();
         board.add(scroller);
 
@@ -419,9 +433,9 @@ public class Main extends JFrame{
         this.add(scroller);
         this.setVisible(true);
 
-        JPanel bottom = new JPanel();
-        bottom.setBorder(BorderFactory.createEmptyBorder(10,0,0,16));
-        add(bottom,BorderLayout.SOUTH);
+
+
+
     }
     private JPanel View_all_display(){
         JPanel control = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -447,6 +461,22 @@ public class Main extends JFrame{
         frame.pack();
         frame.setVisible(true);
     }
+
+    public static void Loading()
+    {
+        int i = 0;
+        try {
+            while (i <= 100) {
+                
+                JPB.setValue(i + 1);
+
+                Thread.sleep(300);
+                i += 20;
+            }
+        }
+        catch (Exception e) {
+        }
+    }
     /** Create a control panel consisting a JMenubar with multiple functions
      * @return  JMenuBar with menu functionality
      * */
@@ -458,6 +488,10 @@ public class Main extends JFrame{
         JMenu menu1 = new JMenu("Item");
         JMenu menu2 = new JMenu("Sort");
         JMenu menu3 = new JMenu("Selected");
+
+
+
+
 
         JMenuItem item = new JMenuItem("About",createImageIcon("/images/envelope.png"));
         item.setAccelerator(KeyStroke.getKeyStroke('N', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
@@ -499,6 +533,7 @@ public class Main extends JFrame{
 
         JMenuItem item2 = new JMenuItem("Search",createImageIcon("/images/magnifying-glass.png"));
         item2.setAccelerator(KeyStroke.getKeyStroke('R', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
+
         JMenuItem item3 = new JMenuItem("Select First",createImageIcon("/images/next.png"));
         item3.addActionListener(new ActionListener() {
             @Override
@@ -521,9 +556,13 @@ public class Main extends JFrame{
         item5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+
                 itemRefresh();
+
             }
         });
+
 
         item5.setAccelerator(KeyStroke.getKeyStroke('U', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
         JMenuItem item6 = new JMenuItem("View",createImageIcon("/images/eye.png"));
@@ -531,8 +570,11 @@ public class Main extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 openWebsite();
+
             }
         });
+
+
 
         item6.setAccelerator(KeyStroke.getKeyStroke('I', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
         JMenuItem item7 = new JMenuItem("Edit",createImageIcon("/images/edit.png"));
@@ -650,6 +692,8 @@ public class Main extends JFrame{
         menubar.add(menu1);
         menubar.add(menu2);
 
+
+
         return menubar;
     }
 
@@ -740,6 +784,11 @@ public class Main extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 itemRefresh();
+                JPB.setVisible(true);
+                Loading();
+
+
+
             }
         });
         b1.setToolTipText("Check the price");

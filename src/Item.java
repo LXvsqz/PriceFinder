@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class Item {
+public class Item{
     private String Name;
     private double currentPrice;
     private String description;
@@ -42,6 +42,8 @@ public class Item {
         this.dateAdded = "" + LocalDate.now();
         this.percentChange = Math.floor(((originalPrice - currentPrice) / originalPrice) * 10000) / 100;
     }
+
+
 
 
     public String getName() {
@@ -90,6 +92,7 @@ public class Item {
     public void setURL(String URL) {
         this.URL = URL;
     }
+
     public Double getPrice(String  url){
         String host = Main.getHostName(url);
         switch(host){
@@ -105,6 +108,11 @@ public class Item {
         }
       return -1.1;
     }
+
+
+
+
+
     public JSONObject toJson() {
         Map<String, Object> map = new HashMap<>();
         map.put("name", this.description);
