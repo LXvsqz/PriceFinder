@@ -14,8 +14,6 @@ public class CraigslistPriceFinder extends PriceFinder{
         String p = "";
         try {
             Document document = Jsoup.connect(url).get();
-            String title = document.title();
-            //System.out.println(title);
 
             Elements price = document.select(".price:contains($)");
             p =  price.get(0).text();
