@@ -24,9 +24,7 @@ import javax.swing.JLabel;
 import java.net.URI;
 
 import java.io.FileWriter;
-import java.util.HashSet;
-
-import java.util.Iterator;
+import java.util.*;
 
 import org.json.*;
 
@@ -234,6 +232,81 @@ public class Main extends JFrame{
 
         return hostname;
     }
+    public Item[] toArray(){
+        ListModel listmodel = itemHolder.getModel();
+        int n = listmodel.getSize();
+        Item [] data = new Item[n];
+        for(int i = 0; i < n ; i++){
+            data[i] = (Item)listmodel.getElementAt(i);
+        }
+        return data;
+    }
+    public  void sortPercentChange(){
+
+        Item [] data = toArray();
+
+        Arrays.sort(data, Comparator.comparing(Item::getChange));
+
+        itemHolder.setListData(data);
+
+    }
+    public  void sortPriceLow(){
+
+        Item [] data = toArray();
+
+        Arrays.sort(data, Comparator.comparing(Item::getCurrentPrice));
+
+        itemHolder.setListData(data);
+
+    }
+    public  void sortPriceHigh(){
+
+        Item [] data = toArray();
+
+        Arrays.sort(data, Comparator.comparing(Item::getCurrentPrice));
+        reverseArray(data);
+        itemHolder.setListData(data);
+    }
+    public  void sortOldest(){
+
+        Item [] data = toArray();
+
+        Arrays.sort(data, Comparator.comparing(Item::getDateAdded));
+        reverseArray(data);
+        itemHolder.setListData(data);
+
+    }
+    public  void sortNewest(){
+
+        Item [] data = toArray();
+
+        Arrays.sort(data, Comparator.comparing(Item::getDateAdded));
+        itemHolder.setListData(data);
+    }
+    public  void sortName(){
+
+        Item [] data = toArray();
+        Arrays.sort(data, Comparator.comparing(Item::getName));
+        itemHolder.setListData(data);
+    }
+    public void sortNameBackwards(){
+        Item [] data = toArray();
+        Arrays.sort(data, Comparator.comparing(Item::getName));
+
+        reverseArray(data);
+
+        itemHolder.setListData(data);
+    }
+    public void reverseArray(Item [] data){
+        Item t;
+        int n = data.length;
+        for (int i = 0; i < n / 2; i++) {// reverses array
+            t = data[i];
+            data[i] = data[n - i - 1];
+            data[n - i - 1] = t;
+        }
+    }
+
     private void removeItem(){
 
         if(!itemHolder.isSelectionEmpty()){
@@ -443,15 +516,51 @@ public class Main extends JFrame{
         checkBox0.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //sortName();
+                sortOldest();
             }
         });
         JCheckBox checkBox1 = new JCheckBox("Added Newest");
+        checkBox1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sortNewest();
+            }
+        });
         JCheckBox checkBox2 = new JCheckBox("Name Ascending");
+        checkBox2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sortName();
+            }
+        });
         JCheckBox checkBox3 = new JCheckBox("Name Descending");
+        checkBox3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sortNameBackwards();
+            }
+        });
         JCheckBox checkBox4 = new JCheckBox("Price Change (%)");
+        checkBox4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sortPercentChange();
+            }
+        });
         JCheckBox checkBox5 = new JCheckBox("Price Low ($)");
+        checkBox5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sortPriceLow();
+            }
+        });
         JCheckBox checkBox6 = new JCheckBox("Price High($)");
+        checkBox6.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sortPriceHigh();
+            }
+        });
 
         menu0.add(item);
         menu0.add(item_);
