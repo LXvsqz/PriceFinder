@@ -717,7 +717,7 @@ public class Main extends JFrame{
     }
 
     /**
-     * writes on a file the item currently being watched
+     * @write writes on a file the item currently being watched
      */
     public  void write(){
              checkExist();

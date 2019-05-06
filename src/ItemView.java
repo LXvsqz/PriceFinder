@@ -165,7 +165,7 @@ public class ItemView extends JPanel{
 
 
     /**
-     * Return true if the given screen coordinate is inside the viewPage icon.
+     * @return true if the given screen coordinate is inside the viewPage icon.
      */
     private boolean isViewPageClicked(int x, int y) {
         if (x <= 20 && y <= 20) {
@@ -177,7 +177,7 @@ public class ItemView extends JPanel{
     }
 
     /**
-     * Return the image stored in the given file.
+     * @return the image stored in the given file.
      */
     public Image getImage(String file) {
         try {

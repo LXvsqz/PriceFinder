@@ -8,7 +8,11 @@ import java.io.IOException;
 
 public class WalmartPriceFinder extends PriceFinder{
 
-
+    /**
+     * @param url that's given by user
+     * @return double that contains the price
+     * To connect to the site and scrap the information of the price
+    * */
     @Override
     public double getCurrentPrice(String url){
         String p = "";

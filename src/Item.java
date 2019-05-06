@@ -17,7 +17,9 @@ public class Item{
     private double percentChange;
     //private PriceFinder priceFinder = new PriceFinder();
 
-
+    /**
+     * Default constructor
+     * */
 
     public Item(){
 
@@ -62,15 +64,21 @@ public class Item{
 
         return percentChange;
     }
-
+    /**
+     * @return current price of the item
+     * */
     public double getCurrentPrice() {
         return currentPrice;
     }
-
+    /**
+     * @return original price
+     * */
     public double getOriginalPrice() {
         return originalPrice;
     }
-
+    /**
+     * @param url
+     * */
     public void checkCurrentPrice(String url) {
         currentPrice = getPrice(url);
         percentChange = Math.floor(((originalPrice - currentPrice) / originalPrice) * 10000) / 100;
@@ -80,15 +88,21 @@ public class Item{
     public void setName(String name) {
         Name = name;
     }
-
+    /**
+     * @param currentPrice
+     * */
     public void setCurrentPrice(double currentPrice) {
         this.currentPrice = currentPrice;
     }
-
+    /**
+     * @param description
+     * */
     public void setDescription(String description) {
         this.description = description;
     }
-
+    /**
+     * @param URL
+     * */
     public void setURL(String URL) {
         this.URL = URL;
     }
@@ -96,6 +110,8 @@ public class Item{
     /**
      * Creates new instance of finding price
      * for the 3 different stores
+     * @param url user input
+     * @return price from website
      */
     public Double getPrice(String  url){
         String host = Main.getHostName(url);
@@ -128,6 +144,7 @@ public class Item{
     }
 
     /**
+     * @param obj this is used to set the values,
      * gathers Item attributes from JSON txt
      * and assigns to the Item
      */
