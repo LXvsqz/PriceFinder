@@ -93,6 +93,10 @@ public class Item{
         this.URL = URL;
     }
 
+    /**
+     * Creates new instance of finding price
+     * for the 3 different stores
+     */
     public Double getPrice(String  url){
         String host = Main.getHostName(url);
         switch(host){
@@ -108,11 +112,10 @@ public class Item{
         }
       return -1.1;
     }
-
-
-
-
-
+    
+    /**
+     * Takes the item and "maps" in JSON format
+     */
     public JSONObject toJson() {
         Map<String, Object> map = new HashMap<>();
         map.put("name", this.description);
@@ -123,6 +126,11 @@ public class Item{
         map.put("dateAdded", this.dateAdded);
         return new JSONObject(map);
     }
+
+    /**
+     * gathers Item attributes from JSON txt
+     * and assigns to the Item
+     */
     public  Item fromJson(JSONObject obj){
         this.description = obj.getString("name");
         this.currentPrice = (double) obj.getDouble("currentPrice");
