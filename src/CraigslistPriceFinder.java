@@ -10,10 +10,10 @@ public class CraigslistPriceFinder extends PriceFinder{
 
 
     @Override
-    public double getCurrentPrice(String walmart_url){
+    public double getCurrentPrice(String url){
         String p = "";
         try {
-            Document document = Jsoup.connect(walmart_url).get();
+            Document document = Jsoup.connect(url).get();
             String title = document.title();
             //System.out.println(title);
 
